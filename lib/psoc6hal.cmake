@@ -1,0 +1,142 @@
+psoc6_load_library(
+  NAME psoc6hal
+  VERSION 1.2.1
+)
+
+set(PSOC6HAL_SOURCES
+  ${PSOC6HAL_DIR}/include/cyhal.h
+  ${PSOC6HAL_DIR}/include/cyhal_adc.h
+  ${PSOC6HAL_DIR}/include/cyhal_clock.h
+  ${PSOC6HAL_DIR}/include/cyhal_crc.h
+  ${PSOC6HAL_DIR}/include/cyhal_dac.h
+  ${PSOC6HAL_DIR}/include/cyhal_dma.h
+  ${PSOC6HAL_DIR}/include/cyhal_ezi2c.h
+  ${PSOC6HAL_DIR}/include/cyhal_flash.h
+  ${PSOC6HAL_DIR}/include/cyhal_general_types.h
+  ${PSOC6HAL_DIR}/include/cyhal_gpio.h
+  ${PSOC6HAL_DIR}/include/cyhal_hwmgr.h
+  ${PSOC6HAL_DIR}/include/cyhal_i2c.h
+  ${PSOC6HAL_DIR}/include/cyhal_i2s.h
+  ${PSOC6HAL_DIR}/include/cyhal_interconnect.h
+  ${PSOC6HAL_DIR}/include/cyhal_lptimer.h
+  ${PSOC6HAL_DIR}/include/cyhal_pdmpcm.h
+  ${PSOC6HAL_DIR}/include/cyhal_pwm.h
+  ${PSOC6HAL_DIR}/include/cyhal_qspi.h
+  ${PSOC6HAL_DIR}/include/cyhal_rtc.h
+  ${PSOC6HAL_DIR}/include/cyhal_sdhc.h
+  ${PSOC6HAL_DIR}/include/cyhal_sdio.h
+  ${PSOC6HAL_DIR}/include/cyhal_spi.h
+  ${PSOC6HAL_DIR}/include/cyhal_syspm.h
+  ${PSOC6HAL_DIR}/include/cyhal_system.h
+  ${PSOC6HAL_DIR}/include/cyhal_timer.h
+  ${PSOC6HAL_DIR}/include/cyhal_trng.h
+  ${PSOC6HAL_DIR}/include/cyhal_uart.h
+  ${PSOC6HAL_DIR}/include/cyhal_usb_dev.h
+  ${PSOC6HAL_DIR}/include/cyhal_wdt.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_analog_common.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_clock_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_crc_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_crypto_common.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_deprecated.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_dma_dmac.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_dma_dw.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_dma_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_gpio_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_hw_resources.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_hw_types.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_pin_package.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_pwm_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_scb_common.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_syspm_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_system_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_tcpwm_common.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_timer_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_triggers.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_trng_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_utils.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_104_m_csp_ble.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_104_m_csp_ble_usb.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_116_bga_ble.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_116_bga_usb.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_124_bga.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_124_bga_sip.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_43_smt.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_68_qfn_ble.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_01_80_wlcsp.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_02_100_wlcsp.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_02_124_bga.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_02_128_tqfp.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_02_68_qfn.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_03_100_tqfp.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_03_49_wlcsp.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_03_68_qfn.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_01.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_02.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_03.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_adc.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_analog_common.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_clock.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_crc.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_crypto_common.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_dac.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_deprecated.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_dma.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_dma_dmac.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_dma_dw.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_ezi2c.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_flash.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_gpio.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_hwmgr.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_i2c.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_i2s.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_interconnect.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_lptimer.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_not_implemented.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_pdmpcm.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_pwm.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_qspi.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_rtc.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_scb_common.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_sdhc.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_spi.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_syspm.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_system.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_tcpwm_common.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_timer.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_trng.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_uart.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_udb_sdio.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_usb_dev.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_utils.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_wdt.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_104_m_csp_ble.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_104_m_csp_ble_usb.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_116_bga_ble.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_116_bga_usb.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_124_bga.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_124_bga_sip.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_43_smt.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_68_qfn_ble.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_01_80_wlcsp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_02_100_wlcsp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_02_124_bga.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_02_128_tqfp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_02_68_qfn.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_03_100_tqfp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_03_49_wlcsp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_03_68_qfn.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/triggers/cyhal_triggers_psoc6_01.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/triggers/cyhal_triggers_psoc6_02.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/triggers/cyhal_triggers_psoc6_03.c
+)
+set(PSOC6HAL_INCLUDE_DIRS
+  ${PSOC6HAL_DIR}/include
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include
+)
+set(PSOC6HAL_LINK_LIBRARIES
+  psoc6pdl
+)
+
+add_library(psoc6hal STATIC EXCLUDE_FROM_ALL ${PSOC6HAL_SOURCES})
+target_include_directories(psoc6pdl PUBLIC ${PSOC6HAL_INCLUDE_DIRS})
+target_link_libraries(psoc6hal PUBLIC ${PSOC6HAL_LINK_LIBRARIES})

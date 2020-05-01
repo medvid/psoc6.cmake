@@ -1,0 +1,18 @@
+{
+	"cmake.generator": "Ninja",
+	"cmake.configureOnOpen": false,
+	"cmake.buildDirectory": "${workspaceFolder}/build/${buildKit}/${buildType}",
+	"C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+	"[cpp]": {
+		"editor.defaultFormatter": "ms-vscode.cpptools"
+	},
+	"modustoolbox.toolsPath": "C:/Users/USER/ModusToolbox/tools_2.1",
+	"cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
+	"cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+	"cmake.configureSettings": {
+		"CY_TOOLS_PATHS": "C:/Users/USER/ModusToolbox/tools_2.1",
+		"GCC_COMPILER_PATH": "C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major",
+		"ARM_COMPILER_PATH": "C:/Keil_v5/ARM/ARMCLANG",
+		"IAR_COMPILER_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm"
+	}
+}

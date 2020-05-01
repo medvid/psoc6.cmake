@@ -1,0 +1,93 @@
+psoc6_check_bsp(CY8CKIT-062-BLE)
+
+project(ble-throughput-freertos)
+
+psoc6_load_application(
+  NAME mtb-example-psoc6-ble-throughput-freertos
+  VERSION 1.0.0
+)
+psoc6_add_executable(
+  NAME
+    mtb-example-psoc6-ble-throughput-freertos-gatt-client
+  SOURCES
+    ${APP_DIR}/common/display_task.h
+    ${APP_DIR}/common/display_task.c
+    ${APP_DIR}/common/led_task.h
+    ${APP_DIR}/common/led_task.c
+    ${APP_DIR}/common/uart_task.h
+    ${APP_DIR}/common/uart_task.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_fonts.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_fonts.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_library.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_library.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_psoc_interface.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_psoc_interface.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasive_eink_configuration.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasive_eink_hardware_driver.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasive_eink_hardware_driver_part1.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasiv_eink_hardware_driver_part2.c
+    ${APP_DIR}/GATT_client/ble_task.h
+    ${APP_DIR}/GATT_client/ble_task.c
+    ${APP_DIR}/GATT_client/main.c
+    ${APP_DIR}/GATT_client/screen_contents.h
+    ${APP_DIR}/GATT_client/screen_contents.c
+    ${BLESS_COMMON_SOURCES}
+  INCLUDE_DIRS
+    ${APP_DIR}/common
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary
+    ${APP_DIR}/GATT_client
+  DEFINES
+    EINK_DISPLAY_SHIELD_PRESENT
+  LINK_LIBRARIES
+    bless-host-controller
+    psoc6hal
+    retarget-io
+    freertos
+  DESIGN_BT
+    ${APP_DIR}/GATT_client/design.cybt
+)
+
+psoc6_load_application(
+  NAME mtb-example-psoc6-ble-throughput-freertos
+  VERSION 1.0.0
+)
+psoc6_add_executable(
+  NAME
+    mtb-example-psoc6-ble-throughput-freertos-gatt-server
+  SOURCES
+    ${APP_DIR}/common/display_task.h
+    ${APP_DIR}/common/display_task.c
+    ${APP_DIR}/common/led_task.h
+    ${APP_DIR}/common/led_task.c
+    ${APP_DIR}/common/uart_task.h
+    ${APP_DIR}/common/uart_task.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_fonts.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_fonts.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_library.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_library.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_psoc_interface.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/cy_eink_psoc_interface.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasive_eink_configuration.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasive_eink_hardware_driver.h
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasive_eink_hardware_driver_part1.c
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary/pervasiv_eink_hardware_driver_part2.c
+    ${APP_DIR}/GATT_server/ble_task.h
+    ${APP_DIR}/GATT_server/ble_task.c
+    ${APP_DIR}/GATT_server/main.c
+    ${APP_DIR}/GATT_server/screen_contents.h
+    ${APP_DIR}/GATT_server/screen_contents.c
+    ${BLESS_COMMON_SOURCES}
+  INCLUDE_DIRS
+    ${APP_DIR}/common
+    ${APP_DIR}/common/cy8ckit_028_epd_libarary
+    ${APP_DIR}/GATT_client
+  DEFINES
+    EINK_DISPLAY_SHIELD_PRESENT
+  LINK_LIBRARIES
+    bless-host-controller
+    psoc6hal
+    retarget-io
+    freertos
+  DESIGN_BT
+    ${APP_DIR}/GATT_server/design.cybt
+)

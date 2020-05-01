@@ -1,0 +1,29 @@
+psoc6_load_library(
+  NAME psoc6cm0p
+  VERSION 1.1.2
+)
+
+if(CM0P_SLEEP IN_LIST COMPONENTS)
+  set(PSOC6CM0P_SOURCES
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SLEEP/psoc6_01_cm0p_sleep.c
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SLEEP/psoc6_02_cm0p_sleep.c
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SLEEP/psoc6_03_cm0p_sleep.c
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SLEEP/psoc6_04_cm0p_sleep.c
+  )
+elseif(CM0P_CRYPTO IN_LIST COMPONENTS)
+  set(PSOC6CM0P_SOURCES
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_CRYPTO/psoc6_01_cm0p_crypto.c
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_CRYPTO/psoc6_02_cm0p_crypto.c
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_CRYPTO/psoc6_03_cm0p_crypto.c
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_CRYPTO/psoc6_04_cm0p_crypto.c
+  )
+elseif(CM0P_BLESS IN_LIST COMPONENTS)
+  set(PSOC6CM0P_SOURCES
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_BLESS/psoc6_cm0p_bless.c
+  )
+else()
+  message(FATAL_ERROR "psoc6cm0p: COMPONENTS should include either CM0P_SLEEP, CM0P_CRYPTO or CM0P_BLESS.")
+endif()
+
+add_library(psoc6cm0p STATIC EXCLUDE_FROM_ALL ${PSOC6CM0P_SOURCES})
+target_link_libraries(psoc6cm0p PUBLIC psoc6pdl)
