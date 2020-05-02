@@ -1,8 +1,14 @@
+resources:
+  containers:
+  - container: psoc6
+    image: vmmedvid/psoc6.cmake:latest
+
 trigger:
 - master
 
 pool:
-  vmImage: 'vmmedvid/psoc6.cmake'
+  vmImage: 'ubuntu-18.04'
+container: psoc6
 
 steps:
 - task: CMake@1
