@@ -1,5 +1,7 @@
 # CMake based build system for PSoC 6 designs
 
+[![Build Status](https://dev.azure.com/vmedvid/psoc6.cmake/_apis/build/status/medvid.psoc6.cmake?branchName=master)](https://dev.azure.com/vmedvid/psoc6.cmake/_build/latest?definitionId=4&branchName=master)
+
 ## Prerequisites
 
 * ModusToolbox 2.1
