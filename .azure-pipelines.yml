@@ -14,5 +14,5 @@ steps:
 - task: CMake@1
   inputs:
     workingDirectory: 'build/CY8CPROTO-062-4343W/NOOS/GCC/Debug'
-    cmakeArgs: '-G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Debug'
+    cmakeArgs: '-G Ninja -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Debug'
   displayName: 'CY8CPROTO-062-4343W/NOOS/GCC/Debug'
