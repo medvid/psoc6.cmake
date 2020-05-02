@@ -102,7 +102,7 @@
 
     Example for Ubuntu 20.04:
 
-        sudo apt install git cmake ninja
+        sudo apt install git cmake ninja-build
 
     Note: Ubuntu 18.04 provides an old version CMake, not compatible with CMake recipes in this repo.
     To download latest CMake package, follow the instructions at https://apt.kitware.com.
@@ -114,6 +114,11 @@
     Installation path assumed in this guide:
 
         /opt/gcc-arm-none-eabi-9-2019-q4-major
+
+    CLI installation example:
+
+        curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
+        sudo tar -C /opt -xjf /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
 
 ## Quick Start Guide - CLI
 
