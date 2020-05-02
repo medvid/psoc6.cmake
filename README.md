@@ -6,7 +6,7 @@
 * CMake >= 3.16
 * Ninja build system
 
-### Install Windows
+### Install prerequisites - Windows
 
 1. Download and install ModusToolbox 2.1:
 
@@ -68,13 +68,52 @@
 
     Note: valid license is required to use the IAR Compiler.
 
-### macOS
+### Install prerequisites - macOS
 
-TBD
+1. Download and install ModusToolbox 2.1:
 
-### Linux
+    [https://www.cypress.com/ModusToolboxForMac][ModusToolboxForMac]
 
-TBD
+2. Install Xcode - this provides git client
+
+3. Download and install Homebrew Package Manager:
+
+    https://brew.sh
+
+4. Install CMake and Ninja using Homebrew:
+
+    brew install cmake ninja
+
+5. _(Optional)_ Download and install the latest GNU Arm Embedded toolchain:
+
+    https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
+
+    Installation path assumed in this guide:
+
+        $HOME/Applications/gcc-arm-none-eabi-9-2019-q4-major
+
+### Install prerequisites - Linux
+
+1. Download and install ModusToolbox 2.1:
+
+    [https://www.cypress.com/ModusToolboxForLinux][ModusToolboxForLinux]
+
+2. Download and install Git, CMake>=3.16 and Ninja using the system package manager.
+
+    Example for Ubuntu 20.04:
+
+        sudo apt install git cmake ninja
+
+    Note: Ubuntu 18.04 provides an old version CMake, not compatible with CMake recipes in this repo.
+    To download latest CMake package, follow the instructions at https://apt.kitware.com.
+
+3. _(Optional)_ Download and install the latest GNU Arm Embedded toolchain:
+
+    https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
+
+    Installation path assumed in this guide:
+
+        /opt/gcc-arm-none-eabi-9-2019-q4-major
 
 ## Quick Start Guide - CLI
 
@@ -127,7 +166,51 @@ TBD
     * [ms-vscode.cmake-tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
     * [marus25.cortex-debug](https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug)
 
-4. Copy .vscode/settings.json.template as .vscode/settings.json, adjust paths (`modustoolbox.toolsPath`, `cortex-debug.armToolchainPath`, `cmake.configureSettings`).
+4. Copy .vscode/settings-template-$os.json as .vscode/settings.json, adjust paths as necessary.
+
+    * Example of Windows-specific tweaks to settings.json:
+
+        ```json
+        {
+            "modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.1",
+            "cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
+            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+            "cmake.configureSettings": {
+                "CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.1",
+                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major",
+                "ARM_TOOLCHAIN_PATH": "C:/Keil_v5/ARM/ARMCLANG",
+                "IAR_TOOLCHAIN_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm"
+            }
+        }
+        ```
+
+    * Example of macOS-specific tweaks to settings.json:
+
+        ```json
+        {
+            "modustoolbox.toolsPath": "/Applications/ModusToolbox/tools_2.1",
+            "cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
+            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+            "cmake.configureSettings": {
+                "CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.1",
+                "GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2019-q4-major"
+            }
+        }
+        ```
+
+    * Example of Linux-specific tweaks to settings.json:
+
+        ```json
+        {
+            "modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.1",
+            "cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
+            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+            "cmake.configureSettings": {
+                "CY_TOOLS_PATHS": "${env:HOME}/tools_2.1",
+                "GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-9-2019-q4-major"
+            }
+        }
+        ```
 
 5. In VSCode menu, select View -> Command Palette -> type: "CMake: Select a Kit" -> select one of the custom kits defined in .vscode/cmake-kits.json, for example: CY8CKIT-062-WIFI-BT/NOOS/GCC. Never select standard kits scanned from the host OS.
 
@@ -164,4 +247,6 @@ TBD
     PSOC6_FORCE_FETCH=1 cmake -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
 
 [ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-windows-install.exe
+[ModusToolboxForMac]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-macos-install.pkg
+[ModusToolboxForLinux]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-linux-install.tar.gz
 [hello-world]: https://github.com/cypresssemiconductorco/mtb-example-psoc6-hello-world/blob/master/README.md#operation

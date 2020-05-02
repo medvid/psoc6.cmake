@@ -1,0 +1,16 @@
+{
+	"cmake.generator": "Ninja",
+	"cmake.configureOnOpen": false,
+	"cmake.buildDirectory": "${workspaceFolder}/build/${buildKit}/${buildType}",
+	"C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+	"[cpp]": {
+		"editor.defaultFormatter": "ms-vscode.cpptools"
+	},
+	"modustoolbox.toolsPath": "/Applications/ModusToolbox/tools_2.1",
+	"cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
+	"cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+	"cmake.configureSettings": {
+		"CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.1",
+		"GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2019-q4-major"
+	}
+}
