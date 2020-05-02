@@ -15,4 +15,8 @@ steps:
   inputs:
     workingDirectory: 'build/CY8CPROTO-062-4343W/NOOS/GCC/Debug'
     cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CPROTO-062-4343W -DOS=NOOS -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Debug'
-  displayName: 'CY8CPROTO-062-4343W/NOOS/GCC/Debug'
+  displayName: 'Generate CY8CPROTO-062-4343W/NOOS/GCC/Debug'
+
+- script: |
+    ninja -C build/CY8CPROTO-062-4343W/NOOS/GCC/Debug -v
+  displayName: 'Build CY8CPROTO-062-4343W/NOOS/GCC/Debug'
