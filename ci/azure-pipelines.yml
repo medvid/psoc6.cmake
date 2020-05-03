@@ -11,10 +11,10 @@ pool:
 container: psoc6
 
 steps:
-- task: CMake@1
+- task: CMake@CY8CPROTO-062-4343W/NOOS/GCC/Debug
   inputs:
     workingDirectory: 'build/CY8CPROTO-062-4343W/NOOS/GCC/Debug'
-    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CPROTO-062-4343W -DOS=NOOS -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Debug'
+    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CPROTO-062-4343W -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Debug'
   displayName: 'Generate CY8CPROTO-062-4343W/NOOS/GCC/Debug'
 
 - script: |
