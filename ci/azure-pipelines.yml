@@ -6,14 +6,18 @@ resources:
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-18.04'
-container: psoc6
+pr:
+- master
 
-steps:
-- task: Bash@3
-  inputs:
-    filePath: ci/build-all.sh
-    arguments: --toolchain GCC
-  env:
-    GCC_TOOLCHAIN_PATH: /opt/gcc-arm-none-eabi-9-2019-q4-major
+jobs:
+- job: linux_gcc
+  pool:
+    vmImage: 'ubuntu-18.04'
+  container: psoc6
+  steps:
+  - task: Bash@3
+    inputs:
+      filePath: ci/build-all.sh
+      arguments: --toolchain GCC
+    env:
+      GCC_TOOLCHAIN_PATH: /opt/gcc-arm-none-eabi-9-2019-q4-major
