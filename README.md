@@ -251,9 +251,9 @@
 
 * To build CM0+ application, set CORE variable, for example:
 
-        cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT-M0/NOOS/GCC/Release -DCORE=CM0P \
-            -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Release
-        cmake --build build/CY8CKIT-062-WIFI-BT-M0/NOOS/GCC/Release --target cm0p-sleep_PROGRAM
+        cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/CM0P/GCC/Release \
+            -DTARGET=CY8CKIT-062-WIFI-BT -DCORE=CM0P -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Release
+        cmake --build build/CY8CKIT-062-WIFI-BT/CM0P/GCC/Release --target cm0p-sleep_PROGRAM
 
     Make sure to always use different build directory for CM0+ and CM4 cores.
 
