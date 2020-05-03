@@ -17,7 +17,7 @@ psoc6_add_executable(
   INCLUDE_DIRS
     ${CMSIS_DIR}/CMSIS/CoreValidation/Include
     ${CMSIS_DIR}/CMSIS/CoreValidation/Tests
-    ${CMSIS_DIR}/CMSIS/CoreValidation/Tests/Config/core_m
+    ${CMSIS_DIR}/CMSIS/CoreValidation/Tests/config/core_m
   DEFINES
     ARMCM4_FP
     # Override ARMCM4_FP.h interrupt name with PDL name
