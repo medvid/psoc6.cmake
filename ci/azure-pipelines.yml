@@ -11,12 +11,62 @@ pool:
 container: psoc6
 
 steps:
-- task: CMake@CY8CPROTO-062-4343W/NOOS/GCC/Debug
+- task: CMake@1
+  inputs:
+    workingDirectory: 'build/CY8CKIT-062-BLE/NOOS/GCC/Debug'
+    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CKIT-062-BLE -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Debug'
+  displayName: 'Generate CY8CKIT-062-BLE/NOOS/GCC/Debug'
+
+- task: CMake@1
+  inputs:
+    workingDirectory: 'build/CY8CKIT-062-BLE/NOOS/GCC/Release'
+    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CKIT-062-BLE -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Release'
+  displayName: 'Generate CY8CKIT-062-BLE/NOOS/GCC/Release'
+
+- task: CMake@1
+  inputs:
+    workingDirectory: 'build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug'
+    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Debug'
+  displayName: 'Generate CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug'
+
+- task: CMake@1
+  inputs:
+    workingDirectory: 'build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Release'
+    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Release'
+  displayName: 'Generate CY8CKIT-062-WIFI-BT/NOOS/GCC/Release'
+
+- task: CMake@1
   inputs:
     workingDirectory: 'build/CY8CPROTO-062-4343W/NOOS/GCC/Debug'
     cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CPROTO-062-4343W -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Debug'
   displayName: 'Generate CY8CPROTO-062-4343W/NOOS/GCC/Debug'
 
+- task: CMake@1
+  inputs:
+    workingDirectory: 'build/CY8CPROTO-062-4343W/NOOS/GCC/Release'
+    cmakeArgs: '../../../../.. -G Ninja -DTARGET=CY8CPROTO-062-4343W -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Release'
+  displayName: 'Generate CY8CPROTO-062-4343W/NOOS/GCC/Release'
+
+- script: |
+    ninja -C build/CY8CKIT-062-BLE/NOOS/GCC/Debug -v
+  displayName: 'Build CY8CKIT-062-BLE/NOOS/GCC/Debug'
+
+- script: |
+  ninja -C build/CY8CKIT-062-BLE/NOOS/GCC/Release -v
+displayName: 'Build CY8CKIT-062-BLE/NOOS/GCC/Release'
+
+- script: |
+    ninja -C build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug -v
+  displayName: 'Build CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug'
+
+- script: |
+  ninja -C build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Release -v
+displayName: 'Build CY8CKIT-062-WIFI-BT/NOOS/GCC/Release'
+
 - script: |
     ninja -C build/CY8CPROTO-062-4343W/NOOS/GCC/Debug -v
   displayName: 'Build CY8CPROTO-062-4343W/NOOS/GCC/Debug'
+
+- script: |
+    ninja -C build/CY8CPROTO-062-4343W/NOOS/GCC/Release -v
+  displayName: 'Build CY8CPROTO-062-4343W/NOOS/GCC/Release'
