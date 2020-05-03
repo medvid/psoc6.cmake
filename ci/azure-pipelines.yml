@@ -11,7 +11,9 @@ pool:
 container: psoc6
 
 steps:
-- script: |
-    cmake -S . -B build/CY8CKIT-062-BLE/NOOS/GCC/Debug -G Ninja -DTARGET=CY8CKIT-062-BLE -DOS=NOOS -DTOOLCHAIN=GCC -DGCC_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi-9-2019-q4-major" -DCMAKE_BUILD_TYPE=Debug
-    ninja -C build/CY8CKIT-062-BLE/NOOS/GCC/Debug -v
-  displayName: 'CY8CKIT-062-BLE/NOOS/GCC/Debug'
+- task: Bash@3
+  inputs:
+    filePath: ci/build-all.sh
+    arguments: --toolchain GCC
+  env:
+    GCC_TOOLCHAIN_PATH: /opt/gcc-arm-none-eabi-9-2019-q4-major
