@@ -68,10 +68,20 @@ else()
   message(FATAL_ERROR "bsp: CORE ${CORE} is not supported.")
 endif()
 
+# Define BSP library
+add_library(bsp STATIC EXCLUDE_FROM_ALL ${BSP_SOURCES})
+target_link_libraries(bsp PUBLIC ${BSP_LINK_LIBRARIES})
+
 # Load library definitions
 include(lib/cmsis.cmake)
 include(lib/core-lib.cmake)
 include(lib/psoc6pdl.cmake)
+
+# The rest of this file is CM4-specific
+if(${CORE} STREQUAL CM0P)
+  return()
+endif()
+
 include(lib/psoc6hal.cmake)
 include(lib/psoc6cm0p.cmake)
 include(lib/capsense.cmake)
@@ -82,10 +92,6 @@ include(lib/usbdev.cmake)
 include(lib/retarget-io.cmake)
 include(lib/rgb-led.cmake)
 include(lib/serial-flash.cmake)
-
-# Define BSP library
-add_library(bsp STATIC EXCLUDE_FROM_ALL ${BSP_SOURCES})
-target_link_libraries(bsp PUBLIC ${BSP_LINK_LIBRARIES})
 
 # Define custom recipes for BSP generated sources
 psoc6_add_bsp_design_modus(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.modus)

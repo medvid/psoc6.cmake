@@ -1,4 +1,12 @@
-# Load application definitions
+set(PORT_DIR ${CMAKE_SOURCE_DIR}/os/noos)
+
+# Load CM0+ application definitions
+if(${CORE} STREQUAL CM0P)
+  include(${PORT_DIR}/cm0p-sleep.cmake)
+  return()
+endif()
+
+# Load CM4 application definitions
 include(app/ble-findme.cmake)
 include(app/capsense-buttons-slider.cmake)
 include(app/crypto-aes.cmake)

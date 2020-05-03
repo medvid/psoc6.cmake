@@ -249,6 +249,14 @@
         cd build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
         ninja -v -j1
 
+* To build CM0+ application, set CORE variable, for example:
+
+        cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT-M0/NOOS/GCC/Release -DCORE=CM0P \
+            -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC -DCMAKE_BUILD_TYPE=Release
+        cmake --build build/CY8CKIT-062-WIFI-BT-M0/NOOS/GCC/Release --target cm0p-sleep_PROGRAM
+
+    Make sure to always use different build directory for CM0+ and CM4 cores.
+
 * Set PSOC6_FORCE_FETCH to update all cloned git repositories to match versions declared in CMake recipes:
 
     PSOC6_FORCE_FETCH=1 cmake -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
