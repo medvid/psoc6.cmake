@@ -30,8 +30,6 @@ psoc6_add_executable(
     cycfg_clocks.c
     cycfg_connectivity_wifi.h
     cycfg_connectivity_wifi.c
-    cycfg_dmas.h
-    cycfg_dmas.c
     cycfg_notices.h
     cycfg_peripherals.h
     cycfg_peripherals.c

@@ -15,6 +15,9 @@ psoc6_add_executable(
     ${APP_DIR}/main.c
     ${APP_DIR}/lowpower_task.h
     ${APP_DIR}/lowpower_task.c
+  # BUG: lowpower_task.h depends in Mbed BSP name
+  DEFINES
+    -DTARGET_${MBED_BSP_NAME}
   LINK_LIBRARIES
     retarget-io
     lpa
