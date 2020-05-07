@@ -43,7 +43,7 @@ function status()
 }
 
 # Install status function as Ctrl+C handler
-trap status INT
+trap status EXIT
 
 KERNEL="$($(which uname) -s)"
 case "$KERNEL" in
