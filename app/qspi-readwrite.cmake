@@ -1,3 +1,8 @@
+# This applications relies on BSP providing design.cyqspi
+if(NOT TARGET bsp_design_qspi)
+  return()
+endif()
+
 project(qspi-readwrite)
 
 psoc6_load_application(
@@ -7,9 +12,9 @@ psoc6_load_application(
 psoc6_add_executable(
   SOURCES
     ${APP_DIR}/main.c
-    ${BSP_QSPI_GENERATED_SOURCES}
   LINK_LIBRARIES
     psoc6hal
     retarget-io
     serial-flash
+    bsp_design_qspi
 )

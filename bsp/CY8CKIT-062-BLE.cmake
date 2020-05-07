@@ -1,5 +1,8 @@
 # Download BSP sources from GitHub
-psoc6_load_bsp(NAME CY8CKIT-062-BLE VERSION 1.2.0)
+psoc6_load_bsp(
+  NAME CY8CKIT-062-BLE
+  VERSION 1.2.0
+)
 
 # Set target MPN
 psoc6_set_device(CY8C6347BZI-BLD53)

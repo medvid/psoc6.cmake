@@ -1,4 +1,8 @@
-psoc6_check_bsp(CY8CKIT-062-BLE)
+# This application is compatible with BLE-enabled boards
+psoc6_check_bsp(
+  CY8CKIT-062-BLE
+  CY8CPROTO-063-BLE
+)
 
 project(ble-throughput-freertos)
 
@@ -45,11 +49,6 @@ psoc6_add_executable(
     freertos
   DESIGN_BT
     ${APP_DIR}/GATT_client/design.cybt
-)
-
-psoc6_load_application(
-  NAME mtb-example-psoc6-ble-throughput-freertos
-  VERSION 1.0.0
 )
 psoc6_add_executable(
   NAME

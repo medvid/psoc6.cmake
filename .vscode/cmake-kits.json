@@ -144,6 +144,78 @@
         }
     },
     {
+        "name": "CY8CKIT-062S2-43012/NOOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "NOOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/NOOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "NOOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/NOOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "NOOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/FREERTOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/FREERTOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/FREERTOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/RTX/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "RTX",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/RTX/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "RTX",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/RTX/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "RTX",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
         "name": "CY8CPROTO-062-4343W/NOOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-062-4343W",
@@ -211,6 +283,294 @@
         "name": "CY8CPROTO-062-4343W/RTX/IAR",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-062-4343W",
+            "OS": "RTX",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/NOOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "NOOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/NOOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "NOOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/NOOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "NOOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/FREERTOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/FREERTOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/FREERTOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/RTX/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "RTX",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/RTX/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "RTX",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/RTX/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "RTX",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/NOOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "NOOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/NOOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "NOOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/NOOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "NOOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/FREERTOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/FREERTOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/FREERTOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/RTX/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "RTX",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/RTX/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "RTX",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/RTX/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "RTX",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/NOOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/NOOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/NOOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/FREERTOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/FREERTOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/FREERTOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/RTX/GCC",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/RTX/ARM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/RTX/IAR",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/NOOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/NOOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/NOOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/FREERTOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/FREERTOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/FREERTOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/RTX/GCC",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/RTX/ARM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/RTX/IAR",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
             "OS": "RTX",
             "TOOLCHAIN": "IAR"
         }

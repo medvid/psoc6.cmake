@@ -1,6 +1,6 @@
 # Download BSP sources from GitHub
 psoc6_load_bsp(
-  NAME CY8CPROTO-062-4343W
+  NAME CY8CKIT-062S2-43012
   VERSION 1.2.0
 )
 
@@ -37,7 +37,7 @@ if(${CORE} STREQUAL CM4)
   psoc6_add_component(CM0P_SLEEP)
   psoc6_add_component(BSP_DESIGN_MODUS)
   psoc6_add_component(PSOC6HAL)
-  psoc6_add_component(4343W)
+  psoc6_add_component(43012)
 
   list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
   list(APPEND BSP_LINK_LIBRARIES psoc6hal)
@@ -91,6 +91,7 @@ include(lib/capsense.cmake)
 include(lib/csdadc.cmake)
 include(lib/csdidac.cmake)
 include(lib/emeeprom.cmake)
+include(lib/emwin.cmake)
 include(lib/usbdev.cmake)
 include(lib/retarget-io.cmake)
 include(lib/rgb-led.cmake)

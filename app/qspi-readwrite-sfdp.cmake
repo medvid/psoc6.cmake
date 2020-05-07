@@ -1,3 +1,8 @@
+# This applications relies on BSP providing design.cyqspi
+if(NOT TARGET bsp_design_qspi)
+  return()
+endif()
+
 project(qspi-readwrite-sfdp)
 
 psoc6_load_application(

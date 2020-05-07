@@ -1,5 +1,8 @@
 # Download BSP sources from GitHub
-psoc6_load_bsp(NAME CY8CKIT-062-WIFI-BT VERSION 1.2.0)
+psoc6_load_bsp(
+  NAME CY8CKIT-062-WIFI-BT
+  VERSION 1.2.0
+)
 
 # Set target MPN
 psoc6_set_device(CY8C6247BZI-D54)
@@ -90,8 +93,8 @@ include(lib/capsense.cmake)
 include(lib/csdadc.cmake)
 include(lib/csdidac.cmake)
 include(lib/emeeprom.cmake)
-include(lib/usbdev.cmake)
 include(lib/emwin.cmake)
+include(lib/usbdev.cmake)
 include(lib/retarget-io.cmake)
 include(lib/rgb-led.cmake)
 include(lib/serial-flash.cmake)

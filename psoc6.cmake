@@ -190,6 +190,9 @@ macro(psoc6_load_bsp)
     message(FATAL_ERROR "psoc6_load_bsp: missing required NAME argument.")
   endif()
 
+  # Some assets use Mbed-compatible BSP name ('-' -> '_')
+  STRING(REGEX REPLACE "-" "_" MBED_BSP_NAME ${BSP_NAME})
+
   # VERSION is the required argument
   if(NOT DEFINED BSP_VERSION)
     message(FATAL_ERROR "psoc6_load_bsp: missing required VERSION argument.")
@@ -220,7 +223,7 @@ macro(psoc6_load_bsp)
     USES_TERMINAL_DOWNLOAD TRUE
   )
   if("$ENV{PSOC6_FORCE_FETCH}" OR NOT IS_DIRECTORY ${BSP_DIR}/.git)
-    MESSAGE(STATUS "Fetch ${BSP_URL}#${BSP_TAG} to ${BSP_DIR}")
+    MESSAGE(STATUS "Fetch ${BSP_URL}/#${BSP_TAG} to ${BSP_DIR}")
     FetchContent_Populate(${BSP_NAME})
   endif()
 endmacro()
@@ -283,7 +286,7 @@ macro(psoc6_load_library)
   )
   FetchContent_GetProperties(${LIB_NAME})
   if("$ENV{PSOC6_FORCE_FETCH}" OR NOT IS_DIRECTORY ${LIB_DIR}/.git)
-    MESSAGE(STATUS "Fetch ${LIB_URL}#${LIB_TAG} to ${LIB_DIR}")
+    MESSAGE(STATUS "Fetch ${LIB_URL}/#${LIB_TAG} to ${LIB_DIR}")
     FetchContent_Populate(${LIB_NAME})
   endif()
 
@@ -337,7 +340,7 @@ macro(psoc6_load_application)
   )
   FetchContent_GetProperties(${APP_NAME})
   if("$ENV{PSOC6_FORCE_FETCH}" OR NOT IS_DIRECTORY ${APP_DIR}/.git)
-    MESSAGE(STATUS "Fetch ${APP_URL}#${APP_TAG} to ${APP_DIR}")
+    MESSAGE(STATUS "Fetch ${APP_URL}/#${APP_TAG} to ${APP_DIR}")
     FetchContent_Populate(${APP_NAME})
   endif()
 
@@ -591,7 +594,7 @@ macro(psoc6_add_executable)
   # Define executable target, add application sources
   add_executable(${TARGET_NAME} ${TARGET_SOURCES})
 
-  # .psoc6_m0p_image section in cm4_dual linker scripts
+  # BUG: .psoc6_m0p_image section in cm4_dual linker scripts
   # cannot be placed from the static library.
   # Add the prebuilt image sources directly to the application
   if(NOT ${CORE} STREQUAL CM0P)
