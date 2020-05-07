@@ -1,0 +1,31 @@
+# AnyCloud requires either 43012 or 4343W module to be present on board
+if(NOT 4343W IN_LIST COMPONENTS AND NOT 43012 IN_LIST COMPONENTS)
+  return()
+endif()
+
+# Load library definitions
+include(lib/wifi-host-driver.cmake)
+include(lib/mbedtls.cmake)
+include(lib/lwip.cmake)
+include(lib/connectivity-utilities.cmake)
+include(lib/secure-sockets.cmake)
+include(lib/whd-bsp-integration.cmake)
+include(lib/wifi-mw-core.cmake)
+include(lib/wifi-connection-manager.cmake)
+include(lib/lpa.cmake)
+include(lib/aws-iot.cmake)
+include(lib/mqtt.cmake)
+include(lib/mcuboot.cmake)
+include(lib/anycloud-ota.cmake)
+include(lib/cy-mbedtls-acceleration.cmake)
+
+# Load application definitions
+include(app/anycloud-mqtt-client.cmake)
+include(app/anycloud-offload-tcp-keepalive.cmake)
+#include(app/anycloud-ota-mqtt.cmake)
+include(app/anycloud-secure-tcp-client.cmake)
+include(app/anycloud-secure-tcp-server.cmake)
+include(app/anycloud-tcp-client.cmake)
+include(app/anycloud-tcp-server.cmake)
+include(app/anycloud-wlan-lowpower.cmake)
+include(app/anycloud-wifi-scan.cmake)
