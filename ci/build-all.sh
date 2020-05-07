@@ -25,17 +25,32 @@ function run_cmd()
 {
   echo -e "${GREEN}$@${NOCOLOR}"
   if ! "$@"; then
+    # add enough timeout to enable Ctrl+C cancellation
+    sleep 1
     errlist+="$@${NL}"
     return 1
   fi
 }
+
+function status()
+{
+  set +x
+
+  echo -e "${NL}Summary:"
+  echo -e "${summary}"
+  # Below expression ensures correct status code returned from script
+  [[ -z $errlist ]] || echo -e "Errors:${NL}${RED}${errlist}${RED}"; exit
+}
+
+# Install status function as Ctrl+C handler
+trap status INT
 
 KERNEL="$($(which uname) -s)"
 case "$KERNEL" in
   CYGWIN*|MINGW*|MSYS*)
     export GCC_TOOLCHAIN_PATH="$(cygpath --mixed "${GCC_TOOLCHAIN_PATH:-C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major}")"
     export ARM_TOOLCHAIN_PATH="$(cygpath --mixed "${ARM_TOOLCHAIN_PATH:-C:/Program Files/ARMCompiler6.13}")"
-    export IAR_TOOLCHAIN_PATH="$(cygpath --mixed "${IAR_TOOLCHAIN_PATH:-C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4}")"
+    export IAR_TOOLCHAIN_PATH="$(cygpath --mixed "${IAR_TOOLCHAIN_PATH:-C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm}")"
     default_toolchain_list="GCC ARM IAR"
     ;;
   Linux*)
@@ -52,10 +67,10 @@ case "$KERNEL" in
     ;;
 esac
 
-bsp_list=
-os_list=
-toolchain_list=
-config_list=
+declare -a bsp_list
+declare -a os_list
+declare -a toolchain_list
+declare -a config_list
 
 # parse command line inputs
 while (( $# > 0 )); do
@@ -63,22 +78,22 @@ while (( $# > 0 )); do
     -b | --bsp)
       [[ $# -le 1 ]] && { echo "[ERROR] $1 argument requires value"; exit 1; }
       shift
-      bsp_list+="$1 "
+      bsp_list+=("$1")
       ;;
     -o | --os)
       [[ $# -le 1 ]] && { echo "[ERROR] $1 argument requires value"; exit 1; }
       shift
-      os_list+="$1 "
+      os_list+=("$1")
       ;;
     -t | --toolchain)
       [[ $# -le 1 ]] && { echo "[ERROR] $1 argument requires value"; exit 1; }
       shift
-      toolchain_list+="$1 "
+      toolchain_list+=("$1")
       ;;
     -c | --config)
       [[ $# -le 1 ]] && { echo "[ERROR] $1 argument requires value"; exit 1; }
       shift
-      config_list+="$1 "
+      config_list+=("$1")
       ;;
     *)
       echo "[ERROR] Unknown parameter $1"
@@ -89,20 +104,40 @@ while (( $# > 0 )); do
 done
 
 # Set default values for all optional arguments
-[[ -z $bsp_list ]] && bsp_list="CY8CKIT-062-BLE CY8CKIT-062-WIFI-BT CY8CPROTO-062-4343W"
-[[ -z $os_list ]] && os_list="NOOS FREERTOS RTX"
-[[ -z $toolchain_list ]] && toolchain_list="$default_toolchain_list" # os-specific
-[[ -z $config_list ]] && config_list="Debug Release"
+[[ -z ${bsp_list+x} ]] && bsp_list=(
+  "CY8CKIT-062-BLE"
+  "CY8CKIT-062-WIFI-BT"
+  "CY8CKIT-062S2-43012"
+  "CY8CPROTO-062-4343W"
+  "CY8CPROTO-062S3-4343W"
+  "CY8CPROTO-063-BLE"
+  "CYW9P62S1-43012EVB-01"
+  "CYW9P62S1-43438EVB-01"
+)
+[[ -z ${os_list+x} ]] && os_list=(
+  "NOOS"
+  "FREERTOS"
+  "RTX"
+)
+[[ -z ${toolchain_list+x} ]] && toolchain_list=(
+  "GCC"
+  "ARM"
+  "IAR"
+)
+[[ -z ${config_list+x} ]] && config_list=(
+  "Debug"
+  "Release"
+)
 
-echo bsp_list=$bsp_list
-echo os_list=$os_list
-echo toolchain_list=$toolchain_list
-echo config_list=$config_list
+echo "TARGET list: ${bsp_list[*]}"
+echo "OS list: ${os_list[*]}"
+echo "TOOLCHAIN list: ${toolchain_list[*]}"
+echo "CMAKE_BUILD_TYPE list: ${config_list[*]}"
 
-for bsp in $bsp_list; do
-  for os in $os_list; do
-    for toolchain in $toolchain_list; do
-      for config in $config_list; do
+for bsp in "${bsp_list[@]}"; do
+  for os in "${os_list[@]}"; do
+    for toolchain in "${toolchain_list[@]}"; do
+      for config in "${config_list[@]}"; do
         id=$bsp/$os/$toolchain/$config
         echo id=$id
         cfg_cmd="cmake -S . -B build/$id -G Ninja -DTARGET=$bsp -DOS=$os -DTOOLCHAIN=$toolchain -DCMAKE_BUILD_TYPE=$config"
@@ -116,8 +151,3 @@ for bsp in $bsp_list; do
     done
   done
 done
-set +x
-
-echo -e "${NL}Summary:"
-echo -e "${summary}"
-[[ -z $errlist ]] || echo -e "Errors:${NL}${RED}${errlist}${RED}"
