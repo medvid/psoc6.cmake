@@ -1,0 +1,179 @@
+psoc6_load_library(
+  NAME mbedtls
+  VERSION 2.16.6
+  URL https://github.com/ARMmbed/mbedtls
+  TAG mbedtls-2.16.6
+)
+
+set(MBEDTLS_SOURCES
+  ${MBEDTLS_DIR}/include/mbedtls/aes.h
+  ${MBEDTLS_DIR}/include/mbedtls/aesni.h
+  ${MBEDTLS_DIR}/include/mbedtls/arc4.h
+  ${MBEDTLS_DIR}/include/mbedtls/aria.h
+  ${MBEDTLS_DIR}/include/mbedtls/asn1.h
+  ${MBEDTLS_DIR}/include/mbedtls/asn1write.h
+  ${MBEDTLS_DIR}/include/mbedtls/base64.h
+  ${MBEDTLS_DIR}/include/mbedtls/bignum.h
+  ${MBEDTLS_DIR}/include/mbedtls/blowfish.h
+  ${MBEDTLS_DIR}/include/mbedtls/bn_mul.h
+  ${MBEDTLS_DIR}/include/mbedtls/camellia.h
+  ${MBEDTLS_DIR}/include/mbedtls/ccm.h
+  ${MBEDTLS_DIR}/include/mbedtls/certs.h
+  ${MBEDTLS_DIR}/include/mbedtls/chacha20.h
+  ${MBEDTLS_DIR}/include/mbedtls/chachapoly.h
+  ${MBEDTLS_DIR}/include/mbedtls/check_config.h
+  ${MBEDTLS_DIR}/include/mbedtls/cipher.h
+  ${MBEDTLS_DIR}/include/mbedtls/cipher_internal.h
+  ${MBEDTLS_DIR}/include/mbedtls/cmac.h
+  ${MBEDTLS_DIR}/include/mbedtls/compat-1.3.h
+  ${MBEDTLS_DIR}/include/mbedtls/config.h
+  ${MBEDTLS_DIR}/include/mbedtls/ctr_drbg.h
+  ${MBEDTLS_DIR}/include/mbedtls/debug.h
+  ${MBEDTLS_DIR}/include/mbedtls/des.h
+  ${MBEDTLS_DIR}/include/mbedtls/dhm.h
+  ${MBEDTLS_DIR}/include/mbedtls/ecdh.h
+  ${MBEDTLS_DIR}/include/mbedtls/ecdsa.h
+  ${MBEDTLS_DIR}/include/mbedtls/ecjpake.h
+  ${MBEDTLS_DIR}/include/mbedtls/ecp.h
+  ${MBEDTLS_DIR}/include/mbedtls/ecp_internal.h
+  ${MBEDTLS_DIR}/include/mbedtls/entropy.h
+  ${MBEDTLS_DIR}/include/mbedtls/entropy_poll.h
+  ${MBEDTLS_DIR}/include/mbedtls/error.h
+  ${MBEDTLS_DIR}/include/mbedtls/gcm.h
+  ${MBEDTLS_DIR}/include/mbedtls/havege.h
+  ${MBEDTLS_DIR}/include/mbedtls/hkdf.h
+  ${MBEDTLS_DIR}/include/mbedtls/hmac_drbg.h
+  ${MBEDTLS_DIR}/include/mbedtls/md.h
+  ${MBEDTLS_DIR}/include/mbedtls/md2.h
+  ${MBEDTLS_DIR}/include/mbedtls/md4.h
+  ${MBEDTLS_DIR}/include/mbedtls/md5.h
+  ${MBEDTLS_DIR}/include/mbedtls/md_internal.h
+  ${MBEDTLS_DIR}/include/mbedtls/memory_buffer_alloc.h
+  ${MBEDTLS_DIR}/include/mbedtls/net.h
+  ${MBEDTLS_DIR}/include/mbedtls/net_sockets.h
+  ${MBEDTLS_DIR}/include/mbedtls/nist_kw.h
+  ${MBEDTLS_DIR}/include/mbedtls/oid.h
+  ${MBEDTLS_DIR}/include/mbedtls/padlock.h
+  ${MBEDTLS_DIR}/include/mbedtls/pem.h
+  ${MBEDTLS_DIR}/include/mbedtls/pk.h
+  ${MBEDTLS_DIR}/include/mbedtls/pk_internal.h
+  ${MBEDTLS_DIR}/include/mbedtls/pkcs11.h
+  ${MBEDTLS_DIR}/include/mbedtls/pkcs12.h
+  ${MBEDTLS_DIR}/include/mbedtls/pkcs5.h
+  ${MBEDTLS_DIR}/include/mbedtls/platform.h
+  ${MBEDTLS_DIR}/include/mbedtls/platform_time.h
+  ${MBEDTLS_DIR}/include/mbedtls/platform_util.h
+  ${MBEDTLS_DIR}/include/mbedtls/poly1305.h
+  ${MBEDTLS_DIR}/include/mbedtls/ripemd160.h
+  ${MBEDTLS_DIR}/include/mbedtls/rsa.h
+  ${MBEDTLS_DIR}/include/mbedtls/rsa_internal.h
+  ${MBEDTLS_DIR}/include/mbedtls/sha1.h
+  ${MBEDTLS_DIR}/include/mbedtls/sha256.h
+  ${MBEDTLS_DIR}/include/mbedtls/sha512.h
+  ${MBEDTLS_DIR}/include/mbedtls/ssl.h
+  ${MBEDTLS_DIR}/include/mbedtls/ssl_cache.h
+  ${MBEDTLS_DIR}/include/mbedtls/ssl_ciphersuites.h
+  ${MBEDTLS_DIR}/include/mbedtls/ssl_cookie.h
+  ${MBEDTLS_DIR}/include/mbedtls/ssl_internal.h
+  ${MBEDTLS_DIR}/include/mbedtls/ssl_ticket.h
+  ${MBEDTLS_DIR}/include/mbedtls/threading.h
+  ${MBEDTLS_DIR}/include/mbedtls/timing.h
+  ${MBEDTLS_DIR}/include/mbedtls/version.h
+  ${MBEDTLS_DIR}/include/mbedtls/x509.h
+  ${MBEDTLS_DIR}/include/mbedtls/x509_crl.h
+  ${MBEDTLS_DIR}/include/mbedtls/x509_crt.h
+  ${MBEDTLS_DIR}/include/mbedtls/x509_csr.h
+  ${MBEDTLS_DIR}/include/mbedtls/xtea.h
+  ${MBEDTLS_DIR}/library/aes.c
+  ${MBEDTLS_DIR}/library/aesni.c
+  ${MBEDTLS_DIR}/library/arc4.c
+  ${MBEDTLS_DIR}/library/aria.c
+  ${MBEDTLS_DIR}/library/asn1parse.c
+  ${MBEDTLS_DIR}/library/asn1write.c
+  ${MBEDTLS_DIR}/library/base64.c
+  ${MBEDTLS_DIR}/library/bignum.c
+  ${MBEDTLS_DIR}/library/blowfish.c
+  ${MBEDTLS_DIR}/library/camellia.c
+  ${MBEDTLS_DIR}/library/ccm.c
+  ${MBEDTLS_DIR}/library/certs.c
+  ${MBEDTLS_DIR}/library/chacha20.c
+  ${MBEDTLS_DIR}/library/chachapoly.c
+  ${MBEDTLS_DIR}/library/cipher.c
+  ${MBEDTLS_DIR}/library/cipher_wrap.c
+  ${MBEDTLS_DIR}/library/cmac.c
+  ${MBEDTLS_DIR}/library/ctr_drbg.c
+  ${MBEDTLS_DIR}/library/debug.c
+  ${MBEDTLS_DIR}/library/des.c
+  ${MBEDTLS_DIR}/library/dhm.c
+  ${MBEDTLS_DIR}/library/ecdh.c
+  ${MBEDTLS_DIR}/library/ecdsa.c
+  ${MBEDTLS_DIR}/library/ecjpake.c
+  ${MBEDTLS_DIR}/library/ecp.c
+  ${MBEDTLS_DIR}/library/ecp_curves.c
+  ${MBEDTLS_DIR}/library/entropy.c
+  ${MBEDTLS_DIR}/library/entropy_poll.c
+  ${MBEDTLS_DIR}/library/error.c
+  ${MBEDTLS_DIR}/library/gcm.c
+  ${MBEDTLS_DIR}/library/havege.c
+  ${MBEDTLS_DIR}/library/hkdf.c
+  ${MBEDTLS_DIR}/library/hmac_drbg.c
+  ${MBEDTLS_DIR}/library/md.c
+  ${MBEDTLS_DIR}/library/md2.c
+  ${MBEDTLS_DIR}/library/md4.c
+  ${MBEDTLS_DIR}/library/md5.c
+  ${MBEDTLS_DIR}/library/md_wrap.c
+  ${MBEDTLS_DIR}/library/memory_buffer_alloc.c
+  #${MBEDTLS_DIR}/library/net_sockets.c
+  ${MBEDTLS_DIR}/library/nist_kw.c
+  ${MBEDTLS_DIR}/library/oid.c
+  ${MBEDTLS_DIR}/library/padlock.c
+  ${MBEDTLS_DIR}/library/pem.c
+  ${MBEDTLS_DIR}/library/pk.c
+  ${MBEDTLS_DIR}/library/pk_wrap.c
+  ${MBEDTLS_DIR}/library/pkcs11.c
+  ${MBEDTLS_DIR}/library/pkcs12.c
+  ${MBEDTLS_DIR}/library/pkcs5.c
+  ${MBEDTLS_DIR}/library/pkparse.c
+  ${MBEDTLS_DIR}/library/pkwrite.c
+  ${MBEDTLS_DIR}/library/platform.c
+  ${MBEDTLS_DIR}/library/platform_util.c
+  ${MBEDTLS_DIR}/library/poly1305.c
+  ${MBEDTLS_DIR}/library/ripemd160.c
+  ${MBEDTLS_DIR}/library/rsa.c
+  ${MBEDTLS_DIR}/library/rsa_internal.c
+  ${MBEDTLS_DIR}/library/sha1.c
+  ${MBEDTLS_DIR}/library/sha256.c
+  ${MBEDTLS_DIR}/library/sha512.c
+  ${MBEDTLS_DIR}/library/ssl_cache.c
+  ${MBEDTLS_DIR}/library/ssl_ciphersuites.c
+  ${MBEDTLS_DIR}/library/ssl_cli.c
+  ${MBEDTLS_DIR}/library/ssl_cookie.c
+  ${MBEDTLS_DIR}/library/ssl_srv.c
+  ${MBEDTLS_DIR}/library/ssl_ticket.c
+  ${MBEDTLS_DIR}/library/ssl_tls.c
+  ${MBEDTLS_DIR}/library/threading.c
+  ${MBEDTLS_DIR}/library/timing.c
+  ${MBEDTLS_DIR}/library/version.c
+  ${MBEDTLS_DIR}/library/version_features.c
+  ${MBEDTLS_DIR}/library/x509.c
+  ${MBEDTLS_DIR}/library/x509_create.c
+  ${MBEDTLS_DIR}/library/x509_crl.c
+  ${MBEDTLS_DIR}/library/x509_crt.c
+  ${MBEDTLS_DIR}/library/x509_csr.c
+  ${MBEDTLS_DIR}/library/x509write_crt.c
+  ${MBEDTLS_DIR}/library/x509write_csr.c
+  ${MBEDTLS_DIR}/library/xtea.c
+)
+set(MBEDTLS_INCLUDE_DIRS
+  ${CMAKE_SOURCE_DIR}/configs/mbedtls
+  ${MBEDTLS_DIR}/include
+  # BUG: cy-mbedtls-acceleration includes config.h
+  ${MBEDTLS_DIR}/include/mbedtls
+)
+set(MBEDTLS_DEFINES
+  -DMBEDTLS_USER_CONFIG_FILE="${CMAKE_SOURCE_DIR}/configs/mbedtls/mbedtls_user_config.h"
+)
+
+add_library(mbedtls STATIC ${MBEDTLS_SOURCES})
+target_include_directories(mbedtls PUBLIC ${MBEDTLS_INCLUDE_DIRS})
+target_compile_definitions(mbedtls PUBLIC ${MBEDTLS_DEFINES})
