@@ -34,12 +34,12 @@ function run_cmd()
 
 function status()
 {
-  set +x
-
   echo -e "${NL}Summary:"
   echo -e "${summary}"
-  # Below expression ensures correct status code returned from script
-  [[ -z $errlist ]] || echo -e "Errors:${NL}${RED}${errlist}${RED}"; exit
+  if [[ -n $errlist ]]; then
+    echo -e "Errors:${NL}${RED}${errlist}${RED}"
+    exit 1 # Report CI fail
+  fi
 }
 
 # Install status function as Ctrl+C handler
