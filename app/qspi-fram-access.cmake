@@ -1,4 +1,7 @@
-psoc6_check_bsp(CY8CKIT-062-BLE CY8CKIT-062-WIFI-BT)
+psoc6_check_bsp(
+  CY8CKIT-062-BLE
+  CY8CKIT-062-WIFI-BT
+)
 
 project(qspi-fram-access)
 

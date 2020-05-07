@@ -1,3 +1,8 @@
+# This applications relies on BSP providing design.cycapsense
+if(NOT TARGET bsp_design_capsense)
+  return()
+endif()
+
 project(capsense-buttons-slider-freertos)
 
 psoc6_load_application(
@@ -11,9 +16,9 @@ psoc6_add_executable(
     ${APP_DIR}/capsense_task.c
     ${APP_DIR}/led_task.h
     ${APP_DIR}/led_task.c
-    ${BSP_CAPSENSE_GENERATED_SOURCES}
   LINK_LIBRARIES
     capsense
     psoc6hal
     freertos
+    bsp_design_capsense
 )

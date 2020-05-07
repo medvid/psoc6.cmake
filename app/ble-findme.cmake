@@ -1,4 +1,8 @@
-psoc6_check_bsp(CY8CKIT-062-BLE)
+# This application is compatible with BLE-enabled boards
+psoc6_check_bsp(
+  CY8CKIT-062-BLE
+  CY8CPROTO-063-BLE
+)
 
 project(ble-findme)
 

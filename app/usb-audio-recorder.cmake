@@ -1,4 +1,8 @@
-psoc6_check_bsp(CY8CKIT-062-WIFI-BT CY8CPROTO-062-4343W)
+# This application provides custom design.modus for the below boards
+psoc6_check_bsp(
+  CY8CKIT-062-WIFI-BT
+  CY8CPROTO-062-4343W
+)
 
 project(usb-audio-recorder)
 

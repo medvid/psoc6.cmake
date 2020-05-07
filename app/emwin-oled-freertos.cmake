@@ -1,4 +1,8 @@
-psoc6_check_bsp(CY8CKIT-062-BLE CY8CKIT-062-WIFI-BT)
+# https://github.com/cypresssemiconductorco/mtb-example-psoc6-emwin-oled-freertos#supported-kits
+psoc6_check_bsp(
+  CY8CKIT-062-BLE
+  CY8CKIT-062-WIFI-BT
+)
 
 project(emwin-oled-freertos)
 

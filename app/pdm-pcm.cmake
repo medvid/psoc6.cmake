@@ -1,3 +1,10 @@
+# This application provides custom design.modus for the below boards
+psoc6_check_bsp(
+  CY8CKIT-062-BLE
+  CY8CKIT-062-WIFI-BT
+  CY8CPROTO-062-4343W
+)
+
 project(pdm-pcm)
 
 psoc6_load_application(

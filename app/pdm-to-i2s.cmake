@@ -1,4 +1,8 @@
-psoc6_check_bsp(CY8CKIT-062-BLE CY8CKIT-062-WIFI-BT)
+# This application provides custom design.modus for the below boards
+psoc6_check_bsp(
+  CY8CKIT-062-BLE
+  CY8CKIT-062-WIFI-BT
+)
 
 project(pdm-to-i2s)
 
