@@ -1,11 +1,11 @@
 # Download BSP sources from GitHub
 psoc6_load_bsp(
-  NAME CY8CPROTO-062-4343W
+  NAME CY8CPROTO-063-BLE
   VERSION 1.2.0
 )
 
 # Set target MPN
-psoc6_set_device(CY8C624ABZI-D44)
+psoc6_set_device(CYBLE-416045-02)
 
 # Set target CPU core
 psoc6_set_core()
@@ -16,7 +16,7 @@ if(${CORE} STREQUAL CM4)
 endif()
 
 # Set OpenOCD script name
-set(OPENOCD_CFG ${CMAKE_SOURCE_DIR}/CY8C6xxA.tcl)
+set(OPENOCD_CFG ${CMAKE_SOURCE_DIR}/CY8C6xx7.tcl)
 
 set(BSP_SOURCES
   ${BSP_DIR}/system_psoc6.h
@@ -33,37 +33,35 @@ include_directories(${BSP_DIR})
 
 if(${CORE} STREQUAL CM4)
   add_definitions(-DCY_USING_HAL)
-  add_definitions(-DCYBSP_WIFI_CAPABLE)
   psoc6_add_component(CM0P_SLEEP)
   psoc6_add_component(BSP_DESIGN_MODUS)
   psoc6_add_component(PSOC6HAL)
-  psoc6_add_component(4343W)
 
   list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
   list(APPEND BSP_LINK_LIBRARIES psoc6hal)
   if(${TOOLCHAIN} STREQUAL GCC)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/startup_psoc6_02_cm4.S)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/cy8c6xxa_cm4_dual.ld)
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/startup_psoc6_01_cm4.S)
+    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm4_dual.ld)
   elseif(${TOOLCHAIN} STREQUAL ARM)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/startup_psoc6_02_cm4.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/cy8c6xxa_cm4_dual.sct)
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/startup_psoc6_01_cm4.s)
+    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/cy8c6xx7_cm4_dual.sct)
   elseif(${TOOLCHAIN} STREQUAL IAR)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/startup_psoc6_02_cm4.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/cy8c6xxa_cm4_dual.icf)
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/startup_psoc6_01_cm4.s)
+    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/cy8c6xx7_cm4_dual.icf)
   else()
     message(FATAL_ERROR "bsp: TOOLCHAIN ${TOOLCHAIN} is not supported.")
   endif()
 elseif(${CORE} STREQUAL CM0P)
   list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/system_psoc6_cm0plus.c)
   if(${TOOLCHAIN} STREQUAL GCC)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/startup_psoc6_02_cm0plus.S)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/cy8c6xxa_cm0plus.ld)
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/startup_psoc6_01_cm0plus.S)
+    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm0plus.ld)
   elseif(${TOOLCHAIN} STREQUAL ARM)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/startup_psoc6_02_cm0plus.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/cy8c6xxa_cm0plus.sct)
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/startup_psoc6_01_cm0plus.s)
+    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/cy8c6xx7_cm0plus.sct)
   elseif(${TOOLCHAIN} STREQUAL IAR)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/startup_psoc6_02_cm0plus.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/cy8c6xxa_cm0plus.icf)
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/startup_psoc6_01_cm0plus.s)
+    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/cy8c6xx7_cm0plus.icf)
   else()
     message(FATAL_ERROR "bsp: TOOLCHAIN ${TOOLCHAIN} is not supported.")
   endif()
@@ -91,12 +89,21 @@ include(lib/capsense.cmake)
 include(lib/csdadc.cmake)
 include(lib/csdidac.cmake)
 include(lib/emeeprom.cmake)
-include(lib/usbdev.cmake)
+include(lib/bless.cmake)
 include(lib/retarget-io.cmake)
 include(lib/rgb-led.cmake)
-include(lib/serial-flash.cmake)
 
 # Define custom recipes for BSP generated sources
-psoc6_add_bsp_design_modus(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.modus)
-psoc6_add_bsp_design_capsense(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.cycapsense)
-psoc6_add_bsp_design_qspi(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.cyqspi)
+psoc6_add_bsp_design_modus(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.modus
+  GENERATED_SOURCES
+    cycfg.h
+    cycfg.c
+    cycfg_notices.h
+    cycfg_peripherals.h
+    cycfg_peripherals.c
+    cycfg_pins.h
+    cycfg_pins.c
+    cycfg_routing.h
+    cycfg_system.h
+    cycfg_system.c
+)
