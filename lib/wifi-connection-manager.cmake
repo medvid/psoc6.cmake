@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME wifi-connection-manager
-  VERSION 1.0.0
+  VERSION 1.0.1
 )
 
 set(WIFI_CONNECTION_MANAGER_SOURCES
