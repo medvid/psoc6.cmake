@@ -140,7 +140,6 @@
 
         cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug \
             -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC \
-            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major" \
             -DCMAKE_BUILD_TYPE=Debug
 
 5. Build all applications enabled for the selected TARGET and OS combination:
@@ -227,15 +226,60 @@
 
 8. Switch to the Debug tab on the left Panel, select the debug configuration depending on the selected BSP:
 
-    | BSP                 | Launch target                  |
-    | ------------------- | ------------------------------ |
-    | CY8CKIT-062-BLE     | Launch CY8C6xx7 CM4 (KitProg3) |
-    | CY8CKIT-062-WIFI-BT | Launch CY8C6xx7 CM4 (KitProg3) |
-    | CY8CPROTO-062-4343W | Launch CY8C6xxA CM4 (KitProg3) |
+    | BSP                   | Launch target                  |
+    | --------------------- | ------------------------------ |
+    | CY8CKIT-062-BLE       | Launch CY8C6xx7 CM4 (KitProg3) |
+    | CY8CKIT-062-WIFI-BT   | Launch CY8C6xx7 CM4 (KitProg3) |
+    | CY8CKIT-062S2-43012   | Launch CY8C6xxA CM4 (KitProg3) |
+    | CY8CPROTO-062-4343W   | Launch CY8C6xxA CM4 (KitProg3) |
+    | CY8CPROTO-062S3-4343W | Launch CY8C6xx5 CM4 (KitProg3) |
+    | CY8CPROTO-063-BLE     | Launch CY8C6xx7 CM4 (KitProg3) |
+    | CYW9P62S1-43012EVB-01 | Launch CY8C6xx7 CM4 (KitProg3) |
+    | CYW9P62S1-43438EVB-01 | Launch CY8C6xx7 CM4 (KitProg3) |
 
 9. Select the target ELF file, that corresponds to the CMake selected build target. For example, select "hello-world.elf" in case the current CMake target is "hello-world_PROGRAM".
 
 10. The Cortex-Debug extension should start the debugging session using OpenOCD and KitProg3 CMSIS-DAP built-in debugger.
+
+## Continuous integration
+
+Script `ci/build-all.sh` simplifies the automated build/compile testing of this solution. By default, it builds all supported applications for all BSPs, OSes, toolchains and build configurations.
+
+Arguments:
+
+* -b/--bsp - Select target BSP (CY8CKIT-062-BLE/CY8CKIT-062-WIFI-BT/...)
+* -o/--os - Select target OS (NOOS/FREERTOS/RTX)
+* -t/--toolchain - Select toolchain (GCC/ARM/IAR)
+* -c/--config - Select CMake build configuration (Debug/Release)
+
+Each argument can be supplied multiple times.
+
+### Examples
+
+Build everything:
+
+    ./ci/build-all.sh
+
+Build everything using IAR and ARM toolchains:
+
+    ./ci/build-all.sh -t IAR -t ARM
+
+Build all CY8CKIT-062-WIFI-BT and CY8CPROTO-062-4343W BSP compatible applications in Debug mode:
+
+    ./ci/build-all.sh -b CY8CKIT-062-WIFI-BT -b CY8CPROTO-062-4343W -c Debug
+
+Build all FreeRTOS enabled applications in Release mode:
+
+    ./ci/build-all.sh -o FREERTOS -c Release
+
+#### Azure Pipelines
+
+Azure Pipeline is executed for each commit in master and each GitHub Pull Request:
+
+https://dev.azure.com/vmedvid/psoc6.cmake/_build?definitionId=4&_a=summary
+
+The pipeline builds all applications with GCC 9.2.1 toolchain on [vmmedvid/psoc6.cmake](https://hub.docker.com/r/vmmedvid/psoc6.cmake) Docker image.
+The docker image is built on top of unofficial ModusToolbox Docker image: [vmmedvid/modustoolbox](https://hub.docker.com/r/vmmedvid/modustoolbox).
 
 ## Additional tips
 
@@ -259,7 +303,17 @@
 
 * Set PSOC6_FORCE_FETCH to update all cloned git repositories to match versions declared in CMake recipes:
 
-    PSOC6_FORCE_FETCH=1 cmake -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
+        PSOC6_FORCE_FETCH=1 cmake -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
+
+* When switching between toolchain versions (cmake -DGCC_TOOLCHAIN_PATH), the old toolchain version
+  is sometimes cached in the CMake build directory. The most reliable way to address this is to delete
+  the build directory before switching the toolchain version:
+
+        rm -rf build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
+        cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug \
+            -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC \
+            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major" \
+            -DCMAKE_BUILD_TYPE=Debug
 
 [ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-windows-install.exe
 [ModusToolboxForMac]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-macos-install.pkg
