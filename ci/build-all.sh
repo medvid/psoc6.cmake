@@ -104,15 +104,16 @@ while (( $# > 0 )); do
 done
 
 # Set default values for all optional arguments
+# NOTE: commented non-essential BSPs to speedup the CI pipeline
 [[ -z ${bsp_list+x} ]] && bsp_list=(
   "CY8CKIT-062-BLE"
   "CY8CKIT-062-WIFI-BT"
-  "CY8CKIT-062S2-43012"
+  #"CY8CKIT-062S2-43012"
   "CY8CPROTO-062-4343W"
-  "CY8CPROTO-062S3-4343W"
-  "CY8CPROTO-063-BLE"
-  "CYW9P62S1-43012EVB-01"
-  "CYW9P62S1-43438EVB-01"
+  #"CY8CPROTO-062S3-4343W"
+  #"CY8CPROTO-063-BLE"
+  #"CYW9P62S1-43012EVB-01"
+  #"CYW9P62S1-43438EVB-01"
 )
 [[ -z ${os_list+x} ]] && os_list=(
   "NOOS"
