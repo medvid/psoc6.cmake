@@ -23,3 +23,5 @@ lib/*
 !.vscode/cmake-kits.json
 !.vscode/settings-template-*.json
 *.code-workspace
+
+keys
