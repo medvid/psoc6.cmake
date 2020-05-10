@@ -1,0 +1,6 @@
+!*
+build
+docs
+lib/aws-iot/third_party
+lib/mcuboot/ext/mbedtls
+lib/mcuboot/boot/cypress/libs
