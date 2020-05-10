@@ -10,10 +10,14 @@ set(RETARGET_IO_SOURCES
 set(RETARGET_IO_INCLUDE_DIRS
   ${RETARGET_IO_DIR}
 )
+set(RETARGET_IO_DEFINES
+  CY_RETARGET_IO_CONVERT_LF_TO_CRLF
+)
 set(RETARGET_IO_LINK_LIBRARIES
   psoc6hal
 )
 
 add_library(retarget-io STATIC EXCLUDE_FROM_ALL ${RETARGET_IO_SOURCES})
 target_include_directories(retarget-io PUBLIC ${RETARGET_IO_INCLUDE_DIRS})
+target_compile_definitions(retarget-io PUBLIC ${RETARGET_IO_DEFINES})
 target_link_libraries(retarget-io PUBLIC ${RETARGET_IO_LINK_LIBRARIES})
