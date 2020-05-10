@@ -15,9 +15,9 @@ psoc6_add_executable(
     ${APP_DIR}/source/subscriber_task.h
     ${APP_DIR}/source/subscriber_task.c
   INCLUDE_DIRS
-    ${APP_DIR}/source
+    # Note: global FreeRTOSConfig.h takes preference over app-specific one
     ${CMAKE_SOURCE_DIR}/configs
-    ${CMAKE_SOURCE_DIR}/configs/mqtt
+    ${APP_DIR}/configs
   LINK_LIBRARIES
     retarget-io
     wifi-connection-manager
