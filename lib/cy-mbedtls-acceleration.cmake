@@ -30,3 +30,7 @@ set(CY_MBEDTLS_ACCELERATION_LIBRARIES
 add_library(cy-mbedtls-acceleration STATIC ${CY_MBEDTLS_ACCELERATION_SOURCES})
 target_include_directories(cy-mbedtls-acceleration PUBLIC ${CY_MBEDTLS_ACCELERATION_INCLUDE_DIRS})
 target_link_libraries(cy-mbedtls-acceleration PUBLIC ${CY_MBEDTLS_ACCELERATION_LIBRARIES})
+
+# Macro definition used in mbedtls_user_config.h
+target_compile_definitions(mbedtls PUBLIC CY_MBEDTLS_ACCELERATION)
+target_link_libraries(mbedtls PUBLIC cy-mbedtls-acceleration)

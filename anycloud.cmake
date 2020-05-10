@@ -17,7 +17,8 @@ include(lib/aws-iot.cmake)
 include(lib/mqtt.cmake)
 include(lib/mcuboot.cmake)
 include(lib/anycloud-ota.cmake)
-include(lib/cy-mbedtls-acceleration.cmake)
+# BUG: accelerated versions are incompatible with the selected mbedtls version
+#include(lib/cy-mbedtls-acceleration.cmake)
 
 # Load application definitions
 include(app/anycloud-mqtt-client.cmake)
