@@ -29,3 +29,14 @@ include(app/anycloud-tcp-client.cmake)
 include(app/anycloud-tcp-server.cmake)
 include(app/anycloud-wlan-lowpower.cmake)
 include(app/anycloud-wifi-scan.cmake)
+
+# CY8CPROTO-062-4343W board shares the same GPIO for the user button (USER BTN1)
+# and the CYW4343W host wake up pin. Since some examples use the GPIO for
+# interfacing with the user button, the SDIO interrupt to wake up the host is
+# disabled by setting CY_WIFI_HOST_WAKE_SW_FORCE to '0'.
+if(${BSP_NAME} STREQUAL CY8CPROTO-062-4343W)
+  target_compile_definitions(whd-bsp-integration PUBLIC CY_WIFI_HOST_WAKE_SW_FORCE=0)
+endif()
+
+# AnyCloud debugging
+#target_compile_definitions(secure-sockets PUBLIC TLS_ENABLE_PRINT_LIBRARY_DEBUG)
