@@ -19,6 +19,8 @@ include(lib/mcuboot.cmake)
 include(lib/anycloud-ota.cmake)
 # BUG: accelerated versions are incompatible with the selected mbedtls version
 #include(lib/cy-mbedtls-acceleration.cmake)
+include(lib/btstack.cmake)
+include(lib/bluetooth-freertos.cmake)
 
 # Load application definitions
 include(app/anycloud-mqtt-client.cmake)
