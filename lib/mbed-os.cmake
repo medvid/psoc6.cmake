@@ -56,6 +56,16 @@ set(MBED_PLATFORM_LINK_LIBRARIES
   psoc6pdl
 )
 
+if(${TOOLCHAIN} STREQUAL GCC)
+  list(APPEND MBED_PLATFORM_DEFINES TOOLCHAIN_GCC_ARM)
+elseif(${TOOLCHAIN} STREQUAL ARM)
+  list(APPEND MBED_PLATFORM_DEFINES TOOLCHAIN_ARM)
+elseif(${TOOLCHAIN} STREQUAL IAR)
+  list(APPEND MBED_PLATFORM_DEFINES TOOLCHAIN_IAR)
+else()
+  message(FATAL_ERROR "mbed-os: TOOLCHAIN ${TOOLCHAIN} is not supported.")
+endif()
+
 if(${OS} STREQUAL RTX)
   list(APPEND MBED_PLATFORM_DEFINES
     MBED_CONF_RTOS_PRESENT=1
@@ -72,6 +82,7 @@ target_link_libraries(mbed-platform PUBLIC ${MBED_PLATFORM_LINK_LIBRARIES})
 
 set(MBED_DRIVERS_SOURCES
   ${MBED_OS_DIR}/drivers/source/BufferedSerial.cpp
+  ${MBED_OS_DIR}/drivers/source/FlashIAP.cpp
   ${MBED_OS_DIR}/drivers/source/InterruptIn.cpp
   ${MBED_OS_DIR}/drivers/source/MbedCRC.cpp
   ${MBED_OS_DIR}/drivers/source/SerialBase.cpp
@@ -84,6 +95,7 @@ set(MBED_DRIVERS_INCLUDE_DIRS
 )
 set(MBED_DRIVERS_DEFINES
   DEVICE_CRC=1
+  DEVICE_FLASH=1
   DEVICE_INTERRUPTIN=1
   DEVICE_SERIAL=1
   DEVICE_SLEEP=1
@@ -166,6 +178,7 @@ endif()
 
 set(MBED_TARGET_SOURCES
   ${MBED_OS_DIR}/targets/TARGET_Cypress/TARGET_PSOC6/cy_crc_api.c
+  ${MBED_OS_DIR}/targets/TARGET_Cypress/TARGET_PSOC6/cy_flash_api.c
   ${MBED_OS_DIR}/targets/TARGET_Cypress/TARGET_PSOC6/cy_gpio_api.c
   ${MBED_OS_DIR}/targets/TARGET_Cypress/TARGET_PSOC6/cy_lp_ticker_api.c
   ${MBED_OS_DIR}/targets/TARGET_Cypress/TARGET_PSOC6/cy_serial_api.c
@@ -189,6 +202,40 @@ add_library(mbed-target STATIC EXCLUDE_FROM_ALL ${MBED_TARGET_SOURCES})
 target_include_directories(mbed-target PUBLIC ${MBED_TARGET_INCLUDE_DIRS})
 target_compile_definitions(mbed-target PUBLIC ${MBED_TARGET_DEFINES})
 target_link_libraries(mbed-target PUBLIC ${MBED_TARGET_LINK_LIBRARIES})
+
+set(MBED_BLOCKDEVICE_SOURCES
+  ${MBED_OS_DIR}/features/storage/blockdevice/BlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/BufferedBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/BufferedBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/ChainingBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/ChainingBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/ExhaustibleBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/ExhaustibleBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/FlashSimBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/FlashSimBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/HeapBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/HeapBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/MBRBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/MBRBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/ObservingBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/ObservingBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/ProfilingBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/ProfilingBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/ReadOnlyBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/ReadOnlyBlockDevice.cpp
+  ${MBED_OS_DIR}/features/storage/blockdevice/SlicingBlockDevice.h
+  ${MBED_OS_DIR}/features/storage/blockdevice/SlicingBlockDevice.cpp
+)
+set(MBED_BLOCKDEVICE_INCLUDE_DIRS
+  ${MBED_OS_DIR}/features/storage/blockdevice
+)
+set(MBED_BLOCKDEVICE_LINK_LIBRARIES
+  mbed-platform
+)
+
+add_library(mbed-blockdevice STATIC EXCLUDE_FROM_ALL ${MBED_BLOCKDEVICE_SOURCES})
+target_include_directories(mbed-blockdevice PUBLIC ${MBED_BLOCKDEVICE_INCLUDE_DIRS})
+target_link_libraries(mbed-blockdevice PUBLIC ${MBED_BLOCKDEVICE_LINK_LIBRARIES})
 
 # Mbed OS includes different MbedTLS version, cannot use lib/mbedtls.cmake
 # Intentionally using mbed-tls / MBED_TLS naming to avoid name clash
@@ -697,6 +744,32 @@ target_include_directories(mbed-fatfs PUBLIC ${MBED_FATFS_INCLUDE_DIRS})
 target_compile_definitions(mbed-fatfs PUBLIC ${MBED_FATFS_DEFINES})
 target_link_libraries(mbed-fatfs PUBLIC ${MBED_FATFS_LINK_LIBRARIES})
 
+set(MBED_FLASHIAP_SOURCES
+  ${MBED_OS_DIR}/components/storage/blockdevice/COMPONENT_FLASHIAP/FlashIAPBlockDevice.h
+  ${MBED_OS_DIR}/components/storage/blockdevice/COMPONENT_FLASHIAP/FlashIAPBlockDevice.cpp
+  ${MBED_OS_DIR}/components/storage/blockdevice/COMPONENT_FLASHIAP/COMMON/fslittle_debug.h
+  ${MBED_OS_DIR}/components/storage/blockdevice/COMPONENT_FLASHIAP/COMMON/fslittle_test.h
+  ${MBED_OS_DIR}/components/storage/blockdevice/COMPONENT_FLASHIAP/COMMON/fslittle_test.c
+)
+set(MBED_FLASHIAP_INCLUDE_DIRS
+  ${MBED_OS_DIR}/components/storage/blockdevice/COMPONENT_FLASHIAP
+)
+set(MBED_FLASHIAP_DEFINES
+  COMPONENT_FLASHIAP
+  # Base address for the block device on the external flash.
+  MBED_CONF_FLASHIAP_BLOCK_DEVICE_BASE_ADDRESS=0xFFFFFFFF
+  # Memory allocated for block device.
+  MBED_CONF_FLASHIAP_BLOCK_DEVICE_SIZE=0
+)
+set(MBED_FLASHIAP_LINK_LIBRARIES
+  mbed-drivers
+)
+
+add_library(mbed-flashiap STATIC EXCLUDE_FROM_ALL ${MBED_FLASHIAP_SOURCES})
+target_include_directories(mbed-flashiap PUBLIC ${MBED_FLASHIAP_INCLUDE_DIRS})
+target_compile_definitions(mbed-flashiap PUBLIC ${MBED_FLASHIAP_DEFINES})
+target_link_libraries(mbed-flashiap PUBLIC ${MBED_FLASHIAP_LINK_LIBRARIES})
+
 set(MBED_KVSTORE_SOURCES
   ${MBED_OS_DIR}/features/storage/kvstore/include/KVStore.h
   ${MBED_OS_DIR}/features/storage/kvstore/conf/kv_config.h
@@ -722,18 +795,63 @@ set(MBED_KVSTORE_INCLUDE_DIRS
 )
 set(MBED_KVSTORE_DEFINES
   MBED_CONF_STORAGE_STORAGE_TYPE=default
+  # Size of the FlashIAP block device.
+  # Default size will be the larger of the last 2 sectors or last 14 pages of flash.
+  MBED_CONF_STORAGE_TDB_INTERNAL_INTERNAL_SIZE=0x10000
+  # If default, the base address is set to INTERNAL_SIZE bytes before the end of flash.
+  MBED_CONF_STORAGE_TDB_INTERNAL_INTERNAL_BASE_ADDRESS=0
 )
 set(MBED_KVSTORE_LINK_LIBRARIES
+  mbed-blockdevice
   mbed-tls
   mbed-trace
   mbed-littlefs
   mbed-fatfs
+  mbed-flashiap
 )
 
 add_library(mbed-kvstore STATIC EXCLUDE_FROM_ALL ${MBED_KVSTORE_SOURCES})
 target_include_directories(mbed-kvstore PUBLIC ${MBED_KVSTORE_INCLUDE_DIRS})
 target_compile_definitions(mbed-kvstore PUBLIC ${MBED_KVSTORE_DEFINES})
 target_link_libraries(mbed-kvstore PUBLIC ${MBED_KVSTORE_LINK_LIBRARIES})
+
+set(MBED_QCBOR_SOURCES
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/inc/UsefulBuf.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/inc/qcbor.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/inc/useful_buf.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/src/UsefulBuf.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/src/ieee754.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/src/ieee754.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/src/qcbor_decode.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/src/qcbor_encode.c
+)
+set(MBED_QCBOR_INCLUDE_DIRS
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor/inc/
+)
+
+add_library(mbed-qcbor STATIC EXCLUDE_FROM_ALL ${MBED_QCBOR_SOURCES})
+target_include_directories(mbed-qcbor PUBLIC ${MBED_QCBOR_INCLUDE_DIRS})
+
+set(MBED_TCOSE_SOURCES
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/inc/t_cose_common.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/inc/t_cose_sign1_sign.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/src/t_cose_crypto.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/src/t_cose_defines.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/src/t_cose_sign1_sign.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/src/t_cose_util.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/src/t_cose_util.c
+)
+set(MBED_TCOSE_INCLUDE_DIRS
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/inc
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose/src
+)
+set(MBED_TCOSE_LINK_LIBRARIES
+  mbed-qcbor
+)
+
+add_library(mbed-tcose STATIC EXCLUDE_FROM_ALL ${MBED_TCOSE_SOURCES})
+target_include_directories(mbed-tcose PUBLIC ${MBED_TCOSE_INCLUDE_DIRS})
+target_link_libraries(mbed-tcose PUBLIC ${MBED_TCOSE_LINK_LIBRARIES})
 
 set(MBED_PSA_SOURCES
   ${MBED_OS_DIR}/components/TARGET_PSA/inc/psa/client.h
@@ -745,8 +863,35 @@ set(MBED_PSA_SOURCES
   ${MBED_OS_DIR}/components/TARGET_PSA/inc/psa/storage_common.h
   ${MBED_OS_DIR}/components/TARGET_PSA/inc/psa/tfm_platform_api.h
   ${MBED_OS_DIR}/components/TARGET_PSA/inc/psa_manifest/sid.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/attestation.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/psa_attest_inject_key.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/psa_initial_attestation_api.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_EMUL/psa_attest_inject_key.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_EMUL/psa_initial_attestation_api.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/attest_boot_status_loader.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/attest_crypto.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/attest_crypto_keys.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/attest_iat_claims_loader.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/attestation_bootloader_data.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/attestation_bootloader_data.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/psa_attestation_stubs.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/psa_inject_attestation_key_impl.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/psa_inject_attestation_key_impl.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/attest_eat_defines.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/attest_token.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/attest_token.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/attestation_core.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/tfm_attest_hal.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/tfm_boot_status.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/tfm_plat_boot_seed.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/tfm_plat_crypto_keys.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/tfm_plat_defs.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/tfm_plat_device_id.h
   ${MBED_OS_DIR}/components/TARGET_PSA/services/inc/autogen_sid.h
   ${MBED_OS_DIR}/components/TARGET_PSA/services/inc/mbed_spm_partitions.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/platform/COMPONENT_PSA_SRV_EMUL/platform_emul.c
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/platform/COMPONENT_PSA_SRV_IMPL/platform_srv_impl.h
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/platform/COMPONENT_PSA_SRV_IMPL/platform_srv_impl.c
   ${MBED_OS_DIR}/components/TARGET_PSA/services/storage/common/psa_storage_common_impl.cpp
   ${MBED_OS_DIR}/components/TARGET_PSA/services/storage/its/COMPONENT_PSA_SRV_EMUL/psa_prot_internal_storage.cpp
   ${MBED_OS_DIR}/components/TARGET_PSA/services/storage/its/COMPONENT_PSA_SRV_IMPL/pits_impl.h
@@ -757,7 +902,11 @@ set(MBED_PSA_INCLUDE_DIRS
   ${MBED_OS_DIR}/features/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/COMPONENT_NSPE
   ${MBED_OS_DIR}/components/TARGET_PSA/inc
   ${MBED_OS_DIR}/components/TARGET_PSA/inc/psa
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl
   ${MBED_OS_DIR}/components/TARGET_PSA/services/inc
+  ${MBED_OS_DIR}/components/TARGET_PSA/services/platform/COMPONENT_PSA_SRV_IMPL
   ${MBED_OS_DIR}/components/TARGET_PSA/services/storage/common
   ${MBED_OS_DIR}/components/TARGET_PSA/services/storage/its
   ${MBED_OS_DIR}/components/TARGET_PSA/services/storage/its/COMPONENT_PSA_SRV_IMPL
@@ -771,12 +920,16 @@ set(MBED_PSA_LINK_LIBRARIES
   mbed-platform
   mbed-tls
   mbed-kvstore
+  mbed-tcose
 )
 
 add_library(mbed-psa STATIC EXCLUDE_FROM_ALL ${MBED_PSA_SOURCES})
 target_include_directories(mbed-psa PUBLIC ${MBED_PSA_INCLUDE_DIRS})
 target_compile_definitions(mbed-psa PUBLIC ${MBED_PSA_DEFINES})
 target_link_libraries(mbed-psa PUBLIC ${MBED_PSA_LINK_LIBRARIES})
+
+# t_cose implementation depends on APIs provided by attest_crypto.c
+target_link_libraries(mbed-tcose PRIVATE mbed-psa)
 
 set(MBED_TLS_PLATFORM_SOURCES
   ${MBED_OS_DIR}/features/mbedtls/inc/psa/crypto.h
