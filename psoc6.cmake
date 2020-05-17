@@ -647,7 +647,7 @@ macro(psoc6_add_executable)
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_QSPI_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_QSPI_GENERATED_SOURCE_DIR})
   elseif(TARGET bsp_design_qspi)
-    target_link_libraries(${TARGET_NAME} PRIVATE bsp_design_qspi)
+    list(APPEND TARGET_LINK_LIBRARIES bsp_design_qspi)
   endif()
 
   # Check if the application provides custom design.cyusbdev
