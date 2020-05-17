@@ -24,3 +24,11 @@ psoc6_configure_bsp()
 
 # Configure target OS, load OS-specific libraries and applications
 psoc6_configure_os()
+
+# https://reproducible-builds.org/docs/build-path/
+if(CMAKE_C_COMPILER_VERSION VERSION_GREATER 8)
+  file(RELATIVE_PATH _file_prefix ${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR})
+  string(APPEND CMAKE_C_FLAGS " -ffile-prefix-map=${_file_prefix}=")
+  string(APPEND CMAKE_CXX_FLAGS " -ffile-prefix-map=${_file_prefix}=")
+  unset(_file_prefix)
+endif()
