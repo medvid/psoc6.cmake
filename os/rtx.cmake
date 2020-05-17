@@ -19,3 +19,6 @@ include(lib/abstraction-rtos.cmake)
 
 # Load application definitions
 include(${PORT_DIR}/CoreValidation.cmake)
+
+# Load Mbed OS libraries and applications
+include(mbed.cmake)

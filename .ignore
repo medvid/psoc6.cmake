@@ -2,5 +2,6 @@
 build
 docs
 lib/aws-iot/third_party
+lib/mbed-os
 lib/mcuboot/ext/mbedtls
 lib/mcuboot/boot/cypress/libs

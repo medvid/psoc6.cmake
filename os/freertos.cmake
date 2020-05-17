@@ -14,8 +14,6 @@ include(lib/freertos.cmake)
 include(lib/clib-support.cmake)
 include(lib/abstraction-rtos.cmake)
 
-include(anycloud.cmake)
-
 # Enable RTOS awareness in the HAL and BSP libraries
 add_definitions(-DCY_RTOS_AWARE)
 target_link_libraries(psoc6hal PRIVATE abstraction-rtos)
@@ -38,3 +36,6 @@ include(app/emwin-eink-freertos.cmake)
 include(app/emwin-oled-freertos.cmake)
 # BUG: update custom design.modus to ECO-2.0
 #include(app/usb-audio-device-freertos.cmake)
+
+# Load AnyCloud definitions
+include(anycloud.cmake)
