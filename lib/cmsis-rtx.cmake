@@ -58,3 +58,8 @@ endif()
 add_library(cmsis-rtx STATIC EXCLUDE_FROM_ALL ${CMSIS_RTX_SOURCES})
 target_include_directories(cmsis-rtx PUBLIC ${CMSIS_RTX_INCLUDE_DIRS})
 target_link_libraries(cmsis-rtx PUBLIC ${CMSIS_RTX_LINK_LIBRARIES})
+
+if(${TOOLCHAIN} STREQUAL GCC)
+  # Suppress warning: ISO C++17 does not allow 'register' storage class specifier [-Wregister]
+  target_compile_options(cmsis-rtx PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-register>)
+endif()
