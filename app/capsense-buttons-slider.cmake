@@ -26,5 +26,4 @@ psoc6_add_executable(
   LINK_LIBRARIES
     capsense
     psoc6hal
-    bsp_design_capsense
 )

@@ -20,5 +20,4 @@ psoc6_add_executable(
     capsense
     psoc6hal
     freertos
-    bsp_design_capsense
 )
