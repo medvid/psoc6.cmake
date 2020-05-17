@@ -14,6 +14,11 @@ psoc6_configure_toolchain()
 # Define project name, set enabled languages
 project(psoc6 C CXX ASM)
 
+# https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Configure target BSP, load common libraries
 psoc6_configure_bsp()
 
