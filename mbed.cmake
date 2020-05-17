@@ -5,5 +5,6 @@ include(lib/mbed-os.cmake)
 target_sources(bsp PRIVATE ${PORT_DIR}/cy_toolchain_init.c)
 
 # Load Mbed OS application definitions
-include(app/mbed-os-example-blinky.cmake)
-include(app/mbed-os-example-sys-info.cmake)
+include(app/mbed-blinky.cmake)
+include(app/mbed-sys-info.cmake)
+include(app/mbed-crypto.cmake)

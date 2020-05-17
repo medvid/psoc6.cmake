@@ -1,9 +1,9 @@
-project(mbed-os-example-sys-info)
+project(mbed-blinky)
 
 psoc6_load_application(
-  NAME mbed-os-example-sys-info
+  NAME mbed-os-example-blinky
   VERSION 5.15.0
-  URL https://github.com/ARMmbed/mbed-os-example-sys-info
+  URL https://github.com/ARMmbed/mbed-os-example-blinky
   TAG mbed-os-5.15.0
 )
 psoc6_add_executable(
