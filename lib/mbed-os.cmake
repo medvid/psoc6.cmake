@@ -18,6 +18,7 @@ set(MBED_PLATFORM_SOURCES
   ${MBED_OS_DIR}/platform/source/mbed_os_timer.cpp
   ${MBED_OS_DIR}/platform/source/mbed_power_mgmt.c
   ${MBED_OS_DIR}/platform/source/mbed_sdk_boot.c
+  ${MBED_OS_DIR}/platform/source/mbed_stats.c
   ${MBED_OS_DIR}/platform/source/mbed_thread.cpp
   ${MBED_OS_DIR}/platform/source/mbed_retarget.cpp
   ${MBED_OS_DIR}/platform/source/mbed_wait_api_no_rtos.c
@@ -41,9 +42,15 @@ set(MBED_PLATFORM_INCLUDE_DIRS
 set(MBED_PLATFORM_DEFINES
   __MBED__=1
   TARGET_CORTEX_M=1
+  MBED_SYS_STATS_ENABLED=1
+  MBED_ALL_STATS_ENABLED=1
   # Referenced from platform/source/SysTimer.cpp
   # TODO: check if CY_CFG_PWR_DEEPSLEEP_LATENCY is always available
   MBED_CONF_TARGET_DEEP_SLEEP_LATENCY=CY_CFG_PWR_DEEPSLEEP_LATENCY
+  MBED_CONF_TARGET_CONSOLE_UART=1
+  MBED_CONF_PLATFORM_STDIO_BUFFERED_SERIAL=1
+  MBED_CONF_PLATFORM_STDIO_BAUD_RATE=115200
+  MBED_CONF_PLATFORM_DEFAULT_SERIAL_BAUD_RATE=115200
 )
 set(MBED_PLATFORM_LINK_LIBRARIES
   psoc6pdl
@@ -77,6 +84,9 @@ set(MBED_DRIVERS_INCLUDE_DIRS
 )
 set(MBED_DRIVERS_DEFINES
   DEVICE_CRC=1
+  DEVICE_INTERRUPTIN=1
+  DEVICE_SERIAL=1
+  DEVICE_SLEEP=1
   DEVICE_USTICKER=1
   MBED_CRC_TABLE_SIZE=16
 )
