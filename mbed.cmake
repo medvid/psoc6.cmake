@@ -7,5 +7,10 @@ target_sources(bsp PRIVATE ${PORT_DIR}/cy_toolchain_init.c)
 # Load Mbed OS application definitions
 include(app/mbed-blinky.cmake)
 include(app/mbed-sys-info.cmake)
+include(app/mbed-crash-reporting.cmake)
+#include(app/mbed-error-handling.cmake)
 include(app/mbed-crypto.cmake)
 include(app/mbed-attestation.cmake)
+
+# Load Mbed OS Greentea tests
+include(test/mbed-greentea.cmake)

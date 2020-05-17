@@ -4,7 +4,6 @@ set(PORT_DIR ${CMAKE_SOURCE_DIR}/os/rtx)
 include_directories(${PORT_DIR})
 
 # Enable RTOS awareness in the HAL and BSP libraries
-# Enable RTOS awareness in the HAL and BSP libraries
 add_definitions(-DCY_RTOS_AWARE)
 target_link_libraries(psoc6hal PRIVATE abstraction-rtos)
 target_link_libraries(retarget-io PRIVATE abstraction-rtos)
@@ -20,5 +19,5 @@ include(lib/abstraction-rtos.cmake)
 # Load application definitions
 include(${PORT_DIR}/CoreValidation.cmake)
 
-# Load Mbed OS libraries and applications
+# Load Mbed OS libraries, applications and tests
 include(mbed.cmake)
