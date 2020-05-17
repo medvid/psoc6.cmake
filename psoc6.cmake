@@ -707,6 +707,23 @@ macro(psoc6_add_executable)
     LINK_FLAGS "${TOOLCHAIN_LSFLAGS}${TARGET_LINKER_SCRIPT} ${TOOLCHAIN_MAPFILE}${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.map"
   )
 
+  # TODO: support other toolchains
+  if(${TOOLCHAIN} STREQUAL GCC)
+    # Define ELF->HEX post-build action
+    # TODO: use $<TARGET_FILE> to determine HEX path?
+    set(_hex_path ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.hex)
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${GCC_TOOLCHAIN_PATH}/bin/arm-none-eabi-objcopy -O ihex "$<TARGET_FILE:${TARGET_NAME}>" "${_hex_path}"
+      COMMENT "elf2bin ${_hex_path}"
+      USES_TERMINAL)
+    unset(_hex_path)
+
+    # Print the memory usage summary
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${GCC_TOOLCHAIN_PATH}/bin/arm-none-eabi-size --format=berkeley --totals "$<TARGET_FILE:${TARGET_NAME}>"
+      USES_TERMINAL)
+  endif()
+
   # Define custom command for CMSIS-DAP programming
   add_custom_target(${TARGET_NAME}_PROGRAM
     COMMAND ${CY_OPENOCD_BIN}
