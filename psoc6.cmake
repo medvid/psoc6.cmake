@@ -302,7 +302,7 @@ endmacro()
 # Fetch application from online Git repository
 macro(psoc6_load_application)
   # Parse the expected one-value arguments
-  cmake_parse_arguments(APP "" "NAME;VERSION;URL;DIR" "" ${ARGN})
+  cmake_parse_arguments(APP "" "NAME;VERSION;URL;TAG;DIR" "" ${ARGN})
 
   # NAME is the required argument
   if(NOT DEFINED APP_NAME)
@@ -594,21 +594,21 @@ macro(psoc6_add_executable)
   # Define executable target, add application sources
   add_executable(${TARGET_NAME} ${TARGET_SOURCES})
 
-  # BUG: .psoc6_m0p_image section in cm4_dual linker scripts
-  # cannot be placed from the static library.
-  # Add the prebuilt image sources directly to the application
-  if(NOT ${CORE} STREQUAL CM0P)
-    target_sources(${TARGET_NAME} PRIVATE ${PSOC6CM0P_SOURCES})
-  endif()
-
   # Add application-specific include dirs
   target_include_directories(${TARGET_NAME} PRIVATE ${TARGET_INCLUDE_DIRS})
 
   # Add application-specific -DDEFINES
   target_compile_definitions(${TARGET_NAME} PRIVATE ${TARGET_DEFINES})
 
-  # Include all dependent libraries
-  target_link_libraries(${TARGET_NAME} PRIVATE bsp ${TARGET_LINK_LIBRARIES})
+  # Link the BSP lirbary
+  if(TARGET bsp)
+    list(APPEND TARGET_LINK_LIBRARIES bsp)
+  endif()
+
+  # Link the prebuilt CM0+ image
+  if(TARGET psoc6cm0p)
+    list(APPEND TARGET_LINK_LIBRARIES psoc6cm0p)
+  endif()
 
   # Check if the application provides custom design.modus
   if(DEFINED TARGET_DESIGN_MODUS)
@@ -621,7 +621,7 @@ macro(psoc6_add_executable)
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_GENERATED_SOURCE_DIR})
   elseif(TARGET bsp_design_modus)
-    target_link_libraries(${TARGET_NAME} PRIVATE bsp_design_modus)
+    list(APPEND TARGET_LINK_LIBRARIES bsp_design_modus)
   endif()
 
   # Check if the application provides custom design.cycapsense
@@ -634,7 +634,7 @@ macro(psoc6_add_executable)
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_CAPSENSE_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_CAPSENSE_GENERATED_SOURCE_DIR})
   elseif(TARGET bsp_design_capsense)
-    target_link_libraries(${TARGET_NAME} PRIVATE bsp_design_capsense)
+    list(APPEND TARGET_LINK_LIBRARIES bsp_design_capsense)
   endif()
 
   # Check if the application provides custom design.cyqspi
@@ -681,6 +681,15 @@ macro(psoc6_add_executable)
     )
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_BT_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_BT_GENERATED_SOURCE_DIR})
+  endif()
+
+  # Include all dependent libraries
+  if(${TOOLCHAIN} STREQUAL GCC)
+    # Ensure all weak symbols can be overriden by the strong overrides defined in the static libraries
+    target_link_libraries(${TARGET_NAME} PRIVATE "-Wl,--whole-archive" ${TARGET_LINK_LIBRARIES} "-Wl,--no-whole-archive")
+  else()
+    # TODO: verify the similar hack is not needed for ARM and IAR toolchains
+    target_link_libraries(${TARGET_NAME} PRIVATE bsp ${TARGET_LINK_LIBRARIES})
   endif()
 
   # If LINKER_SCRIPT is not set, use the BSP linker script
