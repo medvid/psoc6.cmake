@@ -13,4 +13,4 @@ include(app/mbed-crypto.cmake)
 include(app/mbed-attestation.cmake)
 
 # Load Mbed OS Greentea tests
-include(test/mbed-greentea.cmake)
+include(test/mbed-tests.cmake)

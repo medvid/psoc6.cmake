@@ -1,0 +1,19 @@
+add_greentea_test(
+  NAME
+    buffered_serial
+  SOURCES
+    ${MBED_OS_DIR}/TESTS/mbed_drivers/buffered_serial/main.cpp
+  LINK_LIBRARIES
+    mbed-target
+    mbed-utest
+)
+
+add_greentea_test(
+  NAME
+    crc
+  SOURCES
+    ${MBED_OS_DIR}/TESTS/mbed_drivers/crc/main.cpp
+  LINK_LIBRARIES
+    mbed-target
+    mbed-utest
+)

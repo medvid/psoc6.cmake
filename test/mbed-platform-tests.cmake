@@ -1,0 +1,19 @@
+add_greentea_test(
+  NAME
+    atomic
+  SOURCES
+    ${MBED_OS_DIR}/TESTS/mbed_platform/atomic/main.cpp
+  LINK_LIBRARIES
+    mbed-target
+    mbed-utest
+)
+
+add_greentea_test(
+  NAME
+    SingletonPtr
+  SOURCES
+    ${MBED_OS_DIR}/TESTS/mbed_platform/SingletonPtr/main.cpp
+  LINK_LIBRARIES
+    mbed-target
+    mbed-utest
+)
