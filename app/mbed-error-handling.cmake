@@ -12,7 +12,7 @@ psoc6_add_executable(
   DEFINES
     -DMBED_TEST_SIM_BLOCKDEVICE=HeapBlockDevice
   LINK_LIBRARIES
-    mbed-target
-    mbed-blockdevice
     mbed-littlefs
+    mbed-blockdevice
+    mbed-target
 )

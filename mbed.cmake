@@ -8,7 +8,7 @@ target_sources(bsp PRIVATE ${PORT_DIR}/cy_toolchain_init.c)
 include(app/mbed-blinky.cmake)
 include(app/mbed-sys-info.cmake)
 include(app/mbed-crash-reporting.cmake)
-#include(app/mbed-error-handling.cmake)
+include(app/mbed-error-handling.cmake)
 include(app/mbed-crypto.cmake)
 include(app/mbed-attestation.cmake)
 

@@ -11,9 +11,6 @@ __NO_RETURN void software_init_hook(void);
 
 __NO_RETURN void cy_toolchain_init(void)
 {
-    // Call static constructors
-    __libc_init_array();
-
     // Starts RTOS, never returns
     software_init_hook();
 }

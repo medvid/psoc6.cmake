@@ -1,5 +1,7 @@
 set(MBED_RTOS_DIR ${MBED_OS_DIR}/rtos)
 set(MBED_RTOS_SOURCES
+  ${MBED_RTOS_DIR}/source/ConditionVariable.cpp
+  ${MBED_RTOS_DIR}/source/EventFlags.cpp
   ${MBED_RTOS_DIR}/source/Kernel.cpp
   ${MBED_RTOS_DIR}/source/Mutex.cpp
   ${MBED_RTOS_DIR}/source/Semaphore.cpp
@@ -19,6 +21,7 @@ set(MBED_RTOS_INCLUDE_DIRS
 )
 set(MBED_RTOS_DEFINES
   MBED_CONF_RTOS_PRESENT=1
+  MBED_CONF_RTOS_API_PRESENT=1
   # The size of the main thread's stack
   MBED_CONF_RTOS_MAIN_THREAD_STACK_SIZE=4096
 

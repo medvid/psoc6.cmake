@@ -73,6 +73,7 @@ set(MBED_LITTLEFS_DEFINES
   #MBED_LFS_ENABLE_ASSERT
 )
 set(MBED_LITTLEFS_LINK_LIBRARIES
+  mbed-filesystem
   mbed-drivers
 )
 

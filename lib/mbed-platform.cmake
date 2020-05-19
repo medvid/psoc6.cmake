@@ -1,8 +1,13 @@
 set(MBED_PLATFORM_DIR ${MBED_OS_DIR}/platform)
 set(MBED_PLATFORM_SOURCES
   ${MBED_PLATFORM_DIR}/source/CriticalSectionLock.cpp
+  ${MBED_PLATFORM_DIR}/source/FileBase.cpp
   ${MBED_PLATFORM_DIR}/source/FileHandle.cpp
+  ${MBED_PLATFORM_DIR}/source/FilePath.cpp
+  ${MBED_PLATFORM_DIR}/source/FileSystemHandle.cpp
+  ${MBED_PLATFORM_DIR}/source/LocalFileSystem.cpp
   ${MBED_PLATFORM_DIR}/source/SysTimer.cpp
+  ${MBED_PLATFORM_DIR}/source/Stream.cpp
   ${MBED_PLATFORM_DIR}/source/mbed_alloc_wrappers.cpp
   ${MBED_PLATFORM_DIR}/source/mbed_assert.c
   ${MBED_PLATFORM_DIR}/source/mbed_atomic_impl.c
