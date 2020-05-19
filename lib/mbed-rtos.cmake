@@ -31,6 +31,7 @@ set(MBED_RTOS_DEFINES
 set(MBED_RTOS_LINK_LIBRARIES
   cmsis-rtx
   mbed-platform
+  psoc6hal
 )
 
 if(${TOOLCHAIN} STREQUAL GCC)
