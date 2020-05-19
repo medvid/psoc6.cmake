@@ -7,6 +7,7 @@ set(MBED_DRIVERS_SOURCES
   ${MBED_DRIVERS_DIR}/source/SerialBase.cpp
   ${MBED_DRIVERS_DIR}/source/Ticker.cpp
   ${MBED_DRIVERS_DIR}/source/Timeout.cpp
+  ${MBED_DRIVERS_DIR}/source/Timer.cpp
   ${MBED_DRIVERS_DIR}/source/TimerEvent.cpp
 )
 set(MBED_DRIVERS_INCLUDE_DIRS
