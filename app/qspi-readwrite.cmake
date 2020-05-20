@@ -16,5 +16,4 @@ psoc6_add_executable(
     psoc6hal
     retarget-io
     serial-flash
-    bsp_design_qspi
 )
