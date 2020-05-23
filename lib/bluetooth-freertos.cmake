@@ -20,9 +20,11 @@ set(BLUETOOTH_FREERTOS_SOURCES
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_prm.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_prm.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_result.h
+  ${BLUETOOTH_FREERTOS_DIR}/platform/freertos/cybt_platform_freertos.c
 )
 set(BLUETOOTH_FREERTOS_INCLUDE_DIRS
   ${BLUETOOTH_FREERTOS_DIR}
+  ${BLUETOOTH_FREERTOS_DIR}/platform/common
   # cybt_host_stack_platform_interface.c inludes cycfg_system.h
   ${BSP_GENERATED_SOURCE_DIR}
 )

@@ -23,6 +23,6 @@ psoc6_add_executable(
     psoc6hal
     retarget-io
     freertos
-  DESIGN_BT
+  DESIGN_BLE
     ${APP_DIR}/design.cybt
 )

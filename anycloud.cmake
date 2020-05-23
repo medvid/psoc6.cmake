@@ -32,6 +32,10 @@ include(app/anycloud-tcp-client.cmake)
 include(app/anycloud-tcp-server.cmake)
 include(app/anycloud-wlan-lowpower.cmake)
 include(app/anycloud-wifi-scan.cmake)
+include(app/anycloud-ble-battery-server.cmake)
+include(app/anycloud-ble-ess.cmake)
+include(app/anycloud-ble-multi-beacon.cmake)
+include(app/anycloud-ble-wifi-onboarding.cmake)
 
 # CY8CPROTO-062-4343W board shares the same GPIO for the user button (USER BTN1)
 # and the CYW4343W host wake up pin. Since some examples use the GPIO for

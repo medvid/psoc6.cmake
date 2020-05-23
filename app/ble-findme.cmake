@@ -20,6 +20,6 @@ psoc6_add_executable(
     bless-host-controller
     psoc6hal
     retarget-io
-  DESIGN_BT
+  DESIGN_BLE
     ${APP_DIR}/design.cybt
 )

@@ -506,6 +506,30 @@ macro(psoc6_add_design_seglcd design_seglcd var_source_dir var_sources)
 endmacro()
 
 # Set variables and custom recipes for design.cybt GeneratedSource
+macro(psoc6_add_design_ble design_ble var_source_dir var_sources)
+  if(NOT EXISTS ${design_ble})
+    message(FATAL_ERROR "psoc6_add_design_ble: ${design_ble} doesn't exist.")
+  endif()
+
+  # Initialize var_source_dir and var_sources
+  get_filename_component(design_dir ${design_ble} DIRECTORY)
+  set(${var_source_dir} ${design_dir}/GeneratedSource)
+  set(${var_sources}
+    ${${var_source_dir}}/cycfg_ble.h
+    ${${var_source_dir}}/cycfg_ble.c
+  )
+  unset(design_dir)
+
+  # Define custom recipe to update design.cybt generated source
+  add_custom_command(
+    COMMAND ${CY_TOOL_BT_CLI} -c ${design_ble}
+    DEPENDS ${design_bt}
+    OUTPUT  ${${var_sources}}
+    COMMENT "Generating Bluetooth Configuration for ${design_ble}"
+  )
+endmacro()
+
+# Set variables and custom recipes for design.cybt GeneratedSource
 macro(psoc6_add_design_bt design_bt var_source_dir var_sources)
   if(NOT EXISTS ${design_bt})
     message(FATAL_ERROR "psoc6_add_design_bt: ${design_bt} doesn't exist.")
@@ -515,12 +539,12 @@ macro(psoc6_add_design_bt design_bt var_source_dir var_sources)
   get_filename_component(design_dir ${design_bt} DIRECTORY)
   set(${var_source_dir} ${design_dir}/GeneratedSource)
   set(${var_sources}
-    ${${var_source_dir}}/cycfg_ble.h
-    ${${var_source_dir}}/cycfg_ble.c
+    ${${var_source_dir}}/cycfg_gatt_db.h
+    ${${var_source_dir}}/cycfg_gatt_db.c
   )
   unset(design_dir)
 
-  # Define custom recipe to update design.cybt generated source
+  # Define custom recipe to update cycfg_bt.cybt generated source
   add_custom_command(
     COMMAND ${CY_TOOL_BT_CLI} -c ${design_bt}
     DEPENDS ${design_bt}
@@ -569,7 +593,7 @@ endmacro()
 macro(psoc6_add_executable)
   # Parse the expected arguments
   cmake_parse_arguments(TARGET ""
-    "NAME;DESIGN_MODUS;DESIGN_CAPSENSE;DESIGN_QSPI;DESIGN_USBDEV;DESIGN_SEGLCD;DESIGN_BT;LINKER_SCRIPT"
+    "NAME;DESIGN_MODUS;DESIGN_CAPSENSE;DESIGN_QSPI;DESIGN_USBDEV;DESIGN_SEGLCD;DESIGN_BLE;DESIGN_BT;LINKER_SCRIPT"
     "SOURCES;INCLUDE_DIRS;DEFINES;LINK_LIBRARIES;GENERATED_SOURCES"
     ${ARGN}
   )
@@ -666,6 +690,17 @@ macro(psoc6_add_executable)
   endif()
 
   # Check if the application provides custom design.cybt
+  if(DEFINED TARGET_DESIGN_BLE)
+    psoc6_add_design_ble(
+      ${TARGET_DESIGN_BLE}
+      CUSTOM_BLE_GENERATED_SOURCE_DIR
+      CUSTOM_BLE_GENERATED_SOURCES
+    )
+    target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_BLE_GENERATED_SOURCES})
+    target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_BLE_GENERATED_SOURCE_DIR})
+  endif()
+
+  # Check if the application provides custom cycfg_bt.cybt
   if(DEFINED TARGET_DESIGN_BT)
     psoc6_add_design_bt(
       ${TARGET_DESIGN_BT}
