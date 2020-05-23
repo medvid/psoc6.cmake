@@ -607,6 +607,11 @@ macro(psoc6_add_executable)
 
   # Link the prebuilt CM0+ image
   if(TARGET psoc6cm0p)
+    # IAR excludes .cy_m0p_image from the application image
+    # unless --whole_archive is passed before libpsoc6cm0p.a
+    if(${TOOLCHAIN} STREQUAL IAR)
+      list(APPEND TARGET_LINK_LIBRARIES "--whole_archive")
+    endif()
     list(APPEND TARGET_LINK_LIBRARIES psoc6cm0p)
   endif()
 
@@ -689,7 +694,7 @@ macro(psoc6_add_executable)
     target_link_libraries(${TARGET_NAME} PRIVATE "-Wl,--whole-archive" ${TARGET_LINK_LIBRARIES} "-Wl,--no-whole-archive")
   else()
     # TODO: verify the similar hack is not needed for ARM and IAR toolchains
-    target_link_libraries(${TARGET_NAME} PRIVATE bsp ${TARGET_LINK_LIBRARIES})
+    target_link_libraries(${TARGET_NAME} PRIVATE ${TARGET_LINK_LIBRARIES})
   endif()
 
   # If LINKER_SCRIPT is not set, use the BSP linker script
