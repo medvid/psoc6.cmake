@@ -16,8 +16,5 @@ include(lib/cmsis-rtos2.cmake)
 include(lib/cmsis-rtx.cmake)
 include(lib/abstraction-rtos.cmake)
 
-# Load application definitions
-include(${PORT_DIR}/CoreValidation.cmake)
-
 # Load Mbed OS libraries, applications and tests
 include(mbed.cmake)

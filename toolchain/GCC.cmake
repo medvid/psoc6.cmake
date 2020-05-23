@@ -65,3 +65,11 @@ set(CMAKE_EXE_LINKER_FLAGS_HARDFP " -mfloat-abi=hard -mfpu=fpv4-sp-d16" CACHE IN
 set(TOOLCHAIN_LSFLAGS "-T")
 set(TOOLCHAIN_MAPFILE "-Wl,-Map,")
 set(TOOLCHAIN_PREINCLUDE "-include ")
+
+# https://reproducible-builds.org/docs/build-path/
+if(CMAKE_C_COMPILER_VERSION VERSION_GREATER 8)
+  file(RELATIVE_PATH _file_prefix ${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR})
+  string(APPEND CMAKE_C_FLAGS " -ffile-prefix-map=${_file_prefix}=")
+  string(APPEND CMAKE_CXX_FLAGS " -ffile-prefix-map=${_file_prefix}=")
+  unset(_file_prefix)
+endif()

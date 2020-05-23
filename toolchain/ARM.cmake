@@ -68,3 +68,6 @@ set(CMAKE_EXE_LINKER_FLAGS_HARDFP " --fpu=FPv4-SP" CACHE INTERNAL "Linker flags 
 set(TOOLCHAIN_LSFLAGS "--scatter ")
 set(TOOLCHAIN_MAPFILE "--map --list ")
 set(TOOLCHAIN_PREINCLUDE "-include")
+
+# Suppress ARM Linker warning: L6314W: No section matches pattern
+string(APPEND CMAKE_EXE_LINKER_FLAGS "  --diag_suppress=L6314W")

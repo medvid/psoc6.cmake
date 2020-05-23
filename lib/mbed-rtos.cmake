@@ -38,7 +38,16 @@ if(${TOOLCHAIN} STREQUAL GCC)
   list(APPEND MBED_RTOS_SOURCES
     ${MBED_RTOS_DIR}/source/TARGET_CORTEX/TOOLCHAIN_GCC_ARM/mbed_boot_gcc_arm.c
   )
-  # TODO: ARM / IAR
+elseif(${TOOLCHAIN} STREQUAL ARM)
+  list(APPEND MBED_RTOS_SOURCES
+    ${MBED_RTOS_DIR}/source/TARGET_CORTEX/TOOLCHAIN_ARM_STD/mbed_boot_arm_std.c
+  )
+elseif(${TOOLCHAIN} STREQUAL IAR)
+  list(APPEND MBED_RTOS_SOURCES
+    ${MBED_RTOS_DIR}/source/TARGET_CORTEX/TOOLCHAIN_IAR/mbed_boot_iar.c
+  )
+else()
+  message(FATAL_ERROR "mbed-rtos: TOOLCHAIN ${TOOLCHAIN} is not supported.")
 endif()
 
 add_library(mbed-rtos STATIC EXCLUDE_FROM_ALL ${MBED_RTOS_SOURCES})
@@ -50,4 +59,9 @@ if(${OS} STREQUAL RTX)
   # mbed_thread.cpp calls rtos::ThisThread::sleep_for
   # mbed_retarget.cpp calls singleton_mutex_id
   target_link_libraries(mbed-platform PUBLIC mbed-rtos)
+
+  # Use Mbed-specific implementations of __user_perthread_libspace,
+  # _mutex_acquire, _mutex_free, _mutex_initialize, _mutex_release
+  # Revelant discussion: https://github.com/ARMmbed/mbed-os/pull/6973
+  target_compile_definitions(cmsis-rtx PRIVATE RTX_NO_MULTITHREAD_CLIB)
 endif()

@@ -16,6 +16,7 @@ set(MBED_PLATFORM_SOURCES
   ${MBED_PLATFORM_DIR}/source/mbed_error.c
   ${MBED_PLATFORM_DIR}/source/mbed_error_hist.c
   ${MBED_PLATFORM_DIR}/source/mbed_os_timer.cpp
+  ${MBED_PLATFORM_DIR}/source/mbed_poll.cpp
   ${MBED_PLATFORM_DIR}/source/mbed_power_mgmt.c
   ${MBED_PLATFORM_DIR}/source/mbed_sdk_boot.c
   ${MBED_PLATFORM_DIR}/source/mbed_stats.c
@@ -70,11 +71,21 @@ set(MBED_PLATFORM_LINK_LIBRARIES
 )
 
 if(${TOOLCHAIN} STREQUAL GCC)
+  list(APPEND MBED_PLATFORM_SOURCES
+    ${MBED_PLATFORM_DIR}/source/TARGET_CORTEX_M/TOOLCHAIN_GCC/except.S
+  )
   # BUG: mbed_alloc_wrapper.cpp uses TOOLCHAIN_GCC
   list(APPEND MBED_PLATFORM_DEFINES TOOLCHAIN_GCC_ARM TOOLCHAIN_GCC)
 elseif(${TOOLCHAIN} STREQUAL ARM)
+  list(APPEND MBED_PLATFORM_SOURCES
+    # TODO: armasm.exe build recipe doesn't run the preprocessor
+    #${MBED_PLATFORM_DIR}/source/TARGET_CORTEX_M/TOOLCHAIN_ARM/except.S
+  )
   list(APPEND MBED_PLATFORM_DEFINES TOOLCHAIN_ARM)
 elseif(${TOOLCHAIN} STREQUAL IAR)
+  list(APPEND MBED_PLATFORM_SOURCES
+    ${MBED_PLATFORM_DIR}/source/TARGET_CORTEX_M/TOOLCHAIN_IAR/except.S
+  )
   list(APPEND MBED_PLATFORM_DEFINES TOOLCHAIN_IAR)
 else()
   message(FATAL_ERROR "mbed-os: TOOLCHAIN ${TOOLCHAIN} is not supported.")
@@ -84,3 +95,8 @@ add_library(mbed-platform STATIC EXCLUDE_FROM_ALL ${MBED_PLATFORM_SOURCES})
 target_include_directories(mbed-platform PUBLIC ${MBED_PLATFORM_INCLUDE_DIRS})
 target_compile_definitions(mbed-platform PUBLIC ${MBED_PLATFORM_DEFINES})
 target_link_libraries(mbed-platform PUBLIC ${MBED_PLATFORM_LINK_LIBRARIES})
+
+# Suppress IAR Warning[Pe540]: support for exception handling is disabled
+if(${TOOLCHAIN} STREQUAL IAR)
+  target_compile_options(mbed-platform PUBLIC $<$<COMPILE_LANGUAGE:CXX>:--diag_suppress=Pe540>)
+endif()

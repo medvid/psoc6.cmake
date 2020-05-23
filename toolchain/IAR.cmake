@@ -65,3 +65,10 @@ set(CMAKE_EXE_LINKER_FLAGS_HARDFP " --fpu FPv4-SP" CACHE INTERNAL "Linker flags 
 set(TOOLCHAIN_LSFLAGS "--config=")
 set(TOOLCHAIN_MAPFILE "--map=")
 set(TOOLCHAIN_PREINCLUDE "--preinclude=")
+
+# RTOS: configure the full runtime library for use with threads
+if(NOT ${OS} STREQUAL NOOS)
+  string(APPEND CMAKE_C_FLAGS " --dlib_config=full")
+  string(APPEND CMAKE_CXX_FLAGS " --dlib_config=full")
+  string(APPEND CMAKE_EXE_LINKER_FLAGS " --threaded_lib")
+endif()

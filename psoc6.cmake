@@ -118,7 +118,7 @@ macro(psoc6_configure_os)
   set_property(CACHE OS PROPERTY STRINGS NOOS FREERTOS RTX)
 
   string(TOLOWER ${OS} _os)
-  set(_os_cmake ${CMAKE_CURRENT_SOURCE_DIR}/os/${_os}.cmake)
+  set(_os_cmake ${CMAKE_SOURCE_DIR}/os/${_os}.cmake)
   unset(_os)
   if(NOT EXISTS ${_os_cmake})
     message(FATAL_ERROR "psoc6_configure_os: invalid OS: ${OS}.")
@@ -707,22 +707,58 @@ macro(psoc6_add_executable)
     LINK_FLAGS "${TOOLCHAIN_LSFLAGS}${TARGET_LINKER_SCRIPT} ${TOOLCHAIN_MAPFILE}${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.map"
   )
 
-  # TODO: support other toolchains
+  # Define toolchain-specific post-build actions for ELF target
+  set(_hex_path ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.hex)
+  set(_asm_path ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.asm)
   if(${TOOLCHAIN} STREQUAL GCC)
-    # Define ELF->HEX post-build action
-    # TODO: use $<TARGET_FILE> to determine HEX path?
-    set(_hex_path ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.hex)
+    # Convert ELF to HEX
     add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
       COMMAND ${GCC_TOOLCHAIN_PATH}/bin/arm-none-eabi-objcopy -O ihex "$<TARGET_FILE:${TARGET_NAME}>" "${_hex_path}"
-      COMMENT "elf2bin ${_hex_path}"
       USES_TERMINAL)
-    unset(_hex_path)
+
+    # Generate disassembly listing
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${GCC_TOOLCHAIN_PATH}/bin/arm-none-eabi-objdump -s "$<TARGET_FILE:${TARGET_NAME}>" > "${_asm_path}"
+      USES_TERMINAL)
 
     # Print the memory usage summary
     add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
       COMMAND ${GCC_TOOLCHAIN_PATH}/bin/arm-none-eabi-size --format=berkeley --totals "$<TARGET_FILE:${TARGET_NAME}>"
       USES_TERMINAL)
+  elseif(${TOOLCHAIN} STREQUAL ARM)
+    # Convert ELF to HEX
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${ARM_TOOLCHAIN_PATH}/bin/fromelf --output "${_hex_path}" --i32combined "$<TARGET_FILE:${TARGET_NAME}>"
+      USES_TERMINAL)
+    unset(_hex_path)
+
+    # Generate disassembly listing
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${ARM_TOOLCHAIN_PATH}/bin/fromelf --disassemble --output "${_asm_path}" "$<TARGET_FILE:${TARGET_NAME}>"
+      USES_TERMINAL)
+
+    # Print the memory usage summary
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${ARM_TOOLCHAIN_PATH}/bin/fromelf --info=sizes,totals "$<TARGET_FILE:${TARGET_NAME}>"
+      USES_TERMINAL)
+  elseif(${TOOLCHAIN} STREQUAL IAR)
+    # Convert ELF to HEX
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${IAR_TOOLCHAIN_PATH}/bin/ielftool --ihex "$<TARGET_FILE:${TARGET_NAME}>" "${_hex_path}"
+      USES_TERMINAL)
+    unset(_hex_path)
+
+    # Generate disassembly listing
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${IAR_TOOLCHAIN_PATH}/bin/ielfdumparm --code "$<TARGET_FILE:${TARGET_NAME}>" "${_asm_path}"
+      USES_TERMINAL)
+
+    # Print the memory usage summary
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${IAR_TOOLCHAIN_PATH}/bin/ielfdumparm "$<TARGET_FILE:${TARGET_NAME}>"
+      USES_TERMINAL)
   endif()
+  unset(_hex_path)
 
   # Define custom command for CMSIS-DAP programming
   add_custom_target(${TARGET_NAME}_PROGRAM

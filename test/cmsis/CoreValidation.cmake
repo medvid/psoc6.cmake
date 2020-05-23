@@ -15,16 +15,12 @@ psoc6_add_executable(
     ${CMSIS_DIR}/CMSIS/CoreValidation/Source/CV_Report.c
     ${CMSIS_DIR}/CMSIS/CoreValidation/Tests/main.c
   INCLUDE_DIRS
+    ${CMSIS_DIR}/Device/ARM/ARMCM4/Include
     ${CMSIS_DIR}/CMSIS/CoreValidation/Include
     ${CMSIS_DIR}/CMSIS/CoreValidation/Tests
     ${CMSIS_DIR}/CMSIS/CoreValidation/Tests/config/core_m
   DEFINES
     ARMCM4_FP
-    # Override ARMCM4_FP.h interrupt name with PDL name
-    Interrupt0_IRQn=ioss_interrupts_gpio_0_IRQn
   LINK_LIBRARIES
     ${CMSIS_CORE_LINK_LIBRARIES}
-)
-set_property(TARGET CoreValidation PROPERTY
-  COMPILE_FLAGS ${TOOLCHAIN_PREINCLUDE}${PORT_DIR}/RTE_Components.h
 )

@@ -3,12 +3,6 @@ set(PORT_DIR ${CMAKE_SOURCE_DIR}/os/freertos)
 # FreeRTOSConfig.h is included globally
 include_directories(${PORT_DIR})
 
-if(${TOOLCHAIN} STREQUAL IAR)
-  string(APPEND CMAKE_C_FLAGS " --dlib_config=full")
-  string(APPEND CMAKE_CXX_FLAGS " --dlib_config=full")
-  string(APPEND CMAKE_EXE_LINKER_FLAGS " --threaded_lib")
-endif()
-
 # Load library definitions
 include(lib/freertos.cmake)
 include(lib/clib-support.cmake)

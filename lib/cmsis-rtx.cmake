@@ -1,6 +1,4 @@
 set(CMSIS_RTX_SOURCES
-  # TODO: move config to os/rtx?
-  ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Config/handlers.c
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Config/RTX_Config.h
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Config/RTX_Config.c
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Include/rtx_evr.h
@@ -59,7 +57,9 @@ add_library(cmsis-rtx STATIC EXCLUDE_FROM_ALL ${CMSIS_RTX_SOURCES})
 target_include_directories(cmsis-rtx PUBLIC ${CMSIS_RTX_INCLUDE_DIRS})
 target_link_libraries(cmsis-rtx PUBLIC ${CMSIS_RTX_LINK_LIBRARIES})
 
+# Suppress warning: ISO C++17 does not allow 'register' storage class specifier [-Wregister]
 if(${TOOLCHAIN} STREQUAL GCC)
-  # Suppress warning: ISO C++17 does not allow 'register' storage class specifier [-Wregister]
   target_compile_options(cmsis-rtx PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-register>)
+elseif(${TOOLCHAIN} STREQUAL ARM)
+  target_compile_options(cmsis-rtx PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-deprecated-register>)
 endif()
