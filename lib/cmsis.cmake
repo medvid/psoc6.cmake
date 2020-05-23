@@ -21,7 +21,7 @@ else()
   message(FATAL_ERROR "cmsis: CORE ${CORE} is not supported.")
 endif()
 
-if(${TOOLCHAIN} STREQUAL GCC)
+if(${TOOLCHAIN} STREQUAL GCC OR ${TOOLCHAIN} STREQUAL LLVM)
   list(APPEND CMSIS_CORE_SOURCES ${CMSIS_DIR}/CMSIS/Core/Include/cmsis_gcc.h)
 elseif(${TOOLCHAIN} STREQUAL ARM)
   list(APPEND CMSIS_CORE_SOURCES ${CMSIS_DIR}/CMSIS/Core/Include/cmsis_armclang.h)
@@ -30,11 +30,6 @@ elseif(${TOOLCHAIN} STREQUAL IAR)
 else()
   message(FATAL_ERROR "cmsis: TOOLCHAIN ${TOOLCHAIN} is not supported.")
 endif()
-
-set(CMSIS_CORE_LINK_LIBRARIES
-  cmsis-core
-  psoc6pdl
-)
 
 add_library(cmsis-core INTERFACE)
 target_sources(cmsis-core INTERFACE ${CMSIS_CORE_SOURCES})

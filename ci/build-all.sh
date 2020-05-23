@@ -51,15 +51,18 @@ case "$KERNEL" in
     export GCC_TOOLCHAIN_PATH="$(cygpath --mixed "${GCC_TOOLCHAIN_PATH:-C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major}")"
     export ARM_TOOLCHAIN_PATH="$(cygpath --mixed "${ARM_TOOLCHAIN_PATH:-C:/Program Files/ARMCompiler6.13}")"
     export IAR_TOOLCHAIN_PATH="$(cygpath --mixed "${IAR_TOOLCHAIN_PATH:-C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm}")"
-    default_toolchain_list="GCC ARM IAR"
+    export LLVM_TOOLCHAIN_PATH="$(cygpath --mixed "${LLVM_TOOLCHAIN_PATH:-C:/Program Files)/LLVM}")"
+    default_toolchain_list="GCC ARM IAR LLVM"
     ;;
   Linux*)
     export GCC_TOOLCHAIN_PATH="${GCC_TOOLCHAIN_PATH:-/opt/gcc-arm-none-eabi-9-2019-q4-major}"
-    default_toolchain_list="GCC"
+    export LLVM_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-/usr}"
+    default_toolchain_list="GCC LLVM"
     ;;
   Darwin*)
-    export GCC_TOOLCHAIN_PATH="${GCC_TOOLCHAIN_PATH:-$HOME/Applications/gcc-arm-none-eabi-9-2019-q4-major}"
-    default_toolchain_list="GCC"
+    export GCC_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-$HOME/Applications/gcc-arm-none-eabi-9-2019-q4-major}"
+    export LLVM_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-/usr}"
+    default_toolchain_list="GCC LLVM"
     ;;
   *)
     echo >&2 "[ERROR]: unsupported OS: $KERNEL"

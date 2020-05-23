@@ -676,12 +676,16 @@ macro(psoc6_add_executable)
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_BT_GENERATED_SOURCE_DIR})
   endif()
 
+  # Link LLVM binary against GCC standard C/C++ libraries
+  if(${TOOLCHAIN} STREQUAL LLVM)
+    list(PREPEND TARGET_LINK_LIBRARIES ${GCC_LINK_LIBRARIES})
+  endif()
+
   # Include all dependent libraries
-  if(${TOOLCHAIN} STREQUAL GCC)
+  if(${TOOLCHAIN} STREQUAL GCC OR ${TOOLCHAIN} STREQUAL LLVM)
     # Ensure all weak symbols can be overriden by the strong overrides defined in the static libraries
     target_link_libraries(${TARGET_NAME} PRIVATE "-Wl,--whole-archive" ${TARGET_LINK_LIBRARIES} "-Wl,--no-whole-archive")
   else()
-    # TODO: verify the similar hack is not needed for ARM and IAR toolchains
     target_link_libraries(${TARGET_NAME} PRIVATE ${TARGET_LINK_LIBRARIES})
   endif()
 
@@ -749,6 +753,21 @@ macro(psoc6_add_executable)
     # Print the memory usage summary
     add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
       COMMAND ${IAR_TOOLCHAIN_PATH}/bin/ielfdumparm "$<TARGET_FILE:${TARGET_NAME}>"
+      USES_TERMINAL)
+  elseif(${TOOLCHAIN} STREQUAL LLVM)
+    # Convert ELF to HEX
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${LLVM_TOOLCHAIN_PATH}/bin/llvm-objcopy -O ihex "$<TARGET_FILE:${TARGET_NAME}>" "${_hex_path}"
+      USES_TERMINAL)
+
+    # Generate disassembly listing
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${LLVM_TOOLCHAIN_PATH}/bin/llvm-objdump -s "$<TARGET_FILE:${TARGET_NAME}>" > "${_asm_path}"
+      USES_TERMINAL)
+
+    # Print the memory usage summary
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${LLVM_TOOLCHAIN_PATH}/bin/llvm-size --format=berkeley --totals "$<TARGET_FILE:${TARGET_NAME}>"
       USES_TERMINAL)
   endif()
   unset(_hex_path)

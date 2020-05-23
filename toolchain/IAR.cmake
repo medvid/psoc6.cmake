@@ -1,6 +1,6 @@
 # https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
 
-# Setting Linux is forcing th extension to be .o instead of .obj when building on Windows.
+# Setting Linux is forcing the extension to be .o instead of .obj when building on Windows.
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 

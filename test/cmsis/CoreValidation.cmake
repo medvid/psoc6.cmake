@@ -1,3 +1,7 @@
+if(${TOOLCHAIN} STREQUAL IAR)
+  return()
+endif()
+
 psoc6_add_executable(
   NAME
     CoreValidation
@@ -22,5 +26,11 @@ psoc6_add_executable(
   DEFINES
     ARMCM4_FP
   LINK_LIBRARIES
-    ${CMSIS_CORE_LINK_LIBRARIES}
+    cmsis-core
+    psoc6pdl
 )
+
+if(${TOOLCHAIN} STREQUAL IAR)
+  # TODO:  no definition for "__write", "__lseek", "__close", "remove"
+  target_compile_options(CoreValidation PRIVATE "--dlib_config=full")
+endif()

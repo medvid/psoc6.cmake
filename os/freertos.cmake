@@ -25,11 +25,10 @@ include(app/ble-battery-level-freertos.cmake)
 # BUG: include <stdbool.h> missing
 # include(app/ble-throughput-freertos.cmake)
 # FIXME: CMake cannot fetch this example
-#include(app/capsense-buttons-slider-freertos.cmake)
+include(app/capsense-buttons-slider-freertos.cmake)
 include(app/emwin-eink-freertos.cmake)
 include(app/emwin-oled-freertos.cmake)
-# BUG: update custom design.modus to ECO-2.0
-#include(app/usb-audio-device-freertos.cmake)
+include(app/usb-audio-device-freertos.cmake)
 
 # Load AnyCloud definitions
 include(anycloud.cmake)

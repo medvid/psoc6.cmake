@@ -24,6 +24,14 @@
         }
     },
     {
+        "name": "CY8CKIT-062-BLE/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062-BLE",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CKIT-062-BLE/FREERTOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CKIT-062-BLE",
@@ -45,6 +53,14 @@
             "TARGET": "CY8CKIT-062-BLE",
             "OS": "FREERTOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062-BLE/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062-BLE",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -72,6 +88,14 @@
         }
     },
     {
+        "name": "CY8CKIT-062-BLE/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062-BLE",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CKIT-062-WIFI-BT/NOOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CKIT-062-WIFI-BT",
@@ -93,6 +117,14 @@
             "TARGET": "CY8CKIT-062-WIFI-BT",
             "OS": "NOOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062-WIFI-BT/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062-WIFI-BT",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -120,6 +152,14 @@
         }
     },
     {
+        "name": "CY8CKIT-062-WIFI-BT/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062-WIFI-BT",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CKIT-062-WIFI-BT/RTX/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CKIT-062-WIFI-BT",
@@ -141,6 +181,14 @@
             "TARGET": "CY8CKIT-062-WIFI-BT",
             "OS": "RTX",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062-WIFI-BT/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062-WIFI-BT",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -168,6 +216,14 @@
         }
     },
     {
+        "name": "CY8CKIT-062S2-43012/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CKIT-062S2-43012/FREERTOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CKIT-062S2-43012",
@@ -189,6 +245,14 @@
             "TARGET": "CY8CKIT-062S2-43012",
             "OS": "FREERTOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S2-43012/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -216,6 +280,14 @@
         }
     },
     {
+        "name": "CY8CKIT-062S2-43012/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S2-43012",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CPROTO-062-4343W/NOOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-062-4343W",
@@ -237,6 +309,14 @@
             "TARGET": "CY8CPROTO-062-4343W",
             "OS": "NOOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062-4343W/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062-4343W",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -264,6 +344,14 @@
         }
     },
     {
+        "name": "CY8CPROTO-062-4343W/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062-4343W",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CPROTO-062-4343W/RTX/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-062-4343W",
@@ -285,6 +373,14 @@
             "TARGET": "CY8CPROTO-062-4343W",
             "OS": "RTX",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062-4343W/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062-4343W",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -312,6 +408,14 @@
         }
     },
     {
+        "name": "CY8CPROTO-062S3-4343W/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CPROTO-062S3-4343W/FREERTOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-062S3-4343W",
@@ -333,6 +437,14 @@
             "TARGET": "CY8CPROTO-062S3-4343W",
             "OS": "FREERTOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-062S3-4343W/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -360,6 +472,14 @@
         }
     },
     {
+        "name": "CY8CPROTO-062S3-4343W/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-062S3-4343W",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CPROTO-063-BLE/NOOS/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-063-BLE",
@@ -381,6 +501,14 @@
             "TARGET": "CY8CPROTO-063-BLE",
             "OS": "NOOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -408,6 +536,14 @@
         }
     },
     {
+        "name": "CY8CPROTO-063-BLE/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CY8CPROTO-063-BLE/RTX/GCC",
         "cmakeSettings": {
             "TARGET": "CY8CPROTO-063-BLE",
@@ -429,6 +565,14 @@
             "TARGET": "CY8CPROTO-063-BLE",
             "OS": "RTX",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CPROTO-063-BLE/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CPROTO-063-BLE",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -456,6 +600,14 @@
         }
     },
     {
+        "name": "CYW9P62S1-43012EVB-01/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CYW9P62S1-43012EVB-01/FREERTOS/GCC",
         "cmakeSettings": {
             "TARGET": "CYW9P62S1-43012EVB-01",
@@ -477,6 +629,14 @@
             "TARGET": "CYW9P62S1-43012EVB-01",
             "OS": "FREERTOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43012EVB-01/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -504,6 +664,14 @@
         }
     },
     {
+        "name": "CYW9P62S1-43012EVB-01/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43012EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CYW9P62S1-43438EVB-01/NOOS/GCC",
         "cmakeSettings": {
             "TARGET": "CYW9P62S1-43438EVB-01",
@@ -525,6 +693,14 @@
             "TARGET": "CYW9P62S1-43438EVB-01",
             "OS": "NOOS",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
         }
     },
     {
@@ -552,6 +728,14 @@
         }
     },
     {
+        "name": "CYW9P62S1-43438EVB-01/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
         "name": "CYW9P62S1-43438EVB-01/RTX/GCC",
         "cmakeSettings": {
             "TARGET": "CYW9P62S1-43438EVB-01",
@@ -573,6 +757,14 @@
             "TARGET": "CYW9P62S1-43438EVB-01",
             "OS": "RTX",
             "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CYW9P62S1-43438EVB-01/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CYW9P62S1-43438EVB-01",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
         }
     }
 ]
