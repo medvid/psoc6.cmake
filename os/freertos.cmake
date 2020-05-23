@@ -17,7 +17,7 @@ if(TARGET udb-sdio-whd)
   target_link_libraries(udb-sdio-whd PRIVATE abstraction-rtos)
 endif()
 
-target_sources(freertos PUBLIC ${PORT_DIR}/hooks.c)
+target_sources(freertos PRIVATE ${PORT_DIR}/hooks.c)
 target_link_libraries(bsp PUBLIC freertos clib-support abstraction-rtos)
 
 # Load application definitions

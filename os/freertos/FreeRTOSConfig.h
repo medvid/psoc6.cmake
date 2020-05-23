@@ -79,7 +79,7 @@ extern void vAssertCalled( const char * pcFile,
 #define configPRINT_STRING( X ) fputs((X), stdout)
 #define configUSE_POSIX_ERRNO                       1
 
-#define configUSE_DAEMON_TASK_STARTUP_HOOK          0
+#define configUSE_DAEMON_TASK_STARTUP_HOOK          1
 #define configUSE_PREEMPTION                        1
 #define configUSE_IDLE_HOOK                         1
 #define configUSE_TICK_HOOK                         1
@@ -107,6 +107,8 @@ extern void vAssertCalled( const char * pcFile,
 #define configSUPPORT_STATIC_ALLOCATION             1
 #define configNUM_THREAD_LOCAL_STORAGE_POINTERS     16
 #define configUSE_NEWLIB_REENTRANT                  1
+#define configUSE_TICKLESS_IDLE                     2
+#define portSUPPRESS_TICKS_AND_SLEEP( xIdleTime )   vApplicationSleep( xIdleTime )
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES                       0
@@ -127,38 +129,70 @@ to exclude the API function. */
 #define INCLUDE_vTaskSuspend                        1
 #define INCLUDE_vTaskDelayUntil                     1
 #define INCLUDE_vTaskDelay                          1
+#define INCLUDE_xTaskGetSchedulerState              1
 #define INCLUDE_xTaskIsTaskFinished                 1
-#define INCLUDE_xEventGroupSetBitsFromISR           1
-#define INCLUDE_xTimerPendFunctionCall              1
 #define INCLUDE_xTaskGetCurrentTaskHandle           1
+#define INCLUDE_uxTaskGetStackHighWaterMark         0
+#define INCLUDE_xTaskGetIdleTaskHandle              0
+#define INCLUDE_eTaskGetState                       0
+#define INCLUDE_xTimerPendFunctionCall              1
 #define INCLUDE_xTaskAbortDelay                     1
+#define INCLUDE_xTaskGetHandle                      0
+#define INCLUDE_xTaskResumeFromISR                  1
 
 
 
 /* Cortex-M specific definitions. */
 #ifdef __NVIC_PRIO_BITS
-    /* __BVIC_PRIO_BITS will be specified when CMSIS is being used. */
-    #define configPRIO_BITS             __NVIC_PRIO_BITS
+	/* __BVIC_PRIO_BITS will be specified when CMSIS is being used. */
+	#define configPRIO_BITS       		__NVIC_PRIO_BITS
 #else
-    #define configPRIO_BITS             3        /* 15 priority levels */
+	#define configPRIO_BITS       		3        /* 15 priority levels */
 #endif
 
-/* The lowest interrupt priority that can be used in a call to a "set priority"
-function. */
-#define configLIBRARY_LOWEST_INTERRUPT_PRIORITY         0xf
+/*
+Interrupt nesting behavior configuration.
+This is explained here: http://www.freertos.org/a00110.html
 
-/* The highest interrupt priority that can be used by any interrupt service
-routine that makes calls to interrupt safe FreeRTOS API functions.  DO NOT CALL
-INTERRUPT SAFE FREERTOS API FUNCTIONS FROM ANY INTERRUPT THAT HAS A HIGHER
-PRIORITY THAN THIS! (higher priorities are lower numeric values.) */
-#define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY    2
+Priorities are controlled by two macros:
+- configKERNEL_INTERRUPT_PRIORITY determines the priority of the RTOS daemon task
+- configMAX_API_CALL_INTERRUPT_PRIORITY dictates the priority of ISRs that make API calls
 
-/* Interrupt priorities used by the kernel port layer itself.  These are generic
-to all Cortex-M ports, and do not rely on any particular library functions. */
-#define configKERNEL_INTERRUPT_PRIORITY         ( configLIBRARY_LOWEST_INTERRUPT_PRIORITY << (8 - configPRIO_BITS) )
-/* !!!! configMAX_SYSCALL_INTERRUPT_PRIORITY must not be set to zero !!!!
-See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
-#define configMAX_SYSCALL_INTERRUPT_PRIORITY    ( configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - configPRIO_BITS) )
+Notes:
+1. Interrupts that do not call API functions should be >= configKERNEL_INTERRUPT_PRIORITY
+   and will nest.
+2. Interrupts that call API functions must have priority between KERNEL_INTERRUPT_PRIORITY
+   and MAX_API_CALL_INTERRUPT_PRIORITY (inclusive).
+3. Interrupts running above MAX_API_CALL_INTERRUPT_PRIORITY are never delayed by the OS.
+*/
+/*
+PSoC 6 __NVIC_PRIO_BITS = 3
+
+0 (high)
+1           MAX_API_CALL_INTERRUPT_PRIORITY 001xxxxx (0x3F)
+2
+3
+4
+5
+6
+7 (low)     KERNEL_INTERRUPT_PRIORITY       111xxxxx (0xFF)
+
+!!!! configMAX_SYSCALL_INTERRUPT_PRIORITY must not be set to zero !!!!
+See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html
+
+*/
+
+/* Put KERNEL_INTERRUPT_PRIORITY in top __NVIC_PRIO_BITS bits of CM4 register */
+#define configKERNEL_INTERRUPT_PRIORITY         0xFF
+/*
+Put MAX_SYSCALL_INTERRUPT_PRIORITY in top __NVIC_PRIO_BITS bits of CM4 register
+NOTE For IAR compiler make sure that changes of this macro is reflected in
+file portable\IAR\CM4F\portasm.s in PendSV_Handler: routine
+*/
+#define configMAX_SYSCALL_INTERRUPT_PRIORITY    0x3F
+/* configMAX_API_CALL_INTERRUPT_PRIORITY is a new name for configMAX_SYSCALL_INTERRUPT_PRIORITY
+ that is used by newer ports only. The two are equivalent. */
+#define configMAX_API_CALL_INTERRUPT_PRIORITY   configMAX_SYSCALL_INTERRUPT_PRIORITY
 
 /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS
 standard names. */

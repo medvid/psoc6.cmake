@@ -24,6 +24,12 @@ __WEAK void vLoggingPrintf( const char * pcFormat, ... )
 
 /*-----------------------------------------------------------*/
 
+__WEAK void vApplicationDaemonTaskStartupHook( void )
+{
+}
+
+/*-----------------------------------------------------------*/
+
 /**
  * @brief User defined Idle task function.
  *
