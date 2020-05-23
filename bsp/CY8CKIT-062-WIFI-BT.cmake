@@ -1,7 +1,7 @@
 # Download BSP sources from GitHub
 psoc6_load_bsp(
   NAME CY8CKIT-062-WIFI-BT
-  VERSION 1.2.0
+  VERSION 1.2.1
 )
 
 # Set target MPN

@@ -1,7 +1,7 @@
 # Download BSP sources from GitHub
 psoc6_load_bsp(
   NAME CYW9P62S1-43012EVB-01
-  VERSION 1.2.0
+  VERSION 1.2.1
 )
 
 # Set target MPN
