@@ -301,10 +301,6 @@ The docker image is built on top of unofficial ModusToolbox Docker image: [vmmed
 
     Make sure to always use different build directory for CM0+ and CM4 cores.
 
-* Set PSOC6_FORCE_FETCH to update all cloned git repositories to match versions declared in CMake recipes:
-
-        PSOC6_FORCE_FETCH=1 cmake -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
-
 * When switching between toolchain versions (cmake -DGCC_TOOLCHAIN_PATH), the old toolchain version
   is sometimes cached in the CMake build directory. The most reliable way to address this is to delete
   the build directory before switching the toolchain version:

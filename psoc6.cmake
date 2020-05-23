@@ -5,6 +5,9 @@ include_guard(GLOBAL)
 # https://cliutils.gitlab.io/modern-cmake/chapters/projects/fetch.html
 include(FetchContent)
 
+# Configure FetchContent module to use the common cache directory
+set(FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/build/_deps" CACHE STRING "" FORCE)
+
 # Set paths to the ModusToolbox tools:
 # CY_TOOLS_PATHS - base tools directory (ModusToolbox/tools_X.Y)
 # CY_TOOL_CFG_BACKEND_CLI - Device Configurator Backend CLI
@@ -180,6 +183,27 @@ macro(psoc6_set_vfp)
   string(APPEND CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS_${VFP}})
 endmacro()
 
+# Clone or update the content from the remote git repository
+macro(psoc6_fetch id url tag dir)
+  FetchContent_Declare(
+    ${id}
+    GIT_REPOSITORY ${url}
+    GIT_TAG        ${tag}
+    SOURCE_DIR     ${dir}
+    GIT_PROGRESS   TRUE
+    USES_TERMINAL_DOWNLOAD TRUE
+    USES_TERMINAL_UPDATE   TRUE
+  )
+  # Use custom caching of the last-known content version
+  # Default update method implemented in ExternalProject.cmake is too slow
+  # (involves too much git operation even in case the version is up-to-date)
+  if(NOT "${tag}" STREQUAL "${${id}_VERSION}")
+    message(STATUS "Fetch ${url}/#${tag} to ${dir}")
+    FetchContent_Populate(${id})
+    set(${id}_VERSION ${tag} CACHE STRING "${id} version" FORCE)
+  endif()
+endmacro()
+
 # Fetch BSP from online Git repository
 macro(psoc6_load_bsp)
   # Parse the expected one-value arguments
@@ -214,18 +238,7 @@ macro(psoc6_load_bsp)
   endif()
 
   # Fetch the BSP sources from GitHub
-  FetchContent_Declare(
-    ${BSP_NAME}
-    GIT_REPOSITORY ${BSP_URL}
-    GIT_TAG        ${BSP_TAG}
-    SOURCE_DIR     ${BSP_DIR}
-    GIT_PROGRESS   TRUE
-    USES_TERMINAL_DOWNLOAD TRUE
-  )
-  if("$ENV{PSOC6_FORCE_FETCH}" OR NOT IS_DIRECTORY ${BSP_DIR}/.git)
-    MESSAGE(STATUS "Fetch ${BSP_URL}/#${BSP_TAG} to ${BSP_DIR}")
-    FetchContent_Populate(${BSP_NAME})
-  endif()
+  psoc6_fetch(${BSP_NAME} ${BSP_URL} ${BSP_TAG} ${BSP_DIR})
 endmacro()
 
 # Translate library name to CMake variable prefix
@@ -275,20 +288,7 @@ macro(psoc6_load_library)
   set(${LIB_PREFIX}_DIR     ${LIB_DIR})
 
   # Fetch the library sources from GitHub
-  FetchContent_Declare(
-    ${LIB_NAME}
-    GIT_REPOSITORY ${LIB_URL}
-    GIT_TAG        ${LIB_TAG}
-    SOURCE_DIR     ${LIB_DIR}
-    GIT_PROGRESS   TRUE
-    USES_TERMINAL_DOWNLOAD TRUE
-
-  )
-  FetchContent_GetProperties(${LIB_NAME})
-  if("$ENV{PSOC6_FORCE_FETCH}" OR NOT IS_DIRECTORY ${LIB_DIR}/.git)
-    MESSAGE(STATUS "Fetch ${LIB_URL}/#${LIB_TAG} to ${LIB_DIR}")
-    FetchContent_Populate(${LIB_NAME})
-  endif()
+  psoc6_fetch(${LIB_NAME} ${LIB_URL} ${LIB_TAG} ${LIB_DIR})
 
   # Clear the unprefixed variables from the project scope
   unset(LIB_NAME)
@@ -329,20 +329,8 @@ macro(psoc6_load_application)
     set(APP_DIR ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
   endif()
 
-  # Fetch the library sources from GitHub
-  FetchContent_Declare(
-    ${APP_NAME}
-    GIT_REPOSITORY ${APP_URL}
-    GIT_TAG        ${APP_TAG}
-    SOURCE_DIR     ${APP_DIR}
-    GIT_PROGRESS   TRUE
-    USES_TERMINAL_DOWNLOAD TRUE
-  )
-  FetchContent_GetProperties(${APP_NAME})
-  if("$ENV{PSOC6_FORCE_FETCH}" OR NOT IS_DIRECTORY ${APP_DIR}/.git)
-    MESSAGE(STATUS "Fetch ${APP_URL}/#${APP_TAG} to ${APP_DIR}")
-    FetchContent_Populate(${APP_NAME})
-  endif()
+  # Fetch the application sources from GitHub
+  psoc6_fetch(${APP_NAME} ${APP_URL} ${APP_TAG} ${APP_DIR})
 
   # Clear the unprefixed variables from the project scope
   unset(APP_NAME)
