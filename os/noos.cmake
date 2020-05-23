@@ -42,5 +42,8 @@ include(app/usb-hid-mouse.cmake)
 include(app/usb-msc-logger.cmake)
 include(app/wdt.cmake)
 
+# Load community code examples
+include(app/community.cmake)
+
 # Load CMSIS tests
 include(test/cmsis/CoreValidation.cmake)
