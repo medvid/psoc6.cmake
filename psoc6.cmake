@@ -217,9 +217,9 @@ macro(psoc6_load_bsp)
   # Some assets use Mbed-compatible BSP name ('-' -> '_')
   STRING(REGEX REPLACE "-" "_" MBED_BSP_NAME ${BSP_NAME})
 
-  # VERSION is the required argument
-  if(NOT DEFINED BSP_VERSION)
-    message(FATAL_ERROR "psoc6_load_bsp: missing required VERSION argument.")
+  # Either VERSION or TAG should be provided
+  if(NOT DEFINED BSP_VERSION AND NOT DEFINED BSP_TAG)
+    message(FATAL_ERROR "psoc6_load_bsp: missing VERSION or TAG argument.")
   endif()
 
   # If URL is not set, assume this is standard BSP from Cypress GitHub
@@ -258,9 +258,9 @@ macro(psoc6_load_library)
     message(FATAL_ERROR "psoc6_load_library: missing required NAME argument.")
   endif()
 
-  # VERSION is the required argument
-  if(NOT DEFINED LIB_VERSION)
-    message(FATAL_ERROR "psoc6_load_library: missing required VERSION argument.")
+  # Either VERSION or TAG should be provided
+  if(NOT DEFINED LIB_VERSION AND NOT DEFINED LIB_TAG)
+    message(FATAL_ERROR "psoc6_load_library: missing VERSION or TAG argument.")
   endif()
 
   # If URL is not set, assume this is standard lirbary from Cypress GitHub
@@ -309,9 +309,9 @@ macro(psoc6_load_application)
     message(FATAL_ERROR "psoc6_load_application: missing required NAME argument.")
   endif()
 
-  # VERSION is the required argument
-  if(NOT DEFINED APP_VERSION)
-    message(FATAL_ERROR "psoc6_load_application: missing required VERSION argument.")
+  # Either VERSION or TAG should be provided
+  if(NOT DEFINED APP_VERSION AND NOT DEFINED APP_TAG)
+    message(FATAL_ERROR "psoc6_load_application: missing VERSION or TAG argument.")
   endif()
 
   # If URL is not set, assume this is standard lirbary from Cypress GitHub
