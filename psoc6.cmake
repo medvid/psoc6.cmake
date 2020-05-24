@@ -213,11 +213,10 @@ macro(psoc6_fetch id url rev dir)
   # Use custom caching of the last-known content version
   # Default update method implemented in ExternalProject.cmake is too slow
   # (involves too much git operation even in case the version is up-to-date)
-  if(NOT "${rev}" STREQUAL "${${id}_VERSION}" OR NOT IS_DIRECTORY "${dir}/.git")
+  if(NOT "${rev}" STREQUAL "${${id}_REV}" OR NOT IS_DIRECTORY "${dir}/.git")
     message(STATUS "Fetch ${url}/#${rev} to ${dir}")
-    FetchContent_GetProperties(${id})
     FetchContent_Populate(${id})
-    set(${id}_VERSION ${rev} CACHE STRING "${id} version" FORCE)
+    set(${id}_REV ${rev} CACHE STRING "${id} version" FORCE)
   endif()
 endmacro()
 
