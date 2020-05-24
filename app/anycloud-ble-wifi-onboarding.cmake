@@ -20,6 +20,7 @@ psoc6_add_executable(
     ${APP_DIR}/configs/app_bt_cfg.h
     ${APP_DIR}/configs/app_bt_cfg.c
   INCLUDE_DIRS
+    ${APP_DIR}
     ${APP_DIR}/configs
   LINK_LIBRARIES
     psoc6hal
