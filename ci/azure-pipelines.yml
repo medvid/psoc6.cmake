@@ -20,4 +20,5 @@ jobs:
       filePath: ci/build-all.sh
       arguments: --toolchain GCC
     env:
+      CMAKE_GIT_SHALLOW: ON
       GCC_TOOLCHAIN_PATH: /opt/gcc-arm-none-eabi-9-2019-q4-major
