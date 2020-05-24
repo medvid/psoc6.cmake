@@ -61,7 +61,7 @@ case "$KERNEL" in
     ;;
   Darwin*)
     export GCC_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-$HOME/Applications/gcc-arm-none-eabi-9-2019-q4-major}"
-    export LLVM_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-/usr}"
+    export LLVM_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-/usr/local/opt/llvm}"
     default_toolchain_list="GCC LLVM"
     ;;
   *)

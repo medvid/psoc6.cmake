@@ -11,8 +11,10 @@ if(DEFINED ENV{LLVM_TOOLCHAIN_PATH})
   set(LLVM_TOOLCHAIN_DEFAULT_PATH "$ENV{LLVM_TOOLCHAIN_PATH}")
 elseif(WIN32)
   set(LLVM_TOOLCHAIN_DEFAULT_PATH "C:/Program Files/LLVM")
+elseif(APPLE)
+  set(LLVM_TOOLCHAIN_DEFAULT_PATH "/usr/local/opt/llvm") # homebrew install location
 else()
-    set(LLVM_TOOLCHAIN_DEFAULT_PATH "/usr")
+  set(LLVM_TOOLCHAIN_DEFAULT_PATH "/usr")
 endif()
 set(LLVM_TOOLCHAIN_PATH ${LLVM_TOOLCHAIN_DEFAULT_PATH} CACHE PATH "LLVM toolchain path")
 
