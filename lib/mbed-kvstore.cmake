@@ -17,9 +17,13 @@ set(MBED_KVSTORE_SOURCES
   ${MBED_KVSTORE_DIR}/tdbstore/TDBStore.cpp
 )
 set(MBED_KVSTORE_INCLUDE_DIRS
-  ${MBED_KVSTORE_DIR}/conf
   ${MBED_KVSTORE_DIR}/include
+  ${MBED_KVSTORE_DIR}/conf
+  ${MBED_KVSTORE_DIR}/direct_access_devicekey
+  ${MBED_KVSTORE_DIR}/filesystemstore
+  ${MBED_KVSTORE_DIR}/global_api
   ${MBED_KVSTORE_DIR}/kv_map
+  ${MBED_KVSTORE_DIR}/securestore
   ${MBED_KVSTORE_DIR}/tdbstore
 )
 set(MBED_KVSTORE_DEFINES
