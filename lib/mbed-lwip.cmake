@@ -1,0 +1,153 @@
+set(MBED_LWIP_DIR ${MBED_OS_DIR}/features/lwipstack/lwip)
+set(MBED_LWIP_SOURCES
+  ${MBED_LWIP_DIR}/src/include/lwip/altcp_tcp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/altcp_tls.h
+  ${MBED_LWIP_DIR}/src/include/lwip/api.h
+  ${MBED_LWIP_DIR}/src/include/lwip/arch.h
+  ${MBED_LWIP_DIR}/src/include/lwip/autoip.h
+  ${MBED_LWIP_DIR}/src/include/lwip/debug.h
+  ${MBED_LWIP_DIR}/src/include/lwip/def.h
+  ${MBED_LWIP_DIR}/src/include/lwip/dhcp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/dhcp6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/dns.h
+  ${MBED_LWIP_DIR}/src/include/lwip/err.h
+  ${MBED_LWIP_DIR}/src/include/lwip/lwip_errno.h
+  ${MBED_LWIP_DIR}/src/include/lwip/etharp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ethip6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/icmp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/icmp6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/if_api.h
+  ${MBED_LWIP_DIR}/src/include/lwip/igmp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/inet.h
+  ${MBED_LWIP_DIR}/src/include/lwip/inet_chksum.h
+  ${MBED_LWIP_DIR}/src/include/lwip/init.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip4.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip4_addr.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip4_frag.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip6_addr.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip6_frag.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip6_zone.h
+  ${MBED_LWIP_DIR}/src/include/lwip/ip_addr.h
+  ${MBED_LWIP_DIR}/src/include/lwip/mem.h
+  ${MBED_LWIP_DIR}/src/include/lwip/memp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/mld6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/nd6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/netbuf.h
+  ${MBED_LWIP_DIR}/src/include/lwip/netdb.h
+  ${MBED_LWIP_DIR}/src/include/lwip/netif.h
+  ${MBED_LWIP_DIR}/src/include/lwip/netifapi.h
+  ${MBED_LWIP_DIR}/src/include/lwip/opt.h
+  ${MBED_LWIP_DIR}/src/include/lwip/pbuf.h
+  ${MBED_LWIP_DIR}/src/include/lwip/raw.h
+  ${MBED_LWIP_DIR}/src/include/lwip/sio.h
+  ${MBED_LWIP_DIR}/src/include/lwip/snmp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/sockets.h
+  ${MBED_LWIP_DIR}/src/include/lwip/stats.h
+  ${MBED_LWIP_DIR}/src/include/lwip/sys.h
+  ${MBED_LWIP_DIR}/src/include/lwip/tcp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/tcpbase.h
+  ${MBED_LWIP_DIR}/src/include/lwip/tcpip.h
+  ${MBED_LWIP_DIR}/src/include/lwip/timeouts.h
+  ${MBED_LWIP_DIR}/src/include/lwip/udp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/altcp_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/api_msg.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/mem_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/memp_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/memp_std.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/nd6_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/raw_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/sockets_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/tcp_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/priv/tcpip_priv.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/autoip.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/dhcp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/dhcp6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/dns.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/etharp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/ethernet.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/iana.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/icmp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/icmp6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/ieee.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/igmp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/ip.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/ip4.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/ip6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/mld6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/nd6.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/tcp.h
+  ${MBED_LWIP_DIR}/src/include/lwip/prot/udp.h
+  ${MBED_LWIP_DIR}/src/core/lwip_init.c
+  ${MBED_LWIP_DIR}/src/core/lwip_def.c
+  ${MBED_LWIP_DIR}/src/core/lwip_dns.c
+  ${MBED_LWIP_DIR}/src/core/lwip_inet_chksum.c
+  ${MBED_LWIP_DIR}/src/core/lwip_ip.c
+  ${MBED_LWIP_DIR}/src/core/lwip_mem.c
+  ${MBED_LWIP_DIR}/src/core/lwip_memp.c
+  ${MBED_LWIP_DIR}/src/core/lwip_netif.c
+  ${MBED_LWIP_DIR}/src/core/lwip_pbuf.c
+  ${MBED_LWIP_DIR}/src/core/lwip_raw.c
+  ${MBED_LWIP_DIR}/src/core/lwip_stats.c
+  ${MBED_LWIP_DIR}/src/core/lwip_sys.c
+  ${MBED_LWIP_DIR}/src/core/lwip_altcp.c
+  ${MBED_LWIP_DIR}/src/core/lwip_altcp_alloc.c
+  ${MBED_LWIP_DIR}/src/core/lwip_altcp_tcp.c
+  ${MBED_LWIP_DIR}/src/core/lwip_tcp.c
+  ${MBED_LWIP_DIR}/src/core/lwip_tcp_in.c
+  ${MBED_LWIP_DIR}/src/core/lwip_tcp_out.c
+  ${MBED_LWIP_DIR}/src/core/lwip_timeouts.c
+  ${MBED_LWIP_DIR}/src/core/lwip_udp.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_autoip.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_dhcp.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_etharp.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_icmp.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_igmp.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_ip4_frag.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_ip4.c
+  ${MBED_LWIP_DIR}/src/core/ipv4/lwip_ip4_addr.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_dhcp6.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_ethip6.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_icmp6.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_inet6.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_ip6.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_ip6_addr.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_ip6_frag.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_mld6.c
+  ${MBED_LWIP_DIR}/src/core/ipv6/lwip_nd6.c
+  ${MBED_LWIP_DIR}/src/api/lwip_api_lib.c
+  ${MBED_LWIP_DIR}/src/api/lwip_api_msg.c
+  ${MBED_LWIP_DIR}/src/api/lwip_err.c
+  ${MBED_LWIP_DIR}/src/api/lwip_if_api.c
+  ${MBED_LWIP_DIR}/src/api/lwip_netbuf.c
+  ${MBED_LWIP_DIR}/src/api/lwip_netdb.c
+  ${MBED_LWIP_DIR}/src/api/lwip_netifapi.c
+  ${MBED_LWIP_DIR}/src/api/lwip_sockets.c
+  ${MBED_LWIP_DIR}/src/api/lwip_tcpip.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_ethernet.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_bridgeif.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_bridgeif_fdb.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_slipif.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_lowpan6_common.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_lowpan6.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_lowpan6_ble.c
+  ${MBED_LWIP_DIR}/src/netif/lwip_zepif.c
+)
+set(MBED_LWIP_INCLUDE_DIRS
+  # lwipopts.h
+  ${MBED_OS_DIR}/features/lwipstack
+  # nsapi_types.h
+  ${MBED_OS_DIR}/features/netsocket
+  ${MBED_LWIP_DIR}/src/include
+)
+set(MBED_LWIP_LIBRARIES
+  mbed-platform
+)
+
+add_library(mbed-lwip STATIC ${MBED_LWIP_SOURCES})
+target_include_directories(mbed-lwip PUBLIC ${MBED_LWIP_INCLUDE_DIRS})
+target_link_libraries(mbed-lwip PUBLIC ${MBED_LWIP_LIBRARIES})
+
+# cy_network_buffer.c includes lwIP headers
+target_link_libraries(whd-bsp-integration PRIVATE mbed-lwip)

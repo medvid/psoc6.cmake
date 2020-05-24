@@ -172,6 +172,8 @@ set(MBED_TLS_INCLUDE_DIRS
 )
 set(MBED_TLS_DEFINES
   -DMBEDTLS_USER_CONFIG_FILE="${PORT_DIR}/mbedtls_user_config.h"
+  # required by mbed-os/features/lwipstack/lwip-sys/lwip_tcp_isn.c
+  -DMBEDTLS_MD5_C
 )
 set(MBED_TLS_LINK_LIBRARIES
   mbed-target

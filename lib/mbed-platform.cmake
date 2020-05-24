@@ -15,6 +15,7 @@ set(MBED_PLATFORM_SOURCES
   ${MBED_PLATFORM_DIR}/source/mbed_critical.c
   ${MBED_PLATFORM_DIR}/source/mbed_error.c
   ${MBED_PLATFORM_DIR}/source/mbed_error_hist.c
+  ${MBED_PLATFORM_DIR}/source/mbed_interface.c
   ${MBED_PLATFORM_DIR}/source/mbed_os_timer.cpp
   ${MBED_PLATFORM_DIR}/source/mbed_poll.cpp
   ${MBED_PLATFORM_DIR}/source/mbed_power_mgmt.c

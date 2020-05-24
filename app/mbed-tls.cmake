@@ -44,6 +44,7 @@ psoc6_add_executable(
     ${APP_DIR}/tls-client/HelloHttpsClient.cpp
   LINK_LIBRARIES
     mbed-target
-    mbed-tls-platform
     mbed-netsocket
+    mbed-tls-platform
+    mbed-whd-emac
 )

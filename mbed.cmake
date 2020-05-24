@@ -1,3 +1,7 @@
+# Load library definitions
+include(lib/wifi-host-driver.cmake)
+include(lib/whd-bsp-integration.cmake)
+
 # Load Mbed OS library definitions
 include(lib/mbed-os.cmake)
 

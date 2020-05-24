@@ -143,8 +143,6 @@ set(LWIP_SOURCES
 set(LWIP_INCLUDE_DIRS
   ${CMAKE_SOURCE_DIR}/configs/lwip
   ${LWIP_DIR}/src/include
-  # cy_lpa_wifi_tko_ol.c includes prot/ip.h
-  ${LWIP_DIR}/src/include/lwip
 )
 set(LWIP_LIBRARIES
   # lwipopts.h includes whd_types.h
@@ -154,3 +152,6 @@ set(LWIP_LIBRARIES
 add_library(lwip STATIC ${LWIP_SOURCES})
 target_include_directories(lwip PUBLIC ${LWIP_INCLUDE_DIRS})
 target_link_libraries(lwip PUBLIC ${LWIP_LIBRARIES})
+
+# cy_network_buffer.c includes lwIP headers
+target_link_libraries(whd-bsp-integration PRIVATE lwip)

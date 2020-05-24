@@ -15,7 +15,6 @@ set(WHD_BSP_INTEGRATION_INCLUDE_DIRS
 )
 set(WHD_BSP_INTEGRATION_LIBRARIES
   wifi-host-driver
-  lwip
 )
 
 add_library(whd-bsp-integration STATIC ${WHD_BSP_INTEGRATION_SOURCES})

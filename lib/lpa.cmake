@@ -50,3 +50,6 @@ set(LPA_LINK_LIBRARIES
 add_library(lpa STATIC EXCLUDE_FROM_ALL ${LPA_SOURCES})
 target_include_directories(lpa PUBLIC ${LPA_INCLUDE_DIRS})
 target_link_libraries(lpa PUBLIC ${LPA_LINK_LIBRARIES})
+
+# BUG: cy_lpa_wifi_tko_ol.c includes prot/ip.h
+target_include_directories(lpa PRIVATE ${LWIP_DIR}/src/include/lwip)

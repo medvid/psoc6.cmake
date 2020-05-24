@@ -5,11 +5,11 @@ endif()
 
 # Load library definitions
 include(lib/wifi-host-driver.cmake)
+include(lib/whd-bsp-integration.cmake)
 include(lib/mbedtls.cmake)
 include(lib/lwip.cmake)
 include(lib/connectivity-utilities.cmake)
 include(lib/secure-sockets.cmake)
-include(lib/whd-bsp-integration.cmake)
 include(lib/wifi-mw-core.cmake)
 include(lib/wifi-connection-manager.cmake)
 include(lib/lpa.cmake)

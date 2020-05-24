@@ -69,14 +69,15 @@ set(MBED_NETSOCKET_DEFINES
   # Default stack to be used, valid values: LWIP, NANOSTACK.
   MBED_CONF_NSAPI_DEFAULT_STACK=LWIP
 
-  # Default Wi-Fi SSID
-  #MBED_CONF_NSAPI_DEFAULT_WIFI_SSID
+  # Default Wi-Fi SSID (configured by CMake)
+  MBED_CONF_NSAPI_DEFAULT_WIFI_SSID="${WIFI_SSID}"
 
-  # Password for the default Wi-Fi network.
-  #MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD
+  # Password for the default Wi-Fi network (configured by CMake)
+  MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD="${WIFI_PASSWORD}"
 
-  # Wi-Fi security protocol, valid values are WEP, WPA, WPA2, WPA/WPA2.
-  MBED_CONF_NSAPI_DEFAULT_WIFI_SECURITY=NONE
+  # Wi-Fi security protocol (configured by CMake)
+  # Valid values are WEP, WPA, WPA2, WPA/WPA2.
+  MBED_CONF_NSAPI_DEFAULT_WIFI_SECURITY=${WIFI_SECURITY}
 
   # Default Public Land Mobile Network for cellular connection.
   #MBED_CONF_NSAPI_DEFAULT_CELLULAR_PLMN
@@ -122,6 +123,10 @@ set(MBED_NETSOCKET_DEFINES
   # Use external TLSSocket implementation.
   # Used network stack must support external TLSSocket setsockopt values (see nsapi_types.h)
   #MBED_CONF_NSAPI_OFFLOAD_TLSSOCKET
+
+  # Default network interface type.
+  # Typical options: null, ETHERNET, WIFI, CELLULAR, MESH
+  MBED_CONF_TARGET_NETWORK_DEFAULT_INTERFACE_TYPE=WIFI
 )
 set(MBED_NETSOCKET_LINK_LIBRARIES
   mbed-tls-platform
