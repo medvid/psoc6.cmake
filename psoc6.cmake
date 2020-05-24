@@ -614,7 +614,7 @@ macro(psoc6_add_executable)
 
   # Link the BSP lirbary
   if(TARGET bsp)
-    list(APPEND TARGET_LINK_LIBRARIES bsp)
+    list(PREPEND TARGET_LINK_LIBRARIES bsp)
   endif()
 
   # Link the prebuilt CM0+ image
@@ -622,9 +622,9 @@ macro(psoc6_add_executable)
     # IAR excludes .cy_m0p_image from the application image
     # unless --whole_archive is passed before libpsoc6cm0p.a
     if(${TOOLCHAIN} STREQUAL IAR)
-      list(APPEND TARGET_LINK_LIBRARIES "--whole_archive")
+      list(PREPEND TARGET_LINK_LIBRARIES "--whole_archive")
     endif()
-    list(APPEND TARGET_LINK_LIBRARIES psoc6cm0p)
+    list(PREPEND TARGET_LINK_LIBRARIES psoc6cm0p)
   endif()
 
   # Check if the application provides custom design.modus
@@ -638,7 +638,7 @@ macro(psoc6_add_executable)
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_GENERATED_SOURCE_DIR})
   elseif(TARGET bsp_design_modus)
-    list(APPEND TARGET_LINK_LIBRARIES bsp_design_modus)
+    list(PREPEND TARGET_LINK_LIBRARIES bsp_design_modus)
   endif()
 
   # Check if the application provides custom design.cycapsense
@@ -651,7 +651,7 @@ macro(psoc6_add_executable)
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_CAPSENSE_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_CAPSENSE_GENERATED_SOURCE_DIR})
   elseif(TARGET bsp_design_capsense)
-    list(APPEND TARGET_LINK_LIBRARIES bsp_design_capsense)
+    list(PREPEND TARGET_LINK_LIBRARIES bsp_design_capsense)
   endif()
 
   # Check if the application provides custom design.cyqspi
@@ -664,7 +664,7 @@ macro(psoc6_add_executable)
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_QSPI_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_QSPI_GENERATED_SOURCE_DIR})
   elseif(TARGET bsp_design_qspi)
-    list(APPEND TARGET_LINK_LIBRARIES bsp_design_qspi)
+    list(PREPEND TARGET_LINK_LIBRARIES bsp_design_qspi)
   endif()
 
   # Check if the application provides custom design.cyusbdev
@@ -716,13 +716,14 @@ macro(psoc6_add_executable)
     list(PREPEND TARGET_LINK_LIBRARIES ${GCC_LINK_LIBRARIES})
   endif()
 
-  # Include all dependent libraries
+  # Ensure all weak symbols can be overriden by the strong overrides defined in the static libraries
   if(${TOOLCHAIN} STREQUAL GCC OR ${TOOLCHAIN} STREQUAL LLVM)
-    # Ensure all weak symbols can be overriden by the strong overrides defined in the static libraries
-    target_link_libraries(${TARGET_NAME} PRIVATE "-Wl,--whole-archive" ${TARGET_LINK_LIBRARIES} "-Wl,--no-whole-archive")
-  else()
-    target_link_libraries(${TARGET_NAME} PRIVATE ${TARGET_LINK_LIBRARIES})
+    list(PREPEND TARGET_LINK_LIBRARIES "-Wl,--whole-archive")
+    list(APPEND TARGET_LINK_LIBRARIES "-Wl,--no-whole-archive")
   endif()
+
+  # Include all dependent libraries
+  target_link_libraries(${TARGET_NAME} PRIVATE ${TARGET_LINK_LIBRARIES})
 
   # If LINKER_SCRIPT is not set, use the BSP linker script
   if(NOT DEFINED TARGET_LINKER_SCRIPT)
