@@ -154,4 +154,6 @@ target_include_directories(lwip PUBLIC ${LWIP_INCLUDE_DIRS})
 target_link_libraries(lwip PUBLIC ${LWIP_LIBRARIES})
 
 # cy_network_buffer.c includes lwIP headers
-target_link_libraries(whd-bsp-integration PRIVATE lwip)
+if(TARGET whd-bsp-integration)
+  target_link_libraries(whd-bsp-integration PRIVATE lwip)
+endif()

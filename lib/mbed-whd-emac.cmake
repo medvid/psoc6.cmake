@@ -1,3 +1,9 @@
+if(NOT TARGET wifi-host-driver)
+  # Declare dummy interface target so the network applications can be linked
+  add_library(mbed-whd-emac INTERFACE)
+  return()
+endif()
+
 set(MBED_WHD_EMAC_DIR ${MBED_OS_DIR}/features/netsocket/emac-drivers/TARGET_Cypress/COMPONENT_WHD)
 set(MBED_WHD_EMAC_SOURCES
   ${MBED_WHD_EMAC_DIR}/interface/CyDhcpServer.h

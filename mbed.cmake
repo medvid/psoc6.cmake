@@ -1,6 +1,8 @@
 # Load library definitions
-include(lib/wifi-host-driver.cmake)
-include(lib/whd-bsp-integration.cmake)
+if(4343W IN_LIST COMPONENTS OR 43012 IN_LIST COMPONENTS)
+  include(lib/wifi-host-driver.cmake)
+  include(lib/whd-bsp-integration.cmake)
+endif()
 
 # Load Mbed OS library definitions
 include(lib/mbed-os.cmake)
