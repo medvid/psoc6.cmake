@@ -24,3 +24,4 @@ include(lib/mbed-utest.cmake)
 # Add test cases
 include(test/mbed-drivers-tests.cmake)
 include(test/mbed-platform-tests.cmake)
+include(test/mbed-netsocket-tests.cmake)
