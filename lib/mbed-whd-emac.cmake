@@ -40,3 +40,6 @@ set(MBED_WHD_EMAC_LINK_LIBRARIES
 add_library(mbed-whd-emac STATIC EXCLUDE_FROM_ALL ${MBED_WHD_EMAC_SOURCES})
 target_include_directories(mbed-whd-emac PUBLIC ${MBED_WHD_EMAC_INCLUDE_DIRS})
 target_link_libraries(mbed-whd-emac PUBLIC ${MBED_WHD_EMAC_LINK_LIBRARIES})
+
+# BUG: CyDhcpServer.cpp includes def.h directly
+target_include_directories(mbed-whd-emac PRIVATE ${MBED_LWIP_DIR}/src/include/lwip)
