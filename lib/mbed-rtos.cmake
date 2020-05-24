@@ -11,6 +11,8 @@ set(MBED_RTOS_SOURCES
   ${MBED_RTOS_DIR}/source/TARGET_CORTEX/mbed_rtos_rtx.c
   ${MBED_RTOS_DIR}/source/TARGET_CORTEX/mbed_rtx_handlers.c
   ${MBED_RTOS_DIR}/source/TARGET_CORTEX/mbed_rtx_idle.cpp
+  # BUG: netsocket tests use osSignalSet from rtx4
+  ${MBED_RTOS_DIR}/source/TARGET_CORTEX/rtx4/cmsis_os1.c
 )
 set(MBED_RTOS_INCLUDE_DIRS
   ${MBED_RTOS_DIR}

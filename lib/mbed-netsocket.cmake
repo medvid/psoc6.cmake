@@ -1,8 +1,8 @@
 set(MBED_NETSOCKET_DIR ${MBED_OS_DIR}/features/netsocket)
 set(MBED_NETSOCKET_SOURCES
-  #${MBED_NETSOCKET_DIR}/CellularInterface.h
-  #${MBED_NETSOCKET_DIR}/CellularNonIPSocket.h
-  #${MBED_NETSOCKET_DIR}/CellularNonIPSocket.cpp
+  ${MBED_NETSOCKET_DIR}/CellularInterface.h
+  ${MBED_NETSOCKET_DIR}/CellularNonIPSocket.h
+  ${MBED_NETSOCKET_DIR}/CellularNonIPSocket.cpp
   ${MBED_NETSOCKET_DIR}/ControlPlane_netif.h
   ${MBED_NETSOCKET_DIR}/DNS.h
   ${MBED_NETSOCKET_DIR}/DTLSSocket.h
@@ -132,6 +132,7 @@ set(MBED_NETSOCKET_LINK_LIBRARIES
   mbed-tls-platform
   mbed-events
   mbed-nanostack-libservice
+  mbed-cellular
 )
 
 add_library(mbed-netsocket STATIC EXCLUDE_FROM_ALL ${MBED_NETSOCKET_SOURCES})
