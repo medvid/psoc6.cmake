@@ -11,6 +11,7 @@ include(app/mbed-crash-reporting.cmake)
 #include(app/mbed-error-handling.cmake)
 include(app/mbed-crypto.cmake)
 include(app/mbed-attestation.cmake)
+include(app/mbed-tls.cmake)
 
 # Load Mbed OS Greentea tests
 include(test/mbed-tests.cmake)
