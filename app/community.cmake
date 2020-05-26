@@ -2,7 +2,7 @@ project(community)
 
 psoc6_load_application(
   NAME Community-Code-Examples
-  TAG 7827442
+  TAG  7827442
 )
 include(app/mtb_02_ex01_smartio_rgb.cmake)
 include(app/mtb_02_ex02_pwm_blinkled.cmake)

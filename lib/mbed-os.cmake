@@ -1,8 +1,7 @@
 psoc6_load_library(
   NAME mbed-os
-  VERSION 6.0.0-beta-1
-  URL https://github.com/ARMmbed/mbed-os
-  TAG mbed-os-6.0.0-beta-1
+  URL  https://github.com/ARMmbed/mbed-os
+  TAG  mbed-os-6.0.0-beta-1
 )
 
 include(lib/mbed-platform.cmake)

@@ -1,8 +1,7 @@
 psoc6_load_library(
   NAME aws-iot
-  VERSION v4_beta
-  URL https://github.com/aws/aws-iot-device-sdk-embedded-C
-  TAG 4c750b6f3f5a103fa35549aac96a4ad7f2c7afce
+  URL  https://github.com/aws/aws-iot-device-sdk-embedded-C
+  TAG  4c750b6f3f5a103fa35549aac96a4ad7f2c7afce
 )
 
 set(AWS_IOT_BASE_SOURCES

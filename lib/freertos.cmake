@@ -1,8 +1,7 @@
 psoc6_load_library(
   NAME freertos
-  VERSION 10.3.1
-  URL https://github.com/FreeRTOS/FreeRTOS-Kernel
-  TAG V10.3.1-kernel-only
+  URL  https://github.com/FreeRTOS/FreeRTOS-Kernel
+  TAG  V10.3.1-kernel-only
 )
 
 set(FREERTOS_SOURCES

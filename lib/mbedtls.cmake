@@ -1,8 +1,7 @@
 psoc6_load_library(
   NAME mbedtls
-  VERSION 2.16.6
-  URL https://github.com/ARMmbed/mbedtls
-  TAG mbedtls-2.16.6
+  URL  https://github.com/ARMmbed/mbedtls
+  TAG  mbedtls-2.16.6
 )
 
 set(MBEDTLS_SOURCES

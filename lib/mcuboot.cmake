@@ -1,8 +1,7 @@
 psoc6_load_library(
   NAME mcuboot
-  VERSION 1.5.0
-  URL https://github.com/JuulLabs-OSS/mcuboot
-  TAG v1.5.0-cypress
+  URL  https://github.com/JuulLabs-OSS/mcuboot
+  TAG  v1.5.0-cypress
 )
 
 set(MCUBOOT_SOURCES

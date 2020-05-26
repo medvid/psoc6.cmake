@@ -1,8 +1,7 @@
 psoc6_load_library(
   NAME cmsis
-  VERSION 5.7.0
-  URL https://github.com/ARM-software/CMSIS_5
-  TAG 5.7.0
+  URL  https://github.com/ARM-software/CMSIS_5
+  TAG  5.7.0
 )
 
 set(CMSIS_CORE_SOURCES
