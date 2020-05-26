@@ -8,14 +8,6 @@ include(FetchContent)
 # Configure FetchContent module to use the common cache directory
 set(FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/build/_deps" CACHE STRING "" FORCE)
 
-# Download shallow clones of git repositories (speedup CI)
-if(DEFINED ENV{CMAKE_GIT_SHALLOW})
-  set(CMAKE_GIT_SHALLOW_DEFAULT "$ENV{CMAKE_GIT_SHALLOW}")
-else()
-  set(CMAKE_GIT_SHALLOW_DEFAULT OFF)
-endif()
-set(CMAKE_GIT_SHALLOW ${CMAKE_GIT_SHALLOW_DEFAULT} CACHE BOOL "Create git shallow clones")
-
 # Set paths to the ModusToolbox tools:
 # CY_TOOLS_PATHS - base tools directory (ModusToolbox/tools_X.Y)
 # CY_TOOL_CFG_BACKEND_CLI - Device Configurator Backend CLI
@@ -192,15 +184,28 @@ macro(psoc6_set_vfp)
 endmacro()
 
 # Clone or update the content from the remote git repository
-macro(psoc6_fetch id url tag dir)
+macro(psoc6_fetch id url rev dir)
+  # Check whether ${id}_GIT_SHALLOW variable is defined
+  # to determine if the git repo should be cloned as shallow
+  if(NOT DEFINED ${id}_GIT_SHALLOW)
+    # Try to guess if the revision points to tag or raw SHA
+    if("${rev}" MATCHES "^([0-9a-f]+)\$")
+      # Always create full clones for assets referenced by SHA
+      set(${id}_GIT_SHALLOW OFF)
+    elseif(DEFINED ENV{CMAKE_GIT_SHALLOW})
+      # Variable CMAKE_GIT_SHALLOW overrides if above is not set
+      set(${id}_GIT_SHALLOW "$ENV{CMAKE_GIT_SHALLOW}")
+    else()
+      # By default, clone assets normally
+      set(${id}_GIT_SHALLOW OFF)
+    endif()
+  endif()
   FetchContent_Declare(
     ${id}
     GIT_REPOSITORY ${url}
-    GIT_TAG        ${tag}
+    GIT_TAG        ${rev}
     SOURCE_DIR     ${dir}
-    GIT_SHALLOW    ${CMAKE_GIT_SHALLOW}
-    GIT_SUBMODULES ""
-    GIT_SUBMODULES_RECURSE FALSE
+    GIT_SHALLOW    ${${id}_GIT_SHALLOW}
     GIT_PROGRESS   TRUE
     USES_TERMINAL_DOWNLOAD TRUE
     USES_TERMINAL_UPDATE   TRUE
@@ -208,11 +213,11 @@ macro(psoc6_fetch id url tag dir)
   # Use custom caching of the last-known content version
   # Default update method implemented in ExternalProject.cmake is too slow
   # (involves too much git operation even in case the version is up-to-date)
-  if(NOT "${tag}" STREQUAL "${${id}_VERSION}" OR NOT IS_DIRECTORY "${dir}/.git")
-    message(STATUS "Fetch ${url}/#${tag} to ${dir}")
+  if(NOT "${rev}" STREQUAL "${${id}_VERSION}" OR NOT IS_DIRECTORY "${dir}/.git")
+    message(STATUS "Fetch ${url}/#${rev} to ${dir}")
     FetchContent_GetProperties(${id})
     FetchContent_Populate(${id})
-    set(${id}_VERSION ${tag} CACHE STRING "${id} version" FORCE)
+    set(${id}_VERSION ${rev} CACHE STRING "${id} version" FORCE)
   endif()
 endmacro()
 
