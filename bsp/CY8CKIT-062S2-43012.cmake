@@ -38,6 +38,8 @@ if(${CORE} STREQUAL CM4)
   psoc6_add_component(BSP_DESIGN_MODUS)
   psoc6_add_component(PSOC6HAL)
   psoc6_add_component(43012)
+  # Enable crypto HW acceleration
+  set(TARGET_MXCRYPTO "TARGET_MXCRYPTO_02")
 
   list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
   list(APPEND BSP_LINK_LIBRARIES psoc6hal)

@@ -39,6 +39,8 @@ if(${CORE} STREQUAL CM4)
   psoc6_add_component(PSOC6HAL)
   # FIXME: AnyCloud examples do not fit into FLASH
   #psoc6_add_component(4343W)
+  # Enable crypto HW acceleration
+  set(TARGET_MXCRYPTO "TARGET_MXCRYPTO_02")
 
   list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
   list(APPEND BSP_LINK_LIBRARIES psoc6hal)

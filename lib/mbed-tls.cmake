@@ -167,8 +167,6 @@ set(MBED_TLS_INCLUDE_DIRS
   ${MBED_TLS_DIR}/inc
   # BUG: config.h should not be included directly
   ${MBED_TLS_DIR}/inc/mbedtls
-  # TODO: enable HW acceleration
-  #${MBED_TLS_DIR}/targets/TARGET_Cypress/TARGET_MXCRYPTO
 )
 set(MBED_TLS_DEFINES
   -DMBEDTLS_USER_CONFIG_FILE="${PORT_DIR}/mbedtls_user_config.h"
@@ -178,6 +176,34 @@ set(MBED_TLS_DEFINES
 set(MBED_TLS_LINK_LIBRARIES
   mbed-target
 )
+
+# Enable HW acceleration
+if(DEFINED TARGET_MXCRYPTO)
+  set(MXCRYPTO_DIR ${MBED_TLS_DIR}/targets/TARGET_Cypress/TARGET_MXCRYPTO)
+  list(APPEND MBED_TLS_SOURCES
+    ${MXCRYPTO_DIR}/aes_alt.h
+    ${MXCRYPTO_DIR}/aes_alt.c
+    ${MXCRYPTO_DIR}/crypto_common.h
+    ${MXCRYPTO_DIR}/crypto_common.c
+    ${MXCRYPTO_DIR}/ecdsa_alt.c
+    ${MXCRYPTO_DIR}/ecp_alt.h
+    ${MXCRYPTO_DIR}/ecp_alt.c
+    ${MXCRYPTO_DIR}/ecp_curves_alt.c
+    ${MXCRYPTO_DIR}/mbedtls_device.h
+    ${MXCRYPTO_DIR}/sha1_alt.c
+    ${MXCRYPTO_DIR}/sha256_alt.c
+    ${MXCRYPTO_DIR}/sha512_alt.c
+    ${MXCRYPTO_DIR}/${TARGET_MXCRYPTO}/sha1_alt.h
+    ${MXCRYPTO_DIR}/${TARGET_MXCRYPTO}/sha256_alt.h
+    ${MXCRYPTO_DIR}/${TARGET_MXCRYPTO}/sha512_alt.h
+  )
+  list(APPEND MBED_TLS_INCLUDE_DIRS
+    ${MBED_TLS_DIR}/targets/TARGET_Cypress/TARGET_MXCRYPTO
+    ${MBED_TLS_DIR}/targets/TARGET_Cypress/TARGET_MXCRYPTO/${TARGET_MXCRYPTO}
+  )
+
+  target_compile_definitions(mbed-drivers PUBLIC MBEDTLS_CONFIG_HW_SUPPORT=1)
+endif()
 
 add_library(mbed-tls STATIC EXCLUDE_FROM_ALL ${MBED_TLS_SOURCES})
 target_include_directories(mbed-tls PUBLIC ${MBED_TLS_INCLUDE_DIRS})
