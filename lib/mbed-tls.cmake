@@ -181,6 +181,7 @@ set(MBED_TLS_LINK_LIBRARIES
 if(DEFINED TARGET_MXCRYPTO)
   set(MXCRYPTO_DIR ${MBED_TLS_DIR}/targets/TARGET_Cypress/TARGET_MXCRYPTO)
   list(APPEND MBED_TLS_SOURCES
+    ${MBED_TLS_DIR}/targets/hash_wrappers.c
     ${MXCRYPTO_DIR}/aes_alt.h
     ${MXCRYPTO_DIR}/aes_alt.c
     ${MXCRYPTO_DIR}/crypto_common.h
