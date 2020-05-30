@@ -129,7 +129,7 @@ set(MBED_PLATFORM_DEFINES
   # (Ignores stdio-buffered-serial) Creates a console for basic unbuffered I/O operations.
   # Enable if your application does not require file handles to access the serial interface.
   # The POSIX `fsync` function will always an error.
-  MBED_CONF_PLATFORM_STDIO_MINIMAL_CONSOLE_ONLY=1
+  MBED_CONF_PLATFORM_STDIO_MINIMAL_CONSOLE_ONLY=0
 
   # (Applies if target.console-uart is true.) Baud rate for stdio
   MBED_CONF_PLATFORM_STDIO_BAUD_RATE=115200
