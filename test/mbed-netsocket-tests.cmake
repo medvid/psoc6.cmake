@@ -1,3 +1,7 @@
+if(NOT TARGET wifi-host-driver)
+  return()
+endif()
+
 add_greentea_test(
   NAME
     netsocket-dns
