@@ -8,14 +8,14 @@ project(anycloud-offload-tcp-keepalive)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-offload-tcp-keepalive
-  VERSION 1.0.0
+  VERSION 1.1.0
 )
 psoc6_add_executable(
   SOURCES
     ${APP_DIR}/main.c
+    ${APP_DIR}/app_config.h
     ${APP_DIR}/tcp_keepalive_offload.h
     ${APP_DIR}/tcp_keepalive_offload.c
-    ${APP_DIR}/app_config.h
   DEFINES
     -DTARGET_${MBED_BSP_NAME}
   LINK_LIBRARIES

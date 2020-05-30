@@ -8,7 +8,7 @@ project(anycloud-wlan-lowpower)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-wlan-lowpower
-  VERSION 1.0.0
+  VERSION 1.1.0
 )
 psoc6_add_executable(
   SOURCES

@@ -9,7 +9,7 @@ project(anycloud-ota-mqtt)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-ota-mqtt
-  VERSION 1.0.0
+  VERSION 1.2.0
 )
 psoc6_add_executable(
   SOURCES

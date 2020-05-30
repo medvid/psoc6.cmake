@@ -2,7 +2,7 @@ project(anycloud-mqtt-client)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-mqtt-client
-  VERSION 1.0.0
+  VERSION 1.1.0
 )
 psoc6_add_executable(
   SOURCES
