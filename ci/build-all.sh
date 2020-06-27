@@ -55,12 +55,12 @@ case "$KERNEL" in
     default_toolchain_list="GCC ARM IAR LLVM"
     ;;
   Linux*)
-    export GCC_TOOLCHAIN_PATH="${GCC_TOOLCHAIN_PATH:-/opt/gcc-arm-none-eabi-9-2019-q4-major}"
+    export GCC_TOOLCHAIN_PATH="${GCC_TOOLCHAIN_PATH:-/opt/gcc-arm-none-eabi-9-2020-q2-update}"
     export LLVM_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-/usr}"
     default_toolchain_list="GCC LLVM"
     ;;
   Darwin*)
-    export GCC_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-$HOME/Applications/gcc-arm-none-eabi-9-2019-q4-major}"
+    export GCC_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-$HOME/Applications/gcc-arm-none-eabi-9-2020-q2-update}"
     export LLVM_TOOLCHAIN_PATH="${LLVM_TOOLCHAIN_PATH:-/usr/local/opt/llvm}"
     default_toolchain_list="GCC LLVM"
     ;;

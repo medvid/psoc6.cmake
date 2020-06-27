@@ -92,7 +92,7 @@
 
     Installation path assumed in this guide:
 
-        $HOME/Applications/gcc-arm-none-eabi-9-2019-q4-major
+        $HOME/Applications/gcc-arm-none-eabi-9-2020-q2-update
 
 ### Install prerequisites - Linux
 
@@ -115,12 +115,12 @@
 
     Installation path assumed in this guide:
 
-        /opt/gcc-arm-none-eabi-9-2019-q4-major
+        /opt/gcc-arm-none-eabi-9-2020-q2-update
 
     CLI installation example:
 
-        curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
-        sudo tar -C /opt -xjf /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
+        curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+        sudo tar -C /opt -xjf /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
 
 ## Quick Start Guide - CLI
 
@@ -183,7 +183,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.1",
-                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major",
+                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Tools ARM Embedded/9 2020-q2-update",
                 "ARM_TOOLCHAIN_PATH": "C:/Keil_v5/ARM/ARMCLANG",
                 "IAR_TOOLCHAIN_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm"
             }
@@ -199,7 +199,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.1",
-                "GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2019-q4-major"
+                "GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2020-q2-update"
             }
         }
         ```
@@ -213,7 +213,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "${env:HOME}/tools_2.1",
-                "GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-9-2019-q4-major"
+                "GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-9-2020-q2-update"
             }
         }
         ```
@@ -308,7 +308,7 @@ The docker image is built on top of unofficial ModusToolbox Docker image: [vmmed
         rm -rf build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
         cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug \
             -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC \
-            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major" \
+            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Tools ARM Embedded/9 2020-q2-update" \
             -DCMAKE_BUILD_TYPE=Debug
 
 [ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-windows-install.exe

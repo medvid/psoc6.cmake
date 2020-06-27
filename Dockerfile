@@ -13,8 +13,8 @@ RUN apt update -y \
  && apt autoremove -y --purge gnupg \
  && apt clean
 
-# Install GCC 9.2.1
-RUN curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 \
- && tar -C /opt -xjf /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 \
- && rm /tmp/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
+# Install GCC 9.3.1
+RUN curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 \
+ && tar -C /opt -xjf /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 \
+ && rm /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
 
