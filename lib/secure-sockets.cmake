@@ -1,14 +1,12 @@
 psoc6_load_library(
   NAME secure-sockets
-  VERSION 1.0.1
+  VERSION 1.1.0
 )
 
 set(SECURE_SOCKETS_SOURCES
   ${SECURE_SOCKETS_DIR}/include/cy_secure_sockets.h
-  ${SECURE_SOCKETS_DIR}/include/cy_secure_sockets_debug.h
   ${SECURE_SOCKETS_DIR}/include/cy_secure_sockets_error.h
   ${SECURE_SOCKETS_DIR}/include/cy_tls.h
-  ${SECURE_SOCKETS_DIR}/include/cy_tls_debug.h
   ${SECURE_SOCKETS_DIR}/source/COMPONENT_LWIP/cy_secure_sockets.c
   ${SECURE_SOCKETS_DIR}/source/COMPONENT_MBEDTLS/cy_tls.c
 )

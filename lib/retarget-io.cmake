@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME retarget-io
-  VERSION 1.1.0
+  VERSION 1.1.1
 )
 
 set(RETARGET_IO_SOURCES

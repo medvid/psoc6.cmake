@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME whd-bsp-integration
-  VERSION 1.0.1
+  VERSION 1.0.2
 )
 
 set(WHD_BSP_INTEGRATION_SOURCES

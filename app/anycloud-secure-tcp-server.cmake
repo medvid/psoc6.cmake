@@ -2,7 +2,7 @@ project(anycloud-secure-tcp-server)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-secure-tcp-server
-  VERSION 1.2.0
+  VERSION 1.3.0
 )
 psoc6_add_executable(
   SOURCES

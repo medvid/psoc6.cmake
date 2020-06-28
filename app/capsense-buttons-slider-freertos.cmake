@@ -7,7 +7,7 @@ project(capsense-buttons-slider-freertos)
 
 psoc6_load_application(
   NAME mtb-example-psoc6-capsense-buttons-slider-freertos
-  VERSION 1.1.0
+  VERSION 1.2.0
 )
 psoc6_add_executable(
   SOURCES

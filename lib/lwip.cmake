@@ -143,6 +143,8 @@ set(LWIP_SOURCES
 set(LWIP_INCLUDE_DIRS
   ${CMAKE_SOURCE_DIR}/configs/lwip
   ${LWIP_DIR}/src/include
+  # BUG: ethernet.h included directly
+  ${LWIP_DIR}/src/include/lwip/prot
 )
 set(LWIP_LIBRARIES
   # lwipopts.h includes whd_types.h

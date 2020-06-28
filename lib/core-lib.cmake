@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME core-lib
-  VERSION 1.1.2
+  VERSION 1.1.3
 )
 
 set(CORE_LIB_SOURCES

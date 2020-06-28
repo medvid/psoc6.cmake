@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME wifi-host-driver
-  VERSION 1.90.2
+  VERSION 1.91.2
 )
 
 set(WIFI_HOST_DRIVER_SOURCES

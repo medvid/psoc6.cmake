@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME rgb-led
-  VERSION 1.1.0
+  VERSION 1.1.1
 )
 
 set(RGB_LED_SOURCES

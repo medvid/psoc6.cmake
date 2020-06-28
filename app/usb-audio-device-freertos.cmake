@@ -11,7 +11,7 @@ project(usb-audio-device-freertos)
 
 psoc6_load_application(
   NAME mtb-example-psoc6-usb-audio-device-freertos
-  VERSION 1.1.0
+  VERSION 1.2.0
 )
 psoc6_add_executable(
   SOURCES

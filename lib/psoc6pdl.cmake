@@ -1,9 +1,13 @@
 psoc6_load_library(
   NAME psoc6pdl
-  VERSION 1.5.2
+  VERSION 1.6.0
 )
 
 set(PSOC6PDL_SOURCES
+  ${PSOC6PDL_DIR}/devices/include/cy8c4588azi_h675.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c4588azi_h676.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c4588azi_h685.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c4588azi_h686.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6016bzi_f04.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6036bzi_f04.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6116bzi_f54.h
@@ -19,6 +23,39 @@ set(PSOC6PDL_SOURCES
   ${PSOC6PDL_DIR}/devices/include/cy8c6137bzi_f54.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6137fdi_f02.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6137wi_f54.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144azi_s4f12.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144azi_s4f62.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144azi_s4f82.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144azi_s4f83.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144azi_s4f92.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144azi_s4f93.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144lqi_s4f12.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144lqi_s4f62.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144lqi_s4f82.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6144lqi_s4f92.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145azi_s3f02.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145azi_s3f12.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145azi_s3f42.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145azi_s3f62.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145azi_s3f72.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145fni_s3f11.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145fni_s3f41.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145fni_s3f71.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145lqi_s3f02.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145lqi_s3f12.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145lqi_s3f42.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145lqi_s3f62.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6145lqi_s3f72.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6148azi_s2f44.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6148bzi_s2f44.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6148fni_s2f43.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614aazi_s2f04.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614aazi_s2f14.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614aazi_s2f44.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614abzi_s2f04.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614abzi_s2f44.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614afni_s2f03.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c614afni_s2f43.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6244azi_s4d12.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6244azi_s4d62.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6244azi_s4d82.h
@@ -42,7 +79,6 @@ set(PSOC6PDL_SOURCES
   ${PSOC6PDL_DIR}/devices/include/cy8c6245lqi_s3d42.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6245lqi_s3d62.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6245lqi_s3d72.h
-  ${PSOC6PDL_DIR}/devices/include/cy8c6245w_s3d72.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6246bzi_d04.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6247bfi_d54.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6247bzi_aud54.h
@@ -100,8 +136,12 @@ set(PSOC6PDL_SOURCES
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bld13.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bld33.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bld43.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bld43.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bld53.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bld53.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bud13.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bud13.h
+  ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bud33.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bud33.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bud43.h
   ${PSOC6PDL_DIR}/devices/include/cy8c6347fmi_bud53.h
@@ -158,11 +198,11 @@ set(PSOC6PDL_SOURCES
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_dmac_v2.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_dw.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_dw_v2.h
-  ${PSOC6PDL_DIR}/devices/include/ip/cyip_efuse.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_efuse_data_psoc6_01.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_efuse_data_psoc6_02.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_efuse_data_psoc6_03.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_efuse_data_psoc6_04.h
+  ${PSOC6PDL_DIR}/devices/include/ip/cyip_efuse.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_fault.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_fault_v2.h
   ${PSOC6PDL_DIR}/devices/include/ip/cyip_flashc.h
@@ -261,6 +301,8 @@ set(PSOC6PDL_SOURCES
   ${PSOC6PDL_DIR}/drivers/include/cy_mcwdt.h
   ${PSOC6PDL_DIR}/drivers/include/cy_pdl.h
   ${PSOC6PDL_DIR}/drivers/include/cy_pdm_pcm.h
+  ${PSOC6PDL_DIR}/drivers/include/cy_pra.h
+  ${PSOC6PDL_DIR}/drivers/include/cy_pra_cfg.h
   ${PSOC6PDL_DIR}/drivers/include/cy_profile.h
   ${PSOC6PDL_DIR}/drivers/include/cy_prot.h
   ${PSOC6PDL_DIR}/drivers/include/cy_rtc.h
@@ -337,6 +379,8 @@ set(PSOC6PDL_SOURCES
   ${PSOC6PDL_DIR}/drivers/source/cy_lvd.c
   ${PSOC6PDL_DIR}/drivers/source/cy_mcwdt.c
   ${PSOC6PDL_DIR}/drivers/source/cy_pdm_pcm.c
+  ${PSOC6PDL_DIR}/drivers/source/cy_pra.c
+  ${PSOC6PDL_DIR}/drivers/source/cy_pra_cfg.c
   ${PSOC6PDL_DIR}/drivers/source/cy_profile.c
   ${PSOC6PDL_DIR}/drivers/source/cy_prot.c
   ${PSOC6PDL_DIR}/drivers/source/cy_rtc.c

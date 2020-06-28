@@ -9,6 +9,7 @@ endif()
 # Load CM4 application definitions
 include(app/ble-findme.cmake)
 include(app/capsense-buttons-slider.cmake)
+include(app/csdadc.cmake)
 include(app/crypto-aes.cmake)
 include(app/crypto-sha.cmake)
 include(app/crypto-trng.cmake)

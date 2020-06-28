@@ -1,12 +1,11 @@
 psoc6_load_library(
   NAME wifi-mw-core
-  VERSION 2.0.0
+  VERSION 2.1.0
 )
 
 set(WIFI_MW_CORE_SOURCES
   ${WIFI_MW_CORE_DIR}/lwip-whd-port/cy_lwip.h
   ${WIFI_MW_CORE_DIR}/lwip-whd-port/cy_lwip.c
-  ${WIFI_MW_CORE_DIR}/lwip-whd-port/cy_lwip_debug.h
   ${WIFI_MW_CORE_DIR}/lwip-whd-port/cy_lwip_error.h
   ${WIFI_MW_CORE_DIR}/lwip-whd-port/arch/cc.h
   ${WIFI_MW_CORE_DIR}/lwip-whd-port/arch/sys_arch.h

@@ -10,12 +10,20 @@ include(lib/abstraction-rtos.cmake)
 
 # Enable RTOS awareness in the HAL and BSP libraries
 add_definitions(-DCY_RTOS_AWARE)
-target_link_libraries(psoc6hal PRIVATE abstraction-rtos)
+# Cannot link against abstraction-rtos directly to avoid circular dependencies:
+# cycfg.h -> psoc6hal -> abstraction-rtos -> cyabs_freertos_helpers.c -> cycfg.h
+target_include_directories(psoc6hal PRIVATE
+  ${ABSTRACTION_RTOS_INCLUDE_DIRS}
+  ${FREERTOS_INCLUDE_DIRS}
+)
+if(TARGET udb-sdio-whd)
+  target_include_directories(udb-sdio-whd PRIVATE
+    ${ABSTRACTION_RTOS_INCLUDE_DIRS}
+    ${FREERTOS_INCLUDE_DIRS}
+  )
+endif()
 target_link_libraries(retarget-io PRIVATE abstraction-rtos)
 target_link_libraries(freertos PRIVATE abstraction-rtos)
-if(TARGET udb-sdio-whd)
-  target_link_libraries(udb-sdio-whd PRIVATE abstraction-rtos)
-endif()
 
 target_sources(freertos PRIVATE ${PORT_DIR}/hooks.c)
 target_link_libraries(bsp PUBLIC freertos clib-support abstraction-rtos)

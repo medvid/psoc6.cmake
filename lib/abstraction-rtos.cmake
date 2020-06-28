@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME abstraction-rtos
-  VERSION 1.2.1
+  VERSION 1.2.2
 )
 
 set(ABSTRACTION_RTOS_SOURCES
@@ -23,6 +23,8 @@ if(${OS} STREQUAL FREERTOS)
   )
   list(APPEND ABSTRACTION_RTOS_INCLUDE_DIRS
     ${ABSTRACTION_RTOS_DIR}/include/COMPONENT_FREERTOS
+    # cyabs_freertos_helpers.c includes cycfg.h
+    ${BSP_GENERATED_SOURCE_DIR}
   )
   list(APPEND ABSTRACTION_RTOS_LINK_LIBRARIES
     freertos

@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME udb-sdio-whd
-  VERSION 1.0.0
+  VERSION 1.0.1
 )
 
 set(UDB_SDIO_WHD_SOURCES

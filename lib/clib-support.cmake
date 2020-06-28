@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME clib-support
-  VERSION 1.0.0
+  VERSION 1.0.1
 )
 
 set(CLIB_SUPPORT_SOURCES

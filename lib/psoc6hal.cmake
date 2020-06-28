@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME psoc6hal
-  VERSION 1.2.1
+  VERSION 1.3.0
 )
 
 set(PSOC6HAL_SOURCES
@@ -19,6 +19,7 @@ set(PSOC6HAL_SOURCES
   ${PSOC6HAL_DIR}/include/cyhal_i2s.h
   ${PSOC6HAL_DIR}/include/cyhal_interconnect.h
   ${PSOC6HAL_DIR}/include/cyhal_lptimer.h
+  ${PSOC6HAL_DIR}/include/cyhal_opamp.h
   ${PSOC6HAL_DIR}/include/cyhal_pdmpcm.h
   ${PSOC6HAL_DIR}/include/cyhal_pwm.h
   ${PSOC6HAL_DIR}/include/cyhal_qspi.h
@@ -33,17 +34,22 @@ set(PSOC6HAL_SOURCES
   ${PSOC6HAL_DIR}/include/cyhal_uart.h
   ${PSOC6HAL_DIR}/include/cyhal_usb_dev.h
   ${PSOC6HAL_DIR}/include/cyhal_wdt.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_adc_impl.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_analog_common.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_clock_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_comp_ctb.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_comp_lp.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_crc_impl.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_crypto_common.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_deprecated.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_dma_dmac.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_dma_dw.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_dma_impl.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_drivers.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_gpio_impl.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_hw_resources.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_hw_types.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_pdmpcm_impl.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_pin_package.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_pwm_impl.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/cyhal_scb_common.h
@@ -70,12 +76,19 @@ set(PSOC6HAL_SOURCES
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_03_100_tqfp.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_03_49_wlcsp.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/pin_packages/cyhal_psoc6_03_68_qfn.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_04_64_tqfp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_04_68_qfn.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/pin_packages/cyhal_psoc6_04_80_tqfp.c
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_01.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_02.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_03.h
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/include/triggers/cyhal_triggers_psoc6_04.h
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_adc.c
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_analog_common.c
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_clock.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_comp.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_comp_ctb.c
+  ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_comp_lp.c
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_crc.c
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_crypto_common.c
   ${PSOC6HAL_DIR}/COMPONENT_PSOC6HAL/source/cyhal_dac.c
