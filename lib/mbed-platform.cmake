@@ -49,6 +49,7 @@ set(MBED_PLATFORM_SOURCES
   ${MBED_PLATFORM_DIR}/Transaction.h
   ${MBED_PLATFORM_DIR}/internal/CThunkBase.h
   ${MBED_PLATFORM_DIR}/internal/mbed_atomic_impl.h
+  ${MBED_PLATFORM_DIR}/internal/mbed_fault_handler.h
   ${MBED_PLATFORM_DIR}/source/ATCmdParser.cpp
   ${MBED_PLATFORM_DIR}/source/CriticalSectionLock.cpp
   ${MBED_PLATFORM_DIR}/source/CThunkBase.cpp
@@ -87,7 +88,6 @@ set(MBED_PLATFORM_SOURCES
   ${MBED_PLATFORM_DIR}/source/Stream.cpp
   ${MBED_PLATFORM_DIR}/source/SysTimer.h
   ${MBED_PLATFORM_DIR}/source/SysTimer.cpp
-  ${MBED_PLATFORM_DIR}/source/TARGET_CORTEX_M/mbed_fault_handler.h
   ${MBED_PLATFORM_DIR}/source/TARGET_CORTEX_M/mbed_fault_handler.c
   ${MBED_PLATFORM_DIR}/source/minimal-printf/mbed_printf_armlink_overrides.c
   ${MBED_PLATFORM_DIR}/source/minimal-printf/mbed_printf_implementation.h
@@ -97,6 +97,8 @@ set(MBED_PLATFORM_SOURCES
 set(MBED_PLATFORM_INCLUDE_DIRS
   ${MBED_OS_DIR}
   ${MBED_PLATFORM_DIR}
+  # mbed_fault_handler.c includes mbed_fault_handler.h
+  ${MBED_PLATFORM_DIR}/internal
   ${MBED_PLATFORM_DIR}/cxxsupport
   ${MBED_PLATFORM_DIR}/source
   ${MBED_PLATFORM_DIR}/source/TARGET_CORTEX_M

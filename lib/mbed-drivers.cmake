@@ -188,6 +188,9 @@ set(MBED_DRIVERS_DEFINES
 
   # QSPI chip select pin
   MBED_CONF_DRIVERS_QSPI_CSN=QSPI_FLASH1_CSN
+
+  # Default reference voltage for ADC (float)
+  MBED_CONF_TARGET_DEFAULT_ADC_VREF=3.3F
 )
 set(MBED_DRIVERS_LINK_LIBRARIES
   mbed-platform

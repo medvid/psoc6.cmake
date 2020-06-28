@@ -1,4 +1,4 @@
-set(MBED_QCBOR_DIR ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/qcbor)
+set(MBED_QCBOR_DIR ${MBED_OS_DIR}/features/FEATURE_EXPERIMENTAL_API/FEATURE_PSA/TARGET_MBED_PSA_SRV/services/attestation/qcbor)
 set(MBED_QCBOR_SOURCES
   ${MBED_QCBOR_DIR}/inc/UsefulBuf.h
   ${MBED_QCBOR_DIR}/inc/qcbor.h

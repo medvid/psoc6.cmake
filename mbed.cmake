@@ -18,10 +18,10 @@ include(lib/mbed-os.cmake)
 target_sources(bsp PRIVATE ${PORT_DIR}/cy_toolchain_init.c)
 
 # Load Mbed OS application definitions
-include(app/mbed-attestation.cmake)
+#include(app/mbed-attestation.cmake)
 include(app/mbed-blinky.cmake)
 include(app/mbed-crash-reporting.cmake)
-include(app/mbed-crypto.cmake)
+#include(app/mbed-crypto.cmake)
 #include(app/mbed-error-handling.cmake)
 include(app/mbed-kvstore.cmake)
 include(app/mbed-sys-info.cmake)

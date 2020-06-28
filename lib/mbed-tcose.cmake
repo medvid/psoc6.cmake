@@ -1,4 +1,4 @@
-set(MBED_TCOSE_DIR ${MBED_OS_DIR}/components/TARGET_PSA/services/attestation/COMPONENT_PSA_SRV_IMPL/tfm_impl/t_cose)
+set(MBED_TCOSE_DIR ${MBED_OS_DIR}/features/FEATURE_EXPERIMENTAL_API/FEATURE_PSA/TARGET_MBED_PSA_SRV/services/attestation/tfm_impl/t_cose)
 set(MBED_TCOSE_SOURCES
   ${MBED_TCOSE_DIR}/inc/t_cose_common.h
   ${MBED_TCOSE_DIR}/inc/t_cose_sign1_sign.h

@@ -129,7 +129,7 @@ set(MBED_NETSOCKET_DEFINES
   MBED_CONF_TARGET_NETWORK_DEFAULT_INTERFACE_TYPE=WIFI
 )
 set(MBED_NETSOCKET_LINK_LIBRARIES
-  mbed-tls-platform
+  mbed-tls
   mbed-events
   mbed-nanostack-libservice
   mbed-cellular
