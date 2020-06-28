@@ -1,0 +1,20 @@
+psoc6_load_library(
+  NAME display-oled-ssd1306
+  VERSION 1.0.0
+)
+
+set(DISPLAY_OLED_SSD1306_SOURCES
+  ${DISPLAY_OLED_SSD1306_DIR}/mtb_ssd1306.h
+  ${DISPLAY_OLED_SSD1306_DIR}/mtb_ssd1306.c
+  ${DISPLAY_OLED_SSD1306_DIR}/mtb_ssd1306_i2c.h
+)
+set(DISPLAY_OLED_SSD1306_INCLUDE_DIRS
+  ${DISPLAY_OLED_SSD1306_DIR}
+)
+set(DISPLAY_OLED_SSD1306_LINK_LIBRARIES
+  psoc6hal
+)
+
+add_library(display-oled-ssd1306 STATIC EXCLUDE_FROM_ALL ${DISPLAY_OLED_SSD1306_SOURCES})
+target_include_directories(display-oled-ssd1306 PUBLIC ${DISPLAY_OLED_SSD1306_INCLUDE_DIRS})
+target_link_libraries(display-oled-ssd1306 PUBLIC ${DISPLAY_OLED_SSD1306_LINK_LIBRARIES})

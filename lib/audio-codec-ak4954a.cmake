@@ -1,0 +1,19 @@
+psoc6_load_library(
+  NAME audio-codec-ak4954a
+  VERSION 1.0.0
+)
+
+set(AUDIO_CODEC_AK4954A_SOURCES
+  ${AUDIO_CODEC_AK4954A_DIR}/mtb_ak4954a.h
+  ${AUDIO_CODEC_AK4954A_DIR}/mtb_ak4954a.c
+)
+set(AUDIO_CODEC_AK4954A_INCLUDE_DIRS
+  ${AUDIO_CODEC_AK4954A_DIR}
+)
+set(AUDIO_CODEC_AK4954A_LINK_LIBRARIES
+  psoc6hal
+)
+
+add_library(audio-codec-ak4954a STATIC EXCLUDE_FROM_ALL ${AUDIO_CODEC_AK4954A_SOURCES})
+target_include_directories(audio-codec-ak4954a PUBLIC ${AUDIO_CODEC_AK4954A_INCLUDE_DIRS})
+target_link_libraries(audio-codec-ak4954a PUBLIC ${AUDIO_CODEC_AK4954A_LINK_LIBRARIES})

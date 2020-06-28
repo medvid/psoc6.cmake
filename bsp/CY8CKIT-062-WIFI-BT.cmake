@@ -95,6 +95,7 @@ if(${CORE} STREQUAL CM0P)
   return()
 endif()
 
+# Include common libraries
 include(lib/psoc6hal.cmake)
 include(lib/psoc6cm0p.cmake)
 include(lib/capsense.cmake)
@@ -106,8 +107,10 @@ include(lib/usbdev.cmake)
 include(lib/retarget-io.cmake)
 include(lib/rgb-led.cmake)
 include(lib/serial-flash.cmake)
-include(lib/CY8CKIT-028-TFT.cmake)
 include(lib/udb-sdio-whd.cmake)
+
+# Include shield libraries
+include(lib/shields.cmake)
 
 # Define custom recipes for BSP generated sources
 psoc6_add_bsp_design_modus(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.modus)

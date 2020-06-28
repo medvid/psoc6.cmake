@@ -1,0 +1,19 @@
+psoc6_load_library(
+  NAME display-tft-st7789v
+  VERSION 1.0.0
+)
+
+set(DISPLAY_TFT_ST7789V_SOURCES
+  ${DISPLAY_TFT_ST7789V_DIR}/mtb_st7789v.h
+  ${DISPLAY_TFT_ST7789V_DIR}/mtb_st7789v.c
+)
+set(DISPLAY_TFT_ST7789V_INCLUDE_DIRS
+  ${DISPLAY_TFT_ST7789V_DIR}
+)
+set(DISPLAY_TFT_ST7789V_LINK_LIBRARIES
+  psoc6hal
+)
+
+add_library(display-tft-st7789v STATIC EXCLUDE_FROM_ALL ${DISPLAY_TFT_ST7789V_SOURCES})
+target_include_directories(display-tft-st7789v PUBLIC ${DISPLAY_TFT_ST7789V_INCLUDE_DIRS})
+target_link_libraries(display-tft-st7789v PUBLIC ${DISPLAY_TFT_ST7789V_LINK_LIBRARIES})

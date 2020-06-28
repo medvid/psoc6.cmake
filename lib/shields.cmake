@@ -1,0 +1,12 @@
+# Include shield libraries
+include(lib/audio-codec-ak4954a.cmake)
+include(lib/display-eink-e2271cs021.cmake)
+include(lib/display-oled-ssd1306.cmake)
+include(lib/display-tft-st7789v.cmake)
+include(lib/bmi160_driver.cmake)
+include(lib/sensor-motion-bmi160.cmake)
+include(lib/sensor-light.cmake)
+include(lib/thermistor.cmake)
+include(lib/CY8CKIT-028-EPD.cmake)
+include(lib/CY8CKIT-028-TFT.cmake)
+include(lib/CY8CKIT-032.cmake)

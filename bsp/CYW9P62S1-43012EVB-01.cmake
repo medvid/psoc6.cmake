@@ -95,6 +95,7 @@ if(${CORE} STREQUAL CM0P)
   return()
 endif()
 
+# Include common libraries
 include(lib/psoc6hal.cmake)
 include(lib/psoc6cm0p.cmake)
 include(lib/capsense.cmake)
