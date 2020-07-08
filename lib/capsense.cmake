@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME capsense
-  VERSION 2.0.0
+  VERSION 2.10.0
 )
 
 set(CAPSENSE_SOURCES
@@ -20,6 +20,8 @@ set(CAPSENSE_SOURCES
   ${CAPSENSE_DIR}/cy_capsense_lib.h
   ${CAPSENSE_DIR}/cy_capsense_processing.h
   ${CAPSENSE_DIR}/cy_capsense_processing.c
+  ${CAPSENSE_DIR}/cy_capsense_selftest.h
+  ${CAPSENSE_DIR}/cy_capsense_selftest.c
   ${CAPSENSE_DIR}/cy_capsense_sensing.h
   ${CAPSENSE_DIR}/cy_capsense_sensing.c
   ${CAPSENSE_DIR}/cy_capsense_structure.h
