@@ -48,10 +48,10 @@ trap status EXIT
 KERNEL="$($(which uname) -s)"
 case "$KERNEL" in
   CYGWIN*|MINGW*|MSYS*)
-    export GCC_TOOLCHAIN_PATH="$(cygpath --mixed "${GCC_TOOLCHAIN_PATH:-C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major}")"
+    export GCC_TOOLCHAIN_PATH="$(cygpath --mixed "${GCC_TOOLCHAIN_PATH:-C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update}")"
     export ARM_TOOLCHAIN_PATH="$(cygpath --mixed "${ARM_TOOLCHAIN_PATH:-C:/Program Files/ARMCompiler6.13}")"
     export IAR_TOOLCHAIN_PATH="$(cygpath --mixed "${IAR_TOOLCHAIN_PATH:-C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm}")"
-    export LLVM_TOOLCHAIN_PATH="$(cygpath --mixed "${LLVM_TOOLCHAIN_PATH:-C:/Program Files)/LLVM}")"
+    export LLVM_TOOLCHAIN_PATH="$(cygpath --mixed "${LLVM_TOOLCHAIN_PATH:-C:/Program Files/LLVM}")"
     default_toolchain_list="GCC ARM IAR LLVM"
     ;;
   Linux*)

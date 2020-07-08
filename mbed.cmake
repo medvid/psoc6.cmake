@@ -1,5 +1,4 @@
 # Declare CMake cache variables for WiFi SSID, password and security
-set_property(CACHE TOOLCHAIN PROPERTY STRINGS GCC ARM IAR)
 set(WIFI_SSID "SSID" CACHE STRING "WiFi SSID")
 set(WIFI_PASSWORD "PASSWORD" CACHE STRING "WiFi Password")
 set(WIFI_SECURITY "WPA2" CACHE STRING "WiFi Security Protocol")

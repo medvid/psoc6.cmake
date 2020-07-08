@@ -11,7 +11,7 @@
 	"cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
 	"cmake.configureSettings": {
 		"CY_TOOLS_PATHS": "${env:USERPROFILE}/ModusToolbox/tools_2.1",
-		"GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Tools ARM Embedded/9 2020-q2-update",
+		"GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update",
 		"ARM_TOOLCHAIN_PATH": "C:/Keil_v5/ARM/ARMCLANG",
 		"IAR_TOOLCHAIN_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm",
 		"LLVM_TOOLCHAIN_PATH": "C:/Program Files/LLVM"

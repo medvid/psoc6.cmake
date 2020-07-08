@@ -40,7 +40,7 @@
 
     Installation path assumed in this guide:
 
-        C:/Program Files (x86)/GNU Tools ARM Embedded/9 2019-q4-major
+        C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update
 
 6. _(Optional)_ Download and install Arm Compiler 6:
 
@@ -183,7 +183,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.1",
-                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Tools ARM Embedded/9 2020-q2-update",
+                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update",
                 "ARM_TOOLCHAIN_PATH": "C:/Keil_v5/ARM/ARMCLANG",
                 "IAR_TOOLCHAIN_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm"
             }
@@ -308,7 +308,7 @@ The docker image is built on top of unofficial ModusToolbox Docker image: [vmmed
         rm -rf build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
         cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug \
             -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC \
-            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Tools ARM Embedded/9 2020-q2-update" \
+            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update" \
             -DCMAKE_BUILD_TYPE=Debug
 
 [ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-windows-install.exe
