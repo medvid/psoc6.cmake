@@ -8,14 +8,15 @@ project(emwin-eink-freertos)
 
 psoc6_load_application(
   NAME mtb-example-psoc6-emwin-eink-freertos
-  VERSION 1.1.0
+  VERSION 1.2.0
 )
 psoc6_add_executable(
   SOURCES
     ${APP_DIR}/source/main.c
     ${APP_DIR}/source/CypressLogo.c
-    ${APP_DIR}/source/einkTask.h
-    ${APP_DIR}/source/eInkTask.c
+    ${APP_DIR}/source/eink_task.h
+    ${APP_DIR}/source/eink_task.c
+    ${APP_DIR}/source/images.h
     ${APP_DIR}/eInk_Library/cy_eink_fonts.h
     ${APP_DIR}/eInk_Library/cy_eink_library.h
     ${APP_DIR}/eInk_Library/cy_eink_library.c
@@ -23,7 +24,8 @@ psoc6_add_executable(
     ${APP_DIR}/eInk_Library/cy_eink_psoc_interface.c
     ${APP_DIR}/eInk_Library/pervasive_eink_configuration.h
     ${APP_DIR}/eInk_Library/pervasive_eink_hardware_driver.h
-    ${APP_DIR}/eInk_Library/pervasive_eink_hardware_driver.c
+    ${APP_DIR}/eInk_Library/pervasive_eink_hardware_driver_part1.c
+    ${APP_DIR}/eInk_Library/pervasive_eink_hardware_driver_part2.c
     ${APP_DIR}/emwin_config/GUI_X_FreeRTOS.c
     ${APP_DIR}/emwin_config/GUIConf.c
     ${APP_DIR}/emwin_config/LCDConf.h

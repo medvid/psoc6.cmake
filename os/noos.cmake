@@ -7,8 +7,11 @@ if(${CORE} STREQUAL CM0P)
 endif()
 
 # Load CM4 application definitions
+include(app/ble-capsense-tuner-client.cmake)
+include(app/ble-capsense-tuner-server.cmake)
 include(app/ble-findme.cmake)
 include(app/capsense-buttons-slider.cmake)
+include(app/capsense-custom-scan.cmake)
 include(app/csdadc.cmake)
 include(app/crypto-aes.cmake)
 include(app/crypto-sha.cmake)

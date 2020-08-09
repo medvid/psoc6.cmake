@@ -43,6 +43,9 @@ include(app/anycloud-wifi-scan.cmake)
 include(app/anycloud-wlan-lowpower.cmake)
 include(app/anycloud-wps-enrollee.cmake)
 
+# Load community code examples
+include(app/community.cmake)
+
 # CY8CPROTO-062-4343W board shares the same GPIO for the user button (USER BTN1)
 # and the CYW4343W host wake up pin. Since some examples use the GPIO for
 # interfacing with the user button, the SDIO interrupt to wake up the host is
