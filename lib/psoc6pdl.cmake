@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME psoc6pdl
-  VERSION 1.6.0
+  VERSION 1.6.1
 )
 
 set(PSOC6PDL_SOURCES
