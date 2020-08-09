@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME btstack
-  VERSION 1.3.0
+  VERSION 1.4.0
 )
 
 set(BTSTACK_SOURCES
@@ -8,20 +8,14 @@ set(BTSTACK_SOURCES
   ${BTSTACK_DIR}/wiced_include/hci_control_api.h
   ${BTSTACK_DIR}/wiced_include/hcidefs.h
   ${BTSTACK_DIR}/wiced_include/l2cdefs.h
-  ${BTSTACK_DIR}/wiced_include/wiced_audio_sink.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_a2d.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_a2d_m12.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_a2d_m24.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_a2d_sbc.h
-  ${BTSTACK_DIR}/wiced_include/wiced_bt_a2dp_defs.h
-  ${BTSTACK_DIR}/wiced_include/wiced_bt_a2dp_sink.h
-  ${BTSTACK_DIR}/wiced_include/wiced_bt_audio.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_avdt.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_avrc.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_avrc_defs.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_ble.h
-  ${BTSTACK_DIR}/wiced_include/wiced_bt_ble_hidh.h
-  ${BTSTACK_DIR}/wiced_include/wiced_bt_ble_hidh_audio.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_cfg.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_constants.h
   ${BTSTACK_DIR}/wiced_include/wiced_bt_dev.h
