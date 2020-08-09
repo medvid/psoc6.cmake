@@ -24,6 +24,7 @@ set(BLUETOOTH_FREERTOS_SOURCES
 )
 set(BLUETOOTH_FREERTOS_INCLUDE_DIRS
   ${BLUETOOTH_FREERTOS_DIR}
+  ${BLUETOOTH_FREERTOS_DIR}/platform/include
   ${BLUETOOTH_FREERTOS_DIR}/platform/common
   # cybt_host_stack_platform_interface.c inludes cycfg_system.h
   ${BSP_GENERATED_SOURCE_DIR}
