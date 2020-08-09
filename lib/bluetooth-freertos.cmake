@@ -1,14 +1,14 @@
 psoc6_load_library(
   NAME bluetooth-freertos
-  VERSION 1.1.0
+  VERSION 1.2.0
 )
 
 set(BLUETOOTH_FREERTOS_SOURCES
+  ${BLUETOOTH_FREERTOS_DIR}/platform/include/cybt_platform_config.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_bt_task.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_hci_task.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_host_stack_platform_interface.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_patchram_download.c
-  ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_config.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_hci.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_interface.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_main.c
@@ -36,14 +36,18 @@ set(BLUETOOTH_FREERTOS_LINK_LIBRARIES
 
 if(43012 IN_LIST COMPONENTS)
   list(APPEND BLUETOOTH_FREERTOS_SOURCES
-    ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43012/w_bt_firmware_controller.c
+    ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43012/TARGET_${BSP_NAME}/w_bt_firmware_controller.c
+  )
+elseif(43438 IN_LIST COMPONENTS)
+  list(APPEND BLUETOOTH_FREERTOS_SOURCES
+    ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43438/w_bt_firmware_controller.c
   )
 elseif(4343W IN_LIST COMPONENTS)
   list(APPEND BLUETOOTH_FREERTOS_SOURCES
     ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_4343W/w_bt_firmware_controller.c
   )
 else()
-  message(FATAL_ERROR "bluetooth-freertos: COMPONENTS should include either 43012 or 4343W.")
+  message(FATAL_ERROR "bluetooth-freertos: COMPONENTS should include either 43012, 43438 or 4343W.")
 endif()
 
 add_library(bluetooth-freertos STATIC EXCLUDE_FROM_ALL ${BLUETOOTH_FREERTOS_SOURCES})
