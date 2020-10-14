@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME bless
-  VERSION 3.40.0
+  VERSION 3.50.0
 )
 
 set(BLESS_SOURCES
@@ -227,6 +227,25 @@ else()
   message(FATAL_ERROR "bless: COMPONENTS should include either SOFTFP or HARDFP.")
 endif()
 
+if(${TOOLCHAIN} STREQUAL GCC OR ${TOOLCHAIN} STREQUAL LLVM)
+  set(BLESS_CONTROLLER_IPC_LINK_LIBRARIES
+    ${BLESS_DIR}/COMPONENT_BLESS_CONTROLLER_IPC/TOOLCHAIN_GCC_ARM/cy_ble_stack_controller.a
+    ${BLESS_DIR}/COMPONENT_BLESS_CONTROLLER_IPC/TOOLCHAIN_GCC_ARM/cy_ble_stack_radio.a
+  )
+elseif(${TOOLCHAIN} STREQUAL ARM)
+  set(BLESS_CONTROLLER_IPC_LINK_LIBRARIES
+    ${BLESS_DIR}/COMPONENT_BLESS_CONTROLLER_IPC/TOOLCHAIN_ARM/cy_ble_stack_controller.ar
+    ${BLESS_DIR}/COMPONENT_BLESS_CONTROLLER_IPC/TOOLCHAIN_ARM/cy_ble_stack_radio.ar
+  )
+elseif(${TOOLCHAIN} STREQUAL IAR)
+  set(BLESS_CONTROLLER_IPC_LINK_LIBRARIES
+    ${BLESS_DIR}/COMPONENT_BLESS_CONTROLLER_IPC/TOOLCHAIN_IAR/cy_ble_stack_controller.a
+    ${BLESS_DIR}/COMPONENT_BLESS_CONTROLLER_IPC/TOOLCHAIN_IAR/cy_ble_stack_radio.a
+  )
+else()
+  message(FATAL_ERROR "bless: TOOLCHAIN ${TOOLCHAIN} is not supported.")
+endif()
+
 # Refer to BLESS Configuration Considerations docs for the supported BLE Stack operating modes:
 # https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_ble_section_configuration_considerations.html#group_ble_section_conf_cons_prebuild
 
@@ -238,6 +257,16 @@ target_compile_definitions(bless-host PUBLIC
 target_link_libraries(bless-host PUBLIC
   ${BLESS_LINK_LIBRARIES}
   ${BLESS_HOST_LINK_LIBRARIES}
+)
+
+add_library(bless-host-ipc STATIC EXCLUDE_FROM_ALL ${BLESS_SOURCES})
+target_include_directories(bless-host-ipc PUBLIC ${BLESS_INCLUDE_DIRS})
+target_compile_definitions(bless-host-ipc PUBLIC
+  COMPONENT_BLESS_HOST_IPC
+)
+target_link_libraries(bless-host-ipc PUBLIC
+  ${BLESS_LINK_LIBRARIES}
+  ${BLESS_HOST_IPC_LINK_LIBRARIES}
 )
 
 add_library(bless-host-controller STATIC EXCLUDE_FROM_ALL ${BLESS_SOURCES})
@@ -252,12 +281,12 @@ target_link_libraries(bless-host-controller PUBLIC
   ${BLESS_CONTROLLER_LINK_LIBRARIES}
 )
 
-add_library(bless-host-ipc STATIC EXCLUDE_FROM_ALL ${BLESS_SOURCES})
-target_include_directories(bless-host-ipc PUBLIC ${BLESS_INCLUDE_DIRS})
-target_compile_definitions(bless-host-ipc PUBLIC
-  COMPONENT_BLESS_HOST_IPC
+add_library(bless-controller-ipc STATIC EXCLUDE_FROM_ALL ${BLESS_SOURCES})
+target_include_directories(bless-controller-ipc PUBLIC ${BLESS_INCLUDE_DIRS})
+target_compile_definitions(bless-controller-ipc PUBLIC
+  COMPONENT_BLESS_CONTROLLER_IPC
 )
-target_link_libraries(bless-host-ipc PUBLIC
+target_link_libraries(bless-controller-ipc PUBLIC
   ${BLESS_LINK_LIBRARIES}
-  ${BLESS_HOST_IPC_LINK_LIBRARIES}
+  ${BLESS_CONTROLLER_IPC_LINK_LIBRARIES}
 )
