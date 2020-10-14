@@ -6,11 +6,11 @@
 	"[cpp]": {
 		"editor.defaultFormatter": "ms-vscode.cpptools"
 	},
-	"modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.1",
+	"modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.2",
 	"cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
-	"cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+	"cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
 	"cmake.configureSettings": {
-		"CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.1",
+		"CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.2",
 		"GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-9-2020-q2-update",
 		"LLVM_TOOLCHAIN_PATH": "/usr"
 	}

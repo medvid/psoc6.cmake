@@ -83,9 +83,9 @@ endif()
 set(LLVM_PORT_DIR ${CMAKE_SOURCE_DIR}/toolchain/llvm)
 
 # Use GCC standard libraries
-include_directories(${CY_TOOLS_PATHS}/gcc-7.2.1/arm-none-eabi/include)
-set(NEWLIB_LIB_DIR ${CY_TOOLS_PATHS}/gcc-7.2.1/arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp)
-set(GCC_LIB_DIR ${CY_TOOLS_PATHS}/gcc-7.2.1/lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/softfp)
+include_directories(${CY_TOOLS_PATHS}/gcc/arm-none-eabi/include)
+set(NEWLIB_LIB_DIR ${CY_TOOLS_PATHS}/gcc/arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/softfp)
+set(GCC_LIB_DIR ${CY_TOOLS_PATHS}/gcc/lib/gcc/arm-none-eabi/9.3.1/thumb/v7e-m/fpv4-sp/softfp)
 set(GCC_LINK_LIBRARIES
   -L${GCC_LIB_DIR}
   -L${NEWLIB_LIB_DIR}

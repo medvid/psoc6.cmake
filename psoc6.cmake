@@ -21,7 +21,7 @@ set(FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/build/_deps" CACHE STRING "" FORC
 #
 # A. Define CY_TOOLS_PATHS as CMake option or system environment variable
 #    Example:
-#      cmake -DCY_TOOLS_PATHS=C:/ModusToolbox/tools_2.1
+#      cmake -DCY_TOOLS_PATHS=C:/ModusToolbox/tools_2.2
 #      psoc6_add_tools()
 #
 # B. Pass optional VERSION argument to this macro to find the ModusToolbox
@@ -30,7 +30,7 @@ set(FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/build/_deps" CACHE STRING "" FORC
 #    Linux:   ${HOME}/ModusToolbox/tools_${VERSION}
 #    MacOS:   /Applications/ModusToolbox/tools_${VERSION}
 #    Example:
-#      psoc6_add_tools(VERSION 2.1)
+#      psoc6_add_tools(VERSION 2.2)
 #
 macro(psoc6_add_tools)
   # Check CY_TOOLS_PATHS is set as environment variable

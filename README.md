@@ -4,13 +4,13 @@
 
 ## Prerequisites
 
-* ModusToolbox 2.1
+* ModusToolbox 2.2
 * CMake >= 3.16
 * Ninja build system
 
 ### Install prerequisites - Windows
 
-1. Download and install ModusToolbox 2.1:
+1. Download and install ModusToolbox 2.2:
 
     [https://www.cypress.com/ModusToolboxForWindows][ModusToolboxForWindows]
 
@@ -72,7 +72,7 @@
 
 ### Install prerequisites - macOS
 
-1. Download and install ModusToolbox 2.1:
+1. Download and install ModusToolbox 2.2:
 
     [https://www.cypress.com/ModusToolboxForMac][ModusToolboxForMac]
 
@@ -96,7 +96,7 @@
 
 ### Install prerequisites - Linux
 
-1. Download and install ModusToolbox 2.1:
+1. Download and install ModusToolbox 2.2:
 
     [https://www.cypress.com/ModusToolboxForLinux][ModusToolboxForLinux]
 
@@ -178,11 +178,11 @@
 
         ```json
         {
-            "modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.1",
+            "modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.2",
             "cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
-            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
             "cmake.configureSettings": {
-                "CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.1",
+                "CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.2",
                 "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update",
                 "ARM_TOOLCHAIN_PATH": "C:/Keil_v5/ARM/ARMCLANG",
                 "IAR_TOOLCHAIN_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm"
@@ -194,11 +194,11 @@
 
         ```json
         {
-            "modustoolbox.toolsPath": "/Applications/ModusToolbox/tools_2.1",
+            "modustoolbox.toolsPath": "/Applications/ModusToolbox/tools_2.2",
             "cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
-            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
             "cmake.configureSettings": {
-                "CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.1",
+                "CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.2",
                 "GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2020-q2-update"
             }
         }
@@ -208,11 +208,11 @@
 
         ```json
         {
-            "modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.1",
+            "modustoolbox.toolsPath": "${env:HOME}/ModusToolbox/tools_2.2",
             "cortex-debug.openocdPath": "${config:modustoolbox.toolsPath}/openocd/bin/openocd",
-            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc-7.2.1/bin",
+            "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
             "cmake.configureSettings": {
-                "CY_TOOLS_PATHS": "${env:HOME}/tools_2.1",
+                "CY_TOOLS_PATHS": "${env:HOME}/tools_2.2",
                 "GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-9-2020-q2-update"
             }
         }
@@ -311,7 +311,7 @@ The docker image is built on top of unofficial ModusToolbox Docker image: [vmmed
             -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update" \
             -DCMAKE_BUILD_TYPE=Debug
 
-[ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-windows-install.exe
-[ModusToolboxForMac]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-macos-install.pkg
-[ModusToolboxForLinux]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.1/ModusToolbox_2.1.0.1266-linux-install.tar.gz
+[ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.2/ModusToolbox_2.2.0.2801-windows-install.exe
+[ModusToolboxForMac]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.2/ModusToolbox_2.2.0.2801-macos-install.pkg
+[ModusToolboxForLinux]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.2/ModusToolbox_2.2.0.2801-linux-install.tar.gz
 [hello-world]: https://github.com/cypresssemiconductorco/mtb-example-psoc6-hello-world/blob/master/README.md#operation
