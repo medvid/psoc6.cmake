@@ -12,7 +12,7 @@ set(SERIAL_FLASH_INCLUDE_DIRS
   ${SERIAL_FLASH_DIR}
 )
 set(SERIAL_FLASH_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
 )
 
 add_library(serial-flash STATIC EXCLUDE_FROM_ALL ${SERIAL_FLASH_SOURCES})

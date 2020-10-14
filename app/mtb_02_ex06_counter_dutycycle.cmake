@@ -13,7 +13,7 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/mtb_training/session02/mtb_02_ex06_counter_dutycycle/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
   DESIGN_MODUS
     ${APP_DIR}/mtb_training/session02/mtb_02_ex06_counter_dutycycle/design_deps/${BSP_NAME}/design.modus

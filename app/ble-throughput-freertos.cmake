@@ -44,7 +44,7 @@ psoc6_add_executable(
     EINK_DISPLAY_SHIELD_PRESENT
   LINK_LIBRARIES
     bless-host-controller
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     freertos
   DESIGN_BT
@@ -84,7 +84,7 @@ psoc6_add_executable(
     EINK_DISPLAY_SHIELD_PRESENT
   LINK_LIBRARIES
     bless-host-controller
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     freertos
   DESIGN_BLE

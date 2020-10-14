@@ -9,6 +9,6 @@ psoc6_add_executable(
     ${APP_DIR}/main.c
   LINK_LIBRARIES
     emeeprom
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
 )

@@ -29,7 +29,7 @@ psoc6_add_executable(
     ${APP_DIR}/configs
   LINK_LIBRARIES
     capsense
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     freertos
     abstraction-rtos

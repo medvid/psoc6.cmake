@@ -17,7 +17,7 @@ psoc6_add_executable(
     ${APP_DIR}/configs
     ${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     freertos
     abstraction-rtos

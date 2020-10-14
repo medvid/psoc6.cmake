@@ -11,5 +11,5 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/mtb_training/session05/mtb_05_ex03_ulp_sleep/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
 )

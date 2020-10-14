@@ -11,7 +11,7 @@ set(CY8CKIT_032_INCLUDE_DIRS
   ${CY8CKIT_032_DIR}
 )
 set(CY8CKIT_032_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
   bsp
   display-oled-ssd1306
 )

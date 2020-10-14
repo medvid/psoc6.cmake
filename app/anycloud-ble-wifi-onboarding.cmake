@@ -23,7 +23,7 @@ psoc6_add_executable(
     ${APP_DIR}
     ${APP_DIR}/configs
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     freertos
     abstraction-rtos

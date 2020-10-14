@@ -20,7 +20,7 @@ psoc6_add_executable(
     ${APP_DIR}/led.c
   LINK_LIBRARIES
     capsense
-    psoc6hal
+    mtb-hal-cat1
   DESIGN_MODUS
     ${APP_DIR}/COMPONENT_CUSTOM_DESIGN_MODUS/TARGET_${BSP_NAME}/design.modus
   DESIGN_CAPSENSE

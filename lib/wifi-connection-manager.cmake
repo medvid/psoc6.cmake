@@ -39,7 +39,7 @@ set(WIFI_CONNECTION_MANAGER_INCLUDE_DIRS
   ${WIFI_CONNECTION_MANAGER_DIR}/source/COMPONENT_MBEDTLS
 )
 set(WIFI_CONNECTION_MANAGER_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
   abstraction-rtos
   wifi-host-driver
   whd-bsp-integration

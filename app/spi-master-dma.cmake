@@ -29,7 +29,7 @@ psoc6_add_executable(
   INCLUDE_DIRS
     ${APP_DIR}/source
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
   DESIGN_MODUS
     ${APP_DIR}/COMPONENT_CUSTOM_DESIGN_MODUS/TARGET_${BSP_NAME}/design.modus
   GENERATED_SOURCES

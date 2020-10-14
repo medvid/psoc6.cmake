@@ -194,7 +194,7 @@ set(MBED_DRIVERS_DEFINES
 )
 set(MBED_DRIVERS_LINK_LIBRARIES
   mbed-platform
-  psoc6hal
+  mtb-hal-cat1
 )
 
 add_library(mbed-drivers STATIC EXCLUDE_FROM_ALL ${MBED_DRIVERS_SOURCES})

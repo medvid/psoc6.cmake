@@ -13,7 +13,7 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/mtb_training/session02/mtb_02_ex05_timer_pdl/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
   DESIGN_MODUS
     ${APP_DIR}/mtb_training/session02/mtb_02_ex05_timer_pdl/design_deps/${BSP_NAME}/design.modus
 )

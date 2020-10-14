@@ -37,7 +37,7 @@ psoc6_add_executable(
     ${APP_DIR}/COMPONENT_AK4954A
   LINK_LIBRARIES
     usbdev
-    psoc6hal
+    mtb-hal-cat1
     freertos
     abstraction-rtos
     clib-support

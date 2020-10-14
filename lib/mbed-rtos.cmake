@@ -93,7 +93,7 @@ set(MBED_RTOS_DEFINES
 set(MBED_RTOS_LINK_LIBRARIES
   cmsis-rtx
   mbed-platform
-  psoc6hal
+  mtb-hal-cat1
 )
 
 if(${TOOLCHAIN} STREQUAL GCC OR ${TOOLCHAIN} STREQUAL LLVM)

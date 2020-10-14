@@ -14,7 +14,7 @@ set(CY8CKIT_028_TFT_INCLUDE_DIRS
   ${CY8CKIT_028_TFT_DIR}
 )
 set(CY8CKIT_028_TFT_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
   bsp
   audio-codec-ak4954a
   display-tft-st7789v

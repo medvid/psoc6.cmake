@@ -33,7 +33,7 @@ set(CAPSENSE_INCLUDE_DIRS
   ${CAPSENSE_DIR}
 )
 set(CAPSENSE_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 # COMPONENT_SOFTFP libraries are compatible with CM0+ core

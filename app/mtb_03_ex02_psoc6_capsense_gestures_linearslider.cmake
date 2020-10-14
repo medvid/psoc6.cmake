@@ -19,7 +19,7 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/mtb_training/session03/mtb_03_ex02_psoc6_capsense_gestures_linearslider/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     capsense
   DESIGN_MODUS

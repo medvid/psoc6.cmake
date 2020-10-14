@@ -11,7 +11,7 @@ set(THERMISTOR_INCLUDE_DIRS
   ${THERMISTOR_DIR}
 )
 set(THERMISTOR_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
 )
 
 add_library(thermistor STATIC EXCLUDE_FROM_ALL ${THERMISTOR_SOURCES})

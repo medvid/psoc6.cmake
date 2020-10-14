@@ -13,7 +13,7 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/mtb_training/session02/mtb_02_ex01_smartio_rgb/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
   DESIGN_MODUS
     ${APP_DIR}/mtb_training/session02/mtb_02_ex01_smartio_rgb/design_deps/${BSP_NAME}/design.modus
 )

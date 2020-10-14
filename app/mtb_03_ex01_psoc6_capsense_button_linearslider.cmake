@@ -11,7 +11,7 @@ psoc6_add_executable(
   INCLUDE_DIRS
     ${APP_DIR}/mtb_training/session03/mtb_03_ex01_psoc6_capsense_button_linearslider
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     capsense
 )

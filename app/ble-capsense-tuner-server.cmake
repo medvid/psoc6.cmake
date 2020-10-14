@@ -18,7 +18,7 @@ psoc6_add_executable(
   LINK_LIBRARIES
     capsense
     bless-host-controller
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
   DESIGN_BLE
     ${APP_DIR}/design.cybt

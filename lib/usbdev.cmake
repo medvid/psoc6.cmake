@@ -21,7 +21,7 @@ set(USBDEV_INCLUDE_DIRS
   ${USBDEV_DIR}
 )
 set(USBDEV_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 add_library(usbdev STATIC EXCLUDE_FROM_ALL ${USBDEV_SOURCES})

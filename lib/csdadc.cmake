@@ -11,7 +11,7 @@ set(CSDADC_INCLUDE_DIRS
   ${CSDADC_DIR}
 )
 set(CSDADC_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 add_library(csdadc STATIC EXCLUDE_FROM_ALL ${CSDADC_SOURCES})

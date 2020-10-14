@@ -17,7 +17,7 @@ psoc6_add_executable(
   INCLUDE_DIRS
     ${APP_DIR}/mem_config
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     serial-flash
     retarget-io
 )

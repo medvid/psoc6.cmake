@@ -14,7 +14,7 @@ set(SECURE_SOCKETS_INCLUDE_DIRS
   ${SECURE_SOCKETS_DIR}/include
 )
 set(SECURE_SOCKETS_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
   abstraction-rtos
   lwip
   mbedtls

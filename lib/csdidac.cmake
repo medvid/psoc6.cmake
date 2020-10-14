@@ -11,7 +11,7 @@ set(CSDIDAC_INCLUDE_DIRS
   ${CSDIDAC_DIR}
 )
 set(CSDIDAC_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 add_library(csdidac STATIC EXCLUDE_FROM_ALL ${CSDIDAC_SOURCES})

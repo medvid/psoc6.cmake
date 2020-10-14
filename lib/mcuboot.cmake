@@ -42,7 +42,7 @@ set(MCUBOOT_INCLUDE_DIRS
   ${CMAKE_SOURCE_DIR}/configs
 )
 set(MCUBOOT_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
   mbedtls
 )
 

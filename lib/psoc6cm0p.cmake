@@ -31,4 +31,4 @@ else()
 endif()
 
 add_library(psoc6cm0p STATIC EXCLUDE_FROM_ALL ${PSOC6CM0P_SOURCES})
-target_link_libraries(psoc6cm0p PUBLIC psoc6pdl)
+target_link_libraries(psoc6cm0p PUBLIC mtb-pdl-cat1)

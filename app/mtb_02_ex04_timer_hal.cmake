@@ -7,6 +7,6 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/mtb_training/session02/mtb_02_ex04_timer_hal/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
 )

@@ -27,7 +27,7 @@ psoc6_add_executable(
     ARMCM4_FP
   LINK_LIBRARIES
     cmsis-core
-    psoc6pdl
+    mtb-pdl-cat1
 )
 
 if(${TOOLCHAIN} STREQUAL IAR)

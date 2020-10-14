@@ -11,7 +11,7 @@ set(UDB_SDIO_WHD_INCLUDE_DIRS
   ${UDB_SDIO_WHD_DIR}
 )
 set(UDB_SDIO_WHD_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 if(UDB_SDIO_P2 IN_LIST COMPONENTS)
@@ -47,4 +47,4 @@ target_include_directories(udb-sdio-whd PUBLIC ${UDB_SDIO_WHD_INCLUDE_DIRS})
 target_link_libraries(udb-sdio-whd PUBLIC ${UDB_SDIO_WHD_LINK_LIBRARIES})
 
 # HAL library conditionally includes SDIO_HOST.h
-target_link_libraries(psoc6hal PUBLIC udb-sdio-whd)
+target_link_libraries(mtb-hal-cat1 PUBLIC udb-sdio-whd)

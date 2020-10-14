@@ -11,7 +11,7 @@ set(EMEEPROM_INCLUDE_DIRS
   ${EMEEPROM_DIR}
 )
 set(EMEEPROM_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 add_library(emeeprom STATIC EXCLUDE_FROM_ALL ${EMEEPROM_SOURCES})

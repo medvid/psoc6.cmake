@@ -11,7 +11,7 @@ set(SENSOR_LIGHT_INCLUDE_DIRS
   ${SENSOR_LIGHT_DIR}
 )
 set(SENSOR_LIGHT_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
 )
 
 add_library(sensor-light STATIC EXCLUDE_FROM_ALL ${SENSOR_LIGHT_SOURCES})

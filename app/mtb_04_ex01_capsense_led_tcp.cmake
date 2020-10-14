@@ -19,7 +19,7 @@ psoc6_add_executable(
     ${APP_DIR}/mtb_training/session04/mtb_ex04_ex01_capsense_led_tcp/source/tcp_client.h
     ${APP_DIR}/mtb_training/session04/mtb_ex04_ex01_capsense_led_tcp/source/tcp_client.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     capsense
     wifi-connection-manager

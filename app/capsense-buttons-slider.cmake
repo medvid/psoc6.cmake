@@ -25,5 +25,5 @@ psoc6_add_executable(
     ${APP_DIR}/led.c
   LINK_LIBRARIES
     capsense
-    psoc6hal
+    mtb-hal-cat1
 )

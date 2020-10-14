@@ -18,7 +18,7 @@ psoc6_add_executable(
     ${BLESS_COMMON_SOURCES}
   LINK_LIBRARIES
     bless-host-controller
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
   DESIGN_BLE
     ${APP_DIR}/design.cybt

@@ -23,7 +23,7 @@ psoc6_add_executable(
     ${APP_DIR}/main.c
   LINK_LIBRARIES
     csdadc
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
   DESIGN_MODUS
     ${APP_DIR}/COMPONENT_CUSTOM_DESIGN_MODUS/TARGET_${BSP_NAME}/design.modus

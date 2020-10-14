@@ -15,6 +15,6 @@ psoc6_add_executable(
     ${APP_DIR}/serial_fram_api.h
     ${APP_DIR}/serial_fram_api.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
 )

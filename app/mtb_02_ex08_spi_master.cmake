@@ -8,6 +8,6 @@ psoc6_add_executable(
     ${APP_DIR}/mtb_training/session02/mtb_02_ex08_spi_master/main.c
     ${APP_DIR}/mtb_training/session02/mtb_02_ex08_spi_master/resource_map.h
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
 )

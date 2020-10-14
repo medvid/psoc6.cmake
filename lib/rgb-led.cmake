@@ -11,7 +11,7 @@ set(RGB_LED_INCLUDE_DIRS
   ${RGB_LED_DIR}
 )
 set(RGB_LED_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
 )
 
 add_library(rgb-led STATIC EXCLUDE_FROM_ALL ${RGB_LED_SOURCES})

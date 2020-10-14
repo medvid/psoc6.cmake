@@ -110,7 +110,7 @@ set(BLESS_INCLUDE_DIRS
   ${BLESS_DIR}/common
 )
 set(BLESS_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 if(SOFTFP IN_LIST COMPONENTS)

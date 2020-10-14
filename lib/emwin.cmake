@@ -7,7 +7,7 @@ set(EMWIN_INCLUDE_DIRS
   ${EMWIN_DIR}/GUI/Include
 )
 set(EMWIN_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 if(SOFTFP IN_LIST COMPONENTS)

@@ -39,7 +39,7 @@ set(FREERTOS_INCLUDE_DIRS
   ${FREERTOS_DIR}/include
 )
 set(FREERTOS_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 if(${TOOLCHAIN} STREQUAL GCC OR

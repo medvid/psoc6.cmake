@@ -11,7 +11,7 @@ set(TEMPLATE_INCLUDE_DIRS
   ${TEMPLATE_DIR}
 )
 set(TEMPLATE_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
 )
 
 add_library(template STATIC EXCLUDE_FROM_ALL ${TEMPLATE_SOURCES})

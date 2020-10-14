@@ -9,6 +9,6 @@ psoc6_add_executable(
     ${APP_DIR}/main.c
     ${APP_DIR}/resource_map.h
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
 )

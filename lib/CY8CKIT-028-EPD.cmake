@@ -14,7 +14,7 @@ set(CY8CKIT_028_EPD_INCLUDE_DIRS
   ${CY8CKIT_028_EPD_DIR}/drivers
 )
 set(CY8CKIT_028_EPD_LINK_LIBRARIES
-  psoc6hal
+  mtb-hal-cat1
   bsp
   display-eink-e2271cs021
   sensor-motion-bmi160

@@ -408,17 +408,17 @@ macro(psoc6_add_design_modus design_modus var_source_dir var_sources)
   unset(generated_sources)
   unset(design_dir)
 
-  # Check lib/psoc6pdl.cmake is already included
-  if(NOT DEFINED PSOC6PDL_DIR)
-    message(FATAL_ERROR "psoc6_add_design_modus: PSOC6PDL_DIR is not defined.")
+  # Check lib/mtb-pdl-cat1.cmake is already included
+  if(NOT DEFINED MTB_PDL_CAT1_DIR)
+    message(FATAL_ERROR "psoc6_add_design_modus: MTB_PDL_CAT1_DIR is not defined.")
   endif()
-  if(NOT EXISTS ${PSOC6PDL_DIR}/devicesupport.xml)
-    message(FATAL_ERROR "psoc6_add_design_modus: ${PSOC6PDL_DIR} doesn't point to device support library.")
+  if(NOT EXISTS ${MTB_PDL_CAT1_DIR}/devicesupport.xml)
+    message(FATAL_ERROR "psoc6_add_design_modus: ${MTB_PDL_CAT1_DIR} doesn't point to device support library.")
   endif()
 
   # Define custom recipe to update design.modus generated source
   add_custom_command(
-    COMMAND ${CY_TOOL_CFG_BACKEND_CLI} --library ${PSOC6PDL_DIR}/devicesupport.xml --tools ${CY_TOOLS_PATHS} --build ${design_modus} --readonly
+    COMMAND ${CY_TOOL_CFG_BACKEND_CLI} --library ${MTB_PDL_CAT1_DIR}/devicesupport.xml --tools ${CY_TOOLS_PATHS} --build ${design_modus} --readonly
     DEPENDS ${design_modus}
     OUTPUT  ${${var_sources}}
     COMMENT "Generating Device Configuration for ${design_modus}"
@@ -578,7 +578,7 @@ macro(psoc6_add_bsp_design_modus design_modus)
   )
   add_library(bsp_design_modus STATIC EXCLUDE_FROM_ALL ${BSP_GENERATED_SOURCES})
   target_include_directories(bsp_design_modus PUBLIC ${BSP_GENERATED_SOURCE_DIR})
-  target_link_libraries(bsp_design_modus PUBLIC psoc6pdl psoc6hal)
+  target_link_libraries(bsp_design_modus PUBLIC mtb-pdl-cat1 mtb-hal-cat1)
   # BSP sources include cycfg.h
   target_include_directories(bsp PUBLIC ${BSP_GENERATED_SOURCE_DIR})
 endmacro()
@@ -591,7 +591,7 @@ macro(psoc6_add_bsp_design_capsense design_capsense)
   )
   add_library(bsp_design_capsense STATIC EXCLUDE_FROM_ALL ${BSP_CAPSENSE_GENERATED_SOURCES})
   target_include_directories(bsp_design_capsense PUBLIC ${BSP_CAPSENSE_GENERATED_SOURCE_DIR})
-  target_link_libraries(bsp_design_capsense PUBLIC psoc6pdl capsense)
+  target_link_libraries(bsp_design_capsense PUBLIC mtb-pdl-cat1 capsense)
 endmacro()
 
 macro(psoc6_add_bsp_design_qspi design_qspi)
@@ -602,7 +602,7 @@ macro(psoc6_add_bsp_design_qspi design_qspi)
   )
   add_library(bsp_design_qspi STATIC EXCLUDE_FROM_ALL ${BSP_QSPI_GENERATED_SOURCES})
   target_include_directories(bsp_design_qspi PUBLIC ${BSP_QSPI_GENERATED_SOURCE_DIR})
-  target_link_libraries(bsp_design_qspi PUBLIC psoc6pdl)
+  target_link_libraries(bsp_design_qspi PUBLIC mtb-pdl-cat1)
 endmacro()
 
 # Set application target variables and recipes

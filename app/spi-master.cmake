@@ -25,6 +25,6 @@ psoc6_add_executable(
     # BUG: resource_map.h depends on Mbed BSP names
     -DTARGET_${MBED_BSP_NAME}
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
 )

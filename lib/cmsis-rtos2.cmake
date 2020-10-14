@@ -8,7 +8,7 @@ set(CMSIS_RTOS2_INCLUDE_DIRS
   ${CMSIS_DIR}/CMSIS/RTOS2/Include
 )
 set(CMSIS_RTOS2_LINK_LIBRARIES
-  cmsis-core psoc6pdl
+  cmsis-core mtb-pdl-cat1
 )
 
 add_library(cmsis-rtos2 STATIC EXCLUDE_FROM_ALL ${CMSIS_RTOS2_SOURCES})

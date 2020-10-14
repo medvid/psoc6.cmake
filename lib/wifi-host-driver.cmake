@@ -76,7 +76,7 @@ set(WIFI_HOST_DRIVER_INCLUDE_DIRS
 )
 set(WIFI_HOST_DRIVER_LIBRARIES
   core-lib
-  psoc6hal
+  mtb-hal-cat1
   abstraction-rtos
 )
 

@@ -11,8 +11,8 @@ include(lib/abstraction-rtos.cmake)
 # Enable RTOS awareness in the HAL and BSP libraries
 add_definitions(-DCY_RTOS_AWARE)
 # Cannot link against abstraction-rtos directly to avoid circular dependencies:
-# cycfg.h -> psoc6hal -> abstraction-rtos -> cyabs_freertos_helpers.c -> cycfg.h
-target_include_directories(psoc6hal PRIVATE
+# cycfg.h -> mtb-hal-cat1 -> abstraction-rtos -> cyabs_freertos_helpers.c -> cycfg.h
+target_include_directories(mtb-hal-cat1 PRIVATE
   ${ABSTRACTION_RTOS_INCLUDE_DIRS}
   ${FREERTOS_INCLUDE_DIRS}
 )

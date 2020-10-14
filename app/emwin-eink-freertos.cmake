@@ -36,7 +36,7 @@ psoc6_add_executable(
     ${APP_DIR}/emwin_config
   LINK_LIBRARIES
     emwin-osts
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     freertos
 )

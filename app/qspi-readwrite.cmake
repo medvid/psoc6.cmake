@@ -13,7 +13,7 @@ psoc6_add_executable(
   SOURCES
     ${APP_DIR}/main.c
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
     serial-flash
 )

@@ -12,5 +12,5 @@ psoc6_add_executable(
   INCLUDE_DIRS
     ${APP_DIR}/COMPONENT_AK4954A
   LINK_LIBRARIES
-    psoc6hal
+    mtb-hal-cat1
 )

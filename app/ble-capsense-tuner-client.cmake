@@ -20,7 +20,7 @@ psoc6_add_executable(
   LINK_LIBRARIES
     capsense
     bless-host-controller
-    psoc6hal
+    mtb-hal-cat1
     retarget-io
   DESIGN_MODUS
     ${APP_DIR}/COMPONENT_CUSTOM_DESIGN_MODUS/TARGET_${BSP_NAME}/design.modus

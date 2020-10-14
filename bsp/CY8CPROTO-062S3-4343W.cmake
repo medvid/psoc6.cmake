@@ -1,7 +1,7 @@
 # Download BSP sources from GitHub
 psoc6_load_bsp(
   NAME CY8CPROTO-062S3-4343W
-  VERSION 1.3.0
+  VERSION 2.0.0
 )
 
 # Set target MPN
@@ -25,7 +25,7 @@ set(BSP_SOURCES
   ${BSP_DIR}/cybsp_types.h
 )
 set(BSP_LINK_LIBRARIES
-  psoc6pdl
+  mtb-pdl-cat1
 )
 
 # Include BSP_DIR globally
@@ -43,7 +43,7 @@ if(${CORE} STREQUAL CM4)
   set(TARGET_MXCRYPTO "TARGET_MXCRYPTO_02")
 
   list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
-  list(APPEND BSP_LINK_LIBRARIES psoc6hal)
+  list(APPEND BSP_LINK_LIBRARIES mtb-hal-cat1)
   if(${TOOLCHAIN} STREQUAL GCC)
     list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/startup_psoc6_03_cm4.S)
     set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/cy8c6xx5_cm4_dual.ld)
@@ -87,7 +87,7 @@ target_link_libraries(bsp PUBLIC ${BSP_LINK_LIBRARIES})
 # Load library definitions
 include(lib/cmsis.cmake)
 include(lib/core-lib.cmake)
-include(lib/psoc6pdl.cmake)
+include(lib/mtb-pdl-cat1.cmake)
 
 # The rest of this file is CM4-specific
 if(${CORE} STREQUAL CM0P)
@@ -95,7 +95,7 @@ if(${CORE} STREQUAL CM0P)
 endif()
 
 # Include common libraries
-include(lib/psoc6hal.cmake)
+include(lib/mtb-hal-cat1.cmake)
 include(lib/psoc6cm0p.cmake)
 include(lib/capsense.cmake)
 include(lib/csdadc.cmake)
