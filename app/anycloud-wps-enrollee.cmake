@@ -2,7 +2,7 @@ project(anycloud-wps-enrollee)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-wps-enrollee
-  VERSION 1.1.0
+  VERSION 2.0.0
 )
 psoc6_add_executable(
   SOURCES

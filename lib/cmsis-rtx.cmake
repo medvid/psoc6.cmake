@@ -19,11 +19,16 @@ set(CMSIS_RTX_SOURCES
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Source/rtx_system.c
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Source/rtx_thread.c
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Source/rtx_timer.c
+
+  ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Include1/cmsis_os.h
+  ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Library/cmsis_os1.c
 )
 set(CMSIS_RTX_INCLUDE_DIRS
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Config
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Include
   ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Source
+
+  ${CMSIS_DIR}/CMSIS/RTOS2/RTX/Include1
 )
 set(CMSIS_RTX_LINK_LIBRARIES
   cmsis-rtos2

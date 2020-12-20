@@ -8,7 +8,7 @@ project(anycloud-ble-wifi-onboarding)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-ble-wifi-onboarding
-  VERSION 1.0.0
+  VERSION 2.0.0
 )
 psoc6_add_executable(
   SOURCES
@@ -17,8 +17,8 @@ psoc6_add_executable(
     ${APP_DIR}/app_utils.c
     ${APP_DIR}/wifi_task.h
     ${APP_DIR}/wifi_task.c
-    ${APP_DIR}/configs/app_bt_cfg.h
-    ${APP_DIR}/configs/app_bt_cfg.c
+    ${APP_DIR}/configs/app_platform_cfg.h
+    ${APP_DIR}/configs/app_platform_cfg.c
   INCLUDE_DIRS
     ${APP_DIR}
     ${APP_DIR}/configs
@@ -35,4 +35,11 @@ psoc6_add_executable(
     ${APP_DIR}/COMPONENT_CUSTOM_DESIGN_MODUS/TARGET_${BSP_NAME}/design.modus
   DESIGN_BT
     ${APP_DIR}/cycfg_bt.cybt
+  BT_GENERATED_SOURCES
+    cycfg_bt_settings.h
+    cycfg_bt_settings.c
+    cycfg_gap.h
+    cycfg_gap.c
+    cycfg_gatt_db.h
+    cycfg_gatt_db.c
 )

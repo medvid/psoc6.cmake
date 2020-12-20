@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME serial-flash
-  VERSION 1.0.1
+  VERSION 1.0.2
 )
 
 set(SERIAL_FLASH_SOURCES

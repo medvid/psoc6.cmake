@@ -1,5 +1,4 @@
-# AnyCloud requires either 43012 or 4343W module to be present on board
-if(NOT 4343W IN_LIST COMPONENTS AND NOT 43012 IN_LIST COMPONENTS)
+if(NOT WHD IN_LIST COMPONENTS)
   return()
 endif()
 
@@ -21,6 +20,7 @@ include(lib/anycloud-ota.cmake)
 #include(lib/cy-mbedtls-acceleration.cmake)
 include(lib/btstack.cmake)
 include(lib/bluetooth-freertos.cmake)
+include(lib/command-console.cmake)
 
 # Load application definitions
 #include(app/anycloud-ota-mqtt.cmake)
@@ -29,6 +29,7 @@ include(app/anycloud-ble-cts-client.cmake)
 include(app/anycloud-ble-cts-server.cmake)
 include(app/anycloud-ble-battery-server.cmake)
 include(app/anycloud-ble-ess.cmake)
+include(app/anycloud-ble-findme.cmake)
 include(app/anycloud-ble-multi-beacon.cmake)
 include(app/anycloud-ble-wifi-onboarding.cmake)
 include(app/anycloud-mqtt-client.cmake)
@@ -39,20 +40,10 @@ include(app/anycloud-tcp-client.cmake)
 include(app/anycloud-tcp-server.cmake)
 include(app/anycloud-udp-client.cmake)
 include(app/anycloud-udp-server.cmake)
+#include(app/anycloud-wifi-bluetooth-tester.cmake)
 include(app/anycloud-wifi-scan.cmake)
 include(app/anycloud-wlan-lowpower.cmake)
 include(app/anycloud-wps-enrollee.cmake)
-
-# Load community code examples
-include(app/community.cmake)
-
-# CY8CPROTO-062-4343W board shares the same GPIO for the user button (USER BTN1)
-# and the CYW4343W host wake up pin. Since some examples use the GPIO for
-# interfacing with the user button, the SDIO interrupt to wake up the host is
-# disabled by setting CY_WIFI_HOST_WAKE_SW_FORCE to '0'.
-if(${BSP_NAME} STREQUAL CY8CPROTO-062-4343W)
-  target_compile_definitions(whd-bsp-integration PUBLIC CY_WIFI_HOST_WAKE_SW_FORCE=0)
-endif()
 
 # AnyCloud debugging
 #target_compile_definitions(secure-sockets PUBLIC TLS_ENABLE_PRINT_LIBRARY_DEBUG)

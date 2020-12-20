@@ -1,0 +1,10 @@
+psoc6_add_executable(
+  NAME
+    afe-demo
+  SOURCES
+    app/afe-demo/main.c
+  LINK_LIBRARIES
+    mtb-hal-cat1
+    retarget-io
+    CY8CKIT-032
+)

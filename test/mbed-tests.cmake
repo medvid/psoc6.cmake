@@ -1,6 +1,10 @@
 # Define <TARGET_NAME>_GREENTEA target to execute mbedhtrun
 macro(add_greentea_test)
-  psoc6_add_executable(${ARGN})
+  psoc6_add_executable(
+    LINK_LIBRARIES
+      mbed-utest
+    ${ARGN}
+  )
   # Define custom command for CMSIS-DAP programming
   add_custom_target(${TARGET_NAME}_GREENTEA
     # TODO: customizable path to python environment
@@ -17,9 +21,9 @@ macro(add_greentea_test)
 endmacro()
 
 # Add test libraries
-include(lib/mbed-unity.cmake)
-include(lib/mbed-greentea-client.cmake)
-include(lib/mbed-utest.cmake)
+include(test/mbed-unity.cmake)
+include(test/mbed-greentea-client.cmake)
+include(test/mbed-utest.cmake)
 
 # Add test cases
 include(test/mbed-drivers-tests.cmake)

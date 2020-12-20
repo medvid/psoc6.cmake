@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME abstraction-rtos
-  VERSION 1.2.2
+  VERSION 1.3.0
 )
 
 set(ABSTRACTION_RTOS_SOURCES

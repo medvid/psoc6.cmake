@@ -1,9 +1,11 @@
 psoc6_load_library(
   NAME mtb-pdl-cat1
-  VERSION 2.0.0
+  VERSION 2.1.0
 )
 
 set(MTB_PDL_CAT1_SOURCES
+  ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/cy_device.h
+  ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/cy_pdl.h
   ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/cy8c4588azi_h675.h
   ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/cy8c4588azi_h676.h
   ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/cy8c4588azi_h685.h
@@ -240,6 +242,7 @@ set(MTB_PDL_CAT1_SOURCES
   ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/ip/cyip_tcpwm_v2.h
   ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/ip/cyip_udb.h
   ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/include/ip/cyip_usbfs.h
+  ${MTB_PDL_CAT1_DIR}/devices/COMPONENT_CAT1A/source/cy_device.c
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_ble_clk.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_canfd.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_crypto.h
@@ -286,7 +289,6 @@ set(MTB_PDL_CAT1_SOURCES
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_csd.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_ctb.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_ctdac.h
-  ${MTB_PDL_CAT1_DIR}/drivers/include/cy_device.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_dma.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_dmac.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_efuse.h
@@ -299,7 +301,6 @@ set(MTB_PDL_CAT1_SOURCES
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_lpcomp.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_lvd.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_mcwdt.h
-  ${MTB_PDL_CAT1_DIR}/drivers/include/cy_pdl.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_pdm_pcm.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_pra.h
   ${MTB_PDL_CAT1_DIR}/drivers/include/cy_pra_cfg.h
@@ -365,7 +366,6 @@ set(MTB_PDL_CAT1_SOURCES
   ${MTB_PDL_CAT1_DIR}/drivers/source/cy_csd.c
   ${MTB_PDL_CAT1_DIR}/drivers/source/cy_ctb.c
   ${MTB_PDL_CAT1_DIR}/drivers/source/cy_ctdac.c
-  ${MTB_PDL_CAT1_DIR}/drivers/source/cy_device.c
   ${MTB_PDL_CAT1_DIR}/drivers/source/cy_dma.c
   ${MTB_PDL_CAT1_DIR}/drivers/source/cy_dmac.c
   ${MTB_PDL_CAT1_DIR}/drivers/source/cy_efuse.c
@@ -429,6 +429,8 @@ elseif(${TOOLCHAIN} STREQUAL LLVM)
 else()
   message(FATAL_ERROR "mtb-pdl-cat1: TOOLCHAIN ${TOOLCHAIN} is not supported.")
 endif()
+
+psoc6_add_component(CAT1A)
 
 add_library(mtb-pdl-cat1 STATIC EXCLUDE_FROM_ALL ${MTB_PDL_CAT1_SOURCES})
 target_include_directories(mtb-pdl-cat1 PUBLIC ${MTB_PDL_CAT1_INCLUDE_DIRS})

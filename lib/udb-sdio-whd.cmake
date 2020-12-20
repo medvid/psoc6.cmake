@@ -47,4 +47,5 @@ target_include_directories(udb-sdio-whd PUBLIC ${UDB_SDIO_WHD_INCLUDE_DIRS})
 target_link_libraries(udb-sdio-whd PUBLIC ${UDB_SDIO_WHD_LINK_LIBRARIES})
 
 # HAL library conditionally includes SDIO_HOST.h
-target_link_libraries(mtb-hal-cat1 PUBLIC udb-sdio-whd)
+target_include_directories(mtb-hal-cat1 PUBLIC ${UDB_SDIO_WHD_INCLUDE_DIRS})
+target_link_libraries(mtb-hal-cat1 PRIVATE udb-sdio-whd)

@@ -15,6 +15,7 @@ psoc6_add_executable(
     ${APP_DIR}/configs/app_bt_cfg.c
   INCLUDE_DIRS
     ${APP_DIR}/configs
+    # BUG: #include "GeneratedSource/cycfg_pins.h"
     ${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS
   LINK_LIBRARIES
     mtb-hal-cat1

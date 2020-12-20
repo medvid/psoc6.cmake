@@ -1,14 +1,17 @@
 # This application provides custom design.modus for the below boards
 psoc6_check_bsp(
+  CY8CKIT-062-WIFI-BT
   CY8CKIT-062S2-43012
   CY8CPROTO-062-4343W
+  CYW9P62S1-43012EVB-01
+  CYW9P62S1-43438EVB-01
 )
 
 project(anycloud-offload-tcp-keepalive)
 
 psoc6_load_application(
   NAME mtb-example-anycloud-offload-tcp-keepalive
-  VERSION 1.1.0
+  VERSION 2.0.0
 )
 psoc6_add_executable(
   SOURCES
@@ -16,8 +19,6 @@ psoc6_add_executable(
     ${APP_DIR}/app_config.h
     ${APP_DIR}/tcp_keepalive_offload.h
     ${APP_DIR}/tcp_keepalive_offload.c
-  DEFINES
-    -DTARGET_${MBED_BSP_NAME}
   LINK_LIBRARIES
     retarget-io
     lpa

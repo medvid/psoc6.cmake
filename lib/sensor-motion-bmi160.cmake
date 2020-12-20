@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME sensor-motion-bmi160
-  VERSION 1.0.0
+  VERSION 1.0.1
 )
 
 set(SENSOR_MOTION_BMI160_SOURCES

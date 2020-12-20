@@ -71,6 +71,12 @@ set(TOOLCHAIN_LSFLAGS "-T")
 set(TOOLCHAIN_MAPFILE "-Wl,-Map,")
 set(TOOLCHAIN_PREINCLUDE "-include ")
 
+# Linker script suffix
+set(TOOLCHAIN_SUFFIX_LS ".ld")
+
+# ModusToolbox toolchain name
+set(MTB_TOOLCHAIN "GCC_ARM")
+
 # https://reproducible-builds.org/docs/build-path/
 if(CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL 11)
   file(RELATIVE_PATH _file_prefix ${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR})

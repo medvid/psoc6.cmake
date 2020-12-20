@@ -16,7 +16,7 @@
 
 2. Download and install the latest Git for Windows:
 
-    https://git-scm.com/download/win
+    https://gitforwindows.org/
 
 3. Download and install the latest CMake win64-x64 Installer:
 
@@ -40,7 +40,7 @@
 
     Installation path assumed in this guide:
 
-        C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update
+        C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major
 
 6. _(Optional)_ Download and install Arm Compiler 6:
 
@@ -60,7 +60,7 @@
 
     Note: valid license is required to use the Arm Compiler.
 
-6. _(Optional)_ Download and install IAR Embedded Workbench for ARM:
+7. _(Optional)_ Download and install IAR Embedded Workbench for ARM:
 
     https://www.iar.com/iar-embedded-workbench/#!?architecture=Arm
 
@@ -92,7 +92,7 @@
 
     Installation path assumed in this guide:
 
-        $HOME/Applications/gcc-arm-none-eabi-9-2020-q2-update
+        /Applications/ARM
 
 ### Install prerequisites - Linux
 
@@ -115,12 +115,12 @@
 
     Installation path assumed in this guide:
 
-        /opt/gcc-arm-none-eabi-9-2020-q2-update
+        /opt/gcc-arm-none-eabi-10-2020-q4-major
 
     CLI installation example:
 
-        curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-        sudo tar -C /opt -xjf /tmp/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+        curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+        sudo tar -C /opt -xjf /tmp/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
 
 ## Quick Start Guide - CLI
 
@@ -183,7 +183,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "${env:HOME}/ModusToolbox/tools_2.2",
-                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update",
+                "GCC_TOOLCHAIN_PATH": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major",
                 "ARM_TOOLCHAIN_PATH": "C:/Keil_v5/ARM/ARMCLANG",
                 "IAR_TOOLCHAIN_PATH": "C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4/arm"
             }
@@ -199,7 +199,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.2",
-                "GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2020-q2-update"
+                "GCC_TOOLCHAIN_PATH": "/Applications/ARM"
             }
         }
         ```
@@ -213,7 +213,7 @@
             "cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
             "cmake.configureSettings": {
                 "CY_TOOLS_PATHS": "${env:HOME}/tools_2.2",
-                "GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-9-2020-q2-update"
+                "GCC_TOOLCHAIN_PATH": "/opt/gcc-arm-none-eabi-10-2020-q4-major"
             }
         }
         ```
@@ -236,6 +236,7 @@
     | CY8CPROTO-063-BLE     | Launch CY8C6xx7 CM4 (KitProg3) |
     | CYW9P62S1-43012EVB-01 | Launch CY8C6xx7 CM4 (KitProg3) |
     | CYW9P62S1-43438EVB-01 | Launch CY8C6xx7 CM4 (KitProg3) |
+    | CY8CKIT-062S4         | Launch CY8C6xx4 CM4 (KitProg3) |
 
 9. Select the target ELF file, that corresponds to the CMake selected build target. For example, select "hello-world.elf" in case the current CMake target is "hello-world_PROGRAM".
 
@@ -249,7 +250,7 @@ Arguments:
 
 * -b/--bsp - Select target BSP (CY8CKIT-062-BLE/CY8CKIT-062-WIFI-BT/...)
 * -o/--os - Select target OS (NOOS/FREERTOS/RTX)
-* -t/--toolchain - Select toolchain (GCC/ARM/IAR)
+* -t/--toolchain - Select toolchain (GCC/ARM/IAR/LLVM)
 * -c/--config - Select CMake build configuration (Debug/Release)
 
 Each argument can be supplied multiple times.
@@ -278,7 +279,7 @@ Azure Pipeline is executed for each commit in master and each GitHub Pull Reques
 
 https://dev.azure.com/vmedvid/psoc6.cmake/_build?definitionId=4&_a=summary
 
-The pipeline builds all applications with GCC 9.2.1 toolchain on [vmmedvid/psoc6.cmake](https://hub.docker.com/r/vmmedvid/psoc6.cmake) Docker image.
+The pipeline builds all applications with GCC 10.2.1 toolchain on [vmmedvid/psoc6.cmake](https://hub.docker.com/r/vmmedvid/psoc6.cmake) Docker image.
 The docker image is built on top of unofficial ModusToolbox Docker image: [vmmedvid/modustoolbox](https://hub.docker.com/r/vmmedvid/modustoolbox).
 
 ## Additional tips
@@ -308,7 +309,7 @@ The docker image is built on top of unofficial ModusToolbox Docker image: [vmmed
         rm -rf build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug
         cmake -G Ninja -S . -B build/CY8CKIT-062-WIFI-BT/NOOS/GCC/Debug \
             -DTARGET=CY8CKIT-062-WIFI-BT -DOS=NOOS -DTOOLCHAIN=GCC \
-            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Arm Embedded Toolchain/9 2020-q2-update" \
+            -DGCC_TOOLCHAIN_PATH="C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major" \
             -DCMAKE_BUILD_TYPE=Debug
 
 [ModusToolboxForWindows]: http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager/software/ModusToolbox/ModusToolbox_2.2/ModusToolbox_2.2.0.2801-windows-install.exe

@@ -45,22 +45,47 @@ set(FREERTOS_LINK_LIBRARIES
 if(${TOOLCHAIN} STREQUAL GCC OR
    ${TOOLCHAIN} STREQUAL ARM OR
    ${TOOLCHAIN} STREQUAL LLVM)
-  list(APPEND FREERTOS_SOURCES
-    ${FREERTOS_DIR}/portable/GCC/ARM_CM4F/port.c
-    ${FREERTOS_DIR}/portable/GCC/ARM_CM4F/portmacro.h
-  )
-  list(APPEND FREERTOS_INCLUDE_DIRS
-    ${FREERTOS_DIR}/portable/GCC/ARM_CM4F
-  )
+  if(${CORE} STREQUAL CM4)
+    list(APPEND FREERTOS_SOURCES
+      ${FREERTOS_DIR}/portable/GCC/ARM_CM4F/port.c
+      ${FREERTOS_DIR}/portable/GCC/ARM_CM4F/portmacro.h
+    )
+    list(APPEND FREERTOS_INCLUDE_DIRS
+      ${FREERTOS_DIR}/portable/GCC/ARM_CM4F
+    )
+  elseif(${CORE} STREQUAL CM0P)
+    list(APPEND FREERTOS_SOURCES
+      ${FREERTOS_DIR}/portable/GCC/ARM_CM0/port.c
+      ${FREERTOS_DIR}/portable/GCC/ARM_CM0/portmacro.h
+    )
+    list(APPEND FREERTOS_INCLUDE_DIRS
+      ${FREERTOS_DIR}/portable/GCC/ARM_CM0
+    )
+  else()
+    message(FATAL_ERROR "freertos: CORE ${CORE} is not supported.")
+  endif()
 elseif(${TOOLCHAIN} STREQUAL IAR)
-  list(APPEND FREERTOS_SOURCES
-    ${FREERTOS_DIR}/portable/IAR/ARM_CM4F/port.c
-    ${FREERTOS_DIR}/portable/IAR/ARM_CM4F/portasm.s
-    ${FREERTOS_DIR}/portable/IAR/ARM_CM4F/portmacro.h
-  )
-  list(APPEND FREERTOS_INCLUDE_DIRS
-    ${FREERTOS_DIR}/portable/IAR/ARM_CM4F
-  )
+  if(${CORE} STREQUAL CM4)
+    list(APPEND FREERTOS_SOURCES
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM4F/port.c
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM4F/portasm.s
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM4F/portmacro.h
+    )
+    list(APPEND FREERTOS_INCLUDE_DIRS
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM4F
+    )
+  elseif(${CORE} STREQUAL CM0P)
+    list(APPEND FREERTOS_SOURCES
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM0/port.c
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM0/portasm.s
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM0/portmacro.h
+    )
+    list(APPEND FREERTOS_INCLUDE_DIRS
+      ${FREERTOS_DIR}/portable/IAR/ARM_CM0
+    )
+  else()
+    message(FATAL_ERROR "freertos: CORE ${CORE} is not supported.")
+  endif()
 else()
   message(FATAL_ERROR "freertos: TOOLCHAIN ${TOOLCHAIN} is not supported.")
 endif()

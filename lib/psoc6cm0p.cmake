@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME psoc6cm0p
-  VERSION 1.2.0
+  VERSION 2.1.0
 )
 
 if(CM0P_SLEEP IN_LIST COMPONENTS)
@@ -23,11 +23,12 @@ elseif(CM0P_BLESS IN_LIST COMPONENTS)
   )
 elseif(CM0P_SECURE IN_LIST COMPONENTS)
   set(PSOC6CM0P_SOURCES
+    ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SECURE/psoc6_01_cm0p_secure.c
     ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SECURE/psoc6_02_cm0p_secure.c
     ${PSOC6CM0P_DIR}/COMPONENT_CM0P_SECURE/psoc6_03_cm0p_secure.c
   )
 else()
-  message(FATAL_ERROR "psoc6cm0p: COMPONENTS should include either CM0P_SLEEP, CM0P_CRYPTO or CM0P_BLESS.")
+  message(FATAL_ERROR "psoc6cm0p: COMPONENTS should include either CM0P_SLEEP, CM0P_CRYPTO, CM0P_BLESS or CM0P_SECURE.")
 endif()
 
 add_library(psoc6cm0p STATIC EXCLUDE_FROM_ALL ${PSOC6CM0P_SOURCES})

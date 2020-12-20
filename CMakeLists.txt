@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.16)
 include(psoc6.cmake)
 
 # Load ModusToolbox tool definitions
-psoc6_add_tools(VERSION 2.1)
+psoc6_add_tools(VERSION 2.2)
 
 # Configure toolchain definitions
 psoc6_configure_toolchain()

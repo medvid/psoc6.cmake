@@ -155,9 +155,9 @@ endmacro()
 # Add CPU-specific compilation definitions
 # Variables CMAKE_${LANG}_FLAGS_${core} must be defined in the toolchain configuration
 # CPU core names: CM4, CM0P
-macro(psoc6_set_core)
+macro(psoc6_set_core default_core)
   # Select target CPU core
-  set(CORE CM4 CACHE STRING "Target CPU core")
+  set(CORE ${default_core} CACHE STRING "Target CPU core")
   set_property(CACHE CORE PROPERTY STRINGS CM4 CM0P)
 
   psoc6_add_component(${CORE})
@@ -232,6 +232,7 @@ macro(psoc6_load_bsp)
 
   # Some assets use Mbed-compatible BSP name ('-' -> '_')
   STRING(REGEX REPLACE "-" "_" MBED_BSP_NAME ${BSP_NAME})
+  add_definitions(-DTARGET_${MBED_BSP_NAME})
 
   # Either VERSION or TAG should be provided
   if(NOT DEFINED BSP_VERSION AND NOT DEFINED BSP_TAG)
@@ -547,6 +548,15 @@ endmacro()
 
 # Set variables and custom recipes for design.cybt GeneratedSource
 macro(psoc6_add_design_bt design_bt var_source_dir var_sources)
+  if(${ARGC} GREATER 3)
+    set(generated_sources ${ARGN})
+  else()
+    set(generated_sources
+      cycfg_gatt_db.h
+      cycfg_gatt_db.c
+    )
+  endif()
+
   if(NOT EXISTS ${design_bt})
     message(FATAL_ERROR "psoc6_add_design_bt: ${design_bt} doesn't exist.")
   endif()
@@ -554,10 +564,11 @@ macro(psoc6_add_design_bt design_bt var_source_dir var_sources)
   # Initialize var_source_dir and var_sources
   get_filename_component(design_dir ${design_bt} DIRECTORY)
   set(${var_source_dir} ${design_dir}/GeneratedSource)
-  set(${var_sources}
-    ${${var_source_dir}}/cycfg_gatt_db.h
-    ${${var_source_dir}}/cycfg_gatt_db.c
+  list(TRANSFORM generated_sources
+    PREPEND ${${var_source_dir}}/
+    OUTPUT_VARIABLE ${var_sources}
   )
+  unset(generated_sources)
   unset(design_dir)
 
   # Define custom recipe to update cycfg_bt.cybt generated source
@@ -591,6 +602,7 @@ macro(psoc6_add_bsp_design_capsense design_capsense)
   )
   add_library(bsp_design_capsense STATIC EXCLUDE_FROM_ALL ${BSP_CAPSENSE_GENERATED_SOURCES})
   target_include_directories(bsp_design_capsense PUBLIC ${BSP_CAPSENSE_GENERATED_SOURCE_DIR})
+  target_include_directories(bsp_design_capsense PRIVATE ${MTB_HAL_CAT1_INCLUDE_DIRS})
   target_link_libraries(bsp_design_capsense PUBLIC mtb-pdl-cat1 capsense)
 endmacro()
 
@@ -610,7 +622,7 @@ macro(psoc6_add_executable)
   # Parse the expected arguments
   cmake_parse_arguments(TARGET ""
     "NAME;DESIGN_MODUS;DESIGN_CAPSENSE;DESIGN_QSPI;DESIGN_USBDEV;DESIGN_SEGLCD;DESIGN_BLE;DESIGN_BT;LINKER_SCRIPT"
-    "SOURCES;INCLUDE_DIRS;DEFINES;LINK_LIBRARIES;GENERATED_SOURCES"
+    "SOURCES;INCLUDE_DIRS;DEFINES;LINK_LIBRARIES;GENERATED_SOURCES;BT_GENERATED_SOURCES"
     ${ARGN}
   )
 
@@ -722,6 +734,7 @@ macro(psoc6_add_executable)
       ${TARGET_DESIGN_BT}
       CUSTOM_BT_GENERATED_SOURCE_DIR
       CUSTOM_BT_GENERATED_SOURCES
+      ${TARGET_BT_GENERATED_SOURCES}
     )
     target_sources(${TARGET_NAME} PRIVATE ${CUSTOM_BT_GENERATED_SOURCES})
     target_include_directories(${TARGET_NAME} PRIVATE ${CUSTOM_BT_GENERATED_SOURCE_DIR})
@@ -848,5 +861,51 @@ macro(psoc6_check_bsp)
   endforeach()
   if(NOT ${_match})
     return()
+  endif()
+endmacro()
+
+# Add BSP startup sources
+macro(psoc6_add_bsp_startup cm4_startup cm4_linker_script cm0p_startup cm0p_linker_script)
+  list(APPEND BSP_SOURCES ${BSP_DIR}/system_psoc6.h)
+  if(${CORE} STREQUAL CM4)
+    set(BSP_STARTUP_NAME ${cm4_startup})
+    set(BSP_LINKER_SCRIPT_NAME ${cm4_linker_script})
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
+    if(${TOOLCHAIN} STREQUAL GCC)
+      list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/${BSP_STARTUP_NAME}.S)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/${BSP_LINKER_SCRIPT_NAME}.ld)
+    elseif(${TOOLCHAIN} STREQUAL ARM)
+      list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/${BSP_STARTUP_NAME}.s)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/${BSP_LINKER_SCRIPT_NAME}.sct)
+    elseif(${TOOLCHAIN} STREQUAL IAR)
+      list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/${BSP_STARTUP_NAME}.s)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/${BSP_LINKER_SCRIPT_NAME}.icf)
+    elseif(${TOOLCHAIN} STREQUAL LLVM)
+      list(APPEND BSP_SOURCES ${LLVM_PORT_DIR}/startup/${BSP_STARTUP_NAME}.S)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/${BSP_LINKER_SCRIPT_NAME}.ld)
+    else()
+      message(FATAL_ERROR "psoc6_add_bsp_startup: TOOLCHAIN ${TOOLCHAIN} is not supported.")
+    endif()
+  elseif(${CORE} STREQUAL CM0P)
+    set(BSP_STARTUP_NAME ${cm0p_startup})
+    set(BSP_LINKER_SCRIPT_NAME ${cm0p_linker_script})
+    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/system_psoc6_cm0plus.c)
+    if(${TOOLCHAIN} STREQUAL GCC)
+      list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/${BSP_STARTUP_NAME}.S)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/${BSP_LINKER_SCRIPT_NAME}.ld)
+    elseif(${TOOLCHAIN} STREQUAL ARM)
+      list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/${BSP_STARTUP_NAME}.s)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/${BSP_LINKER_SCRIPT_NAME}.sct)
+    elseif(${TOOLCHAIN} STREQUAL IAR)
+      list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/${BSP_STARTUP_NAME}.s)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/${BSP_LINKER_SCRIPT_NAME}.icf)
+    elseif(${TOOLCHAIN} STREQUAL LLVM)
+      list(APPEND BSP_SOURCES ${LLVM_PORT_DIR}/startup/${BSP_STARTUP_NAME}.S)
+      set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/${BSP_LINKER_SCRIPT_NAME}.ld)
+    else()
+      message(FATAL_ERROR "psoc6_add_bsp_startup: TOOLCHAIN ${TOOLCHAIN} is not supported.")
+    endif()
+  else()
+    message(FATAL_ERROR "psoc6_add_bsp_startup: CORE ${CORE} is not supported.")
   endif()
 endmacro()

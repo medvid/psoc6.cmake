@@ -30,13 +30,16 @@ target_link_libraries(bsp PUBLIC freertos clib-support abstraction-rtos)
 
 # Load application definitions
 include(app/ble-battery-level-freertos.cmake)
-# BUG: include <stdbool.h> missing
-# include(app/ble-throughput-freertos.cmake)
-# FIXME: CMake cannot fetch this example
+include(app/ble-throughput-freertos.cmake)
 include(app/capsense-buttons-slider-freertos.cmake)
-include(app/emwin-eink-freertos.cmake)
-include(app/emwin-oled-freertos.cmake)
+#include(app/emwin-eink-freertos.cmake)
+#include(app/emwin-oled-freertos.cmake)
+include(app/low-power-capsense-freertos.cmake)
 include(app/usb-audio-device-freertos.cmake)
+include(app/usb-msc-file-system.cmake)
 
-# Load AnyCloud definitions
+# Load AnyCloud definitions for WiFi-enabled boards
 include(anycloud.cmake)
+
+# Load community code examples
+include(app/community.cmake)

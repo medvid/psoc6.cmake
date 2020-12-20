@@ -47,7 +47,7 @@ psoc6_add_executable(
     mtb-hal-cat1
     retarget-io
     freertos
-  DESIGN_BT
+  DESIGN_BLE
     ${APP_DIR}/GATT_client/design.cybt
 )
 psoc6_add_executable(

@@ -1,3 +1,6 @@
+# BUG: CYBSP_USER_BTN
+return()
+
 # This application provides custom design.modus for the below boards
 psoc6_check_bsp(
   CY8CKIT-062-WIFI-BT

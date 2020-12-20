@@ -143,6 +143,8 @@ set(LWIP_SOURCES
 set(LWIP_INCLUDE_DIRS
   ${CMAKE_SOURCE_DIR}/configs/lwip
   ${LWIP_DIR}/src/include
+  # BUG: netdb.h included directly
+  ${LWIP_DIR}/src/include/lwip
   # BUG: ethernet.h included directly
   ${LWIP_DIR}/src/include/lwip/prot
 )
@@ -154,8 +156,3 @@ set(LWIP_LIBRARIES
 add_library(lwip STATIC ${LWIP_SOURCES})
 target_include_directories(lwip PUBLIC ${LWIP_INCLUDE_DIRS})
 target_link_libraries(lwip PUBLIC ${LWIP_LIBRARIES})
-
-# cy_network_buffer.c includes lwIP headers
-if(TARGET whd-bsp-integration)
-  target_link_libraries(whd-bsp-integration PRIVATE lwip)
-endif()

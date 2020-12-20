@@ -2,7 +2,7 @@ project(i2c-master-ezi2c-slave)
 
 psoc6_load_application(
   NAME mtb-example-psoc6-i2c-master-ezi2c-slave
-  VERSION 1.2.0
+  VERSION 2.0.0
 )
 psoc6_add_executable(
   SOURCES

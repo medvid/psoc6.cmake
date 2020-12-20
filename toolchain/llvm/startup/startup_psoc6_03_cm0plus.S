@@ -134,13 +134,11 @@ __ramVectors:
      * The user of this function is responsible for initializing the PDL and resources before using them.
      */
     .weak   Cy_OnResetUser
-    .func   Cy_OnResetUser, Cy_OnResetUser
     .type   Cy_OnResetUser, %function
 
 Cy_OnResetUser:
     bx lr
     .size   Cy_OnResetUser, . - Cy_OnResetUser
-    .endfunc
 
     /* Reset handler */
     .weak    Reset_Handler

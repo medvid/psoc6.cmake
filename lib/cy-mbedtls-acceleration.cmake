@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME cy-mbedtls-acceleration
-  VERSION 1.1.0
+  VERSION 1.2.0
 )
 
 set(CY_MBEDTLS_ACCELERATION_SOURCES

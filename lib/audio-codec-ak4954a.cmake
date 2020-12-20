@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME audio-codec-ak4954a
-  VERSION 1.0.0
+  VERSION 1.0.1
 )
 
 set(AUDIO_CODEC_AK4954A_SOURCES

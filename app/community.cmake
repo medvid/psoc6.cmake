@@ -2,7 +2,7 @@ project(community)
 
 psoc6_load_application(
   NAME Community-Code-Examples
-  TAG  5adad51
+  TAG  e5c7b1a
 )
 if(${OS} STREQUAL NOOS)
   include(app/mtb_02_ex01_smartio_rgb.cmake)
@@ -20,6 +20,12 @@ if(${OS} STREQUAL NOOS)
   include(app/mtb_05_ex02_deep_sleep.cmake)
   include(app/mtb_05_ex03_ulp_sleep.cmake)
   include(app/mtb_05_ex04_hibernate.cmake)
+  include(app/mtb_06_ex01_ctdac_wave.cmake)
+  include(app/mtb_06_ex02_adc_uart.cmake)
+  include(app/mtb_06_ex03_lpcomp_hibernate.cmake)
+  include(app/Advanced_Sector_Protection.cmake)
 elseif(${OS} STREQUAL FREERTOS)
   include(app/mtb_04_ex01_capsense_led_tcp.cmake)
+  #include(app/dht11-freertos.cmake)
+  #include(app/oled-freertos.cmake)
 endif()

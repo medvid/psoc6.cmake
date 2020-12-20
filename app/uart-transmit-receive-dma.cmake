@@ -3,6 +3,7 @@ psoc6_check_bsp(
   CY8CKIT-062-BLE
   CY8CKIT-062-WIFI-BT
   CY8CKIT-062S2-43012
+  CY8CKIT-064B0S2-4343W
   CY8CPROTO-062-4343W
   CY8CPROTO-062S3-4343W
   CY8CPROTO-063-BLE
@@ -14,7 +15,7 @@ project(uart-transmit-receive-dma)
 
 psoc6_load_application(
   NAME mtb-example-psoc6-uart-transmit-receive-dma
-  VERSION 1.2.0
+  VERSION 2.0.0
 )
 psoc6_add_executable(
   SOURCES

@@ -4,6 +4,7 @@
 #include "task.h"
 
 /* Standard includes. */
+#include <stdio.h>
 #include <stdarg.h>
 #include "cmsis_compiler.h"
 

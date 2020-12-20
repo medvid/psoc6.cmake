@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME display-eink-e2271cs021
-  VERSION 1.0.0
+  VERSION 1.0.1
 )
 
 set(DISPLAY_EINK_E2271CS021_SOURCES
@@ -12,13 +12,24 @@ set(DISPLAY_EINK_E2271CS021_SOURCES
   ${DISPLAY_EINK_E2271CS021_DIR}/mtb_e2271cs021_pervasive_configuration.h
   ${DISPLAY_EINK_E2271CS021_DIR}/mtb_e2271cs021_pervasive_hardware_driver.h
   ${DISPLAY_EINK_E2271CS021_DIR}/mtb_e2271cs021_pervasive_hardware_driver.c
+  ${DISPLAY_EINK_E2271CS021_DIR}/configs/emwin/GUIConf.c
+  ${DISPLAY_EINK_E2271CS021_DIR}/configs/emwin/GUI_X.c
+  ${DISPLAY_EINK_E2271CS021_DIR}/configs/emwin/LCDConf.h
+  ${DISPLAY_EINK_E2271CS021_DIR}/configs/emwin/LCDConf.c
+  ${DISPLAY_EINK_E2271CS021_DIR}/configs/emwin/emwin.h
 )
 set(DISPLAY_EINK_E2271CS021_INCLUDE_DIRS
   ${DISPLAY_EINK_E2271CS021_DIR}
+  ${DISPLAY_EINK_E2271CS021_DIR}/configs/emwin
+  ${EMWIN_INCLUDE_DIRS}
 )
 set(DISPLAY_EINK_E2271CS021_LINK_LIBRARIES
   mtb-hal-cat1
 )
+
+if(NOT ${OS} STREQUAL NOOS)
+  list(APPEND DISPLAY_EINK_E2271CS021_LINK_LIBRARIES abstraction-rtos)
+endif()
 
 add_library(display-eink-e2271cs021 STATIC EXCLUDE_FROM_ALL ${DISPLAY_EINK_E2271CS021_SOURCES})
 target_include_directories(display-eink-e2271cs021 PUBLIC ${DISPLAY_EINK_E2271CS021_INCLUDE_DIRS})

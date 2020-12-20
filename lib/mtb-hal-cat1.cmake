@@ -158,3 +158,6 @@ set(MTB_HAL_CAT1_LINK_LIBRARIES
 add_library(mtb-hal-cat1 STATIC EXCLUDE_FROM_ALL ${MTB_HAL_CAT1_SOURCES})
 target_include_directories(mtb-hal-cat1 PUBLIC ${MTB_HAL_CAT1_INCLUDE_DIRS})
 target_link_libraries(mtb-hal-cat1 PUBLIC ${MTB_HAL_CAT1_LINK_LIBRARIES})
+
+# BSP library depends on HAL
+target_link_libraries(bsp PUBLIC mtb-hal-cat1)

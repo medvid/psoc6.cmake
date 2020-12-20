@@ -7,6 +7,7 @@ if(${CORE} STREQUAL CM0P)
 endif()
 
 # Load CM4 application definitions
+include(app/adc-basic.cmake)
 include(app/ble-capsense-tuner-client.cmake)
 include(app/ble-capsense-tuner-server.cmake)
 include(app/ble-findme.cmake)
@@ -25,15 +26,21 @@ include(app/i2c-master-ezi2c-slave.cmake)
 include(app/i2c-master.cmake)
 include(app/i2c-slave-callback.cmake)
 include(app/i2s.cmake)
+include(app/low-power-analog-front-end.cmake)
+include(app/low-power-sar-adc-thermistor-als.cmake)
 include(app/mcwdt.cmake)
 include(app/pdm-pcm.cmake)
 include(app/pdm-to-i2s.cmake)
+include(app/pwm-dual-compare-capture.cmake)
 include(app/pwm-square-wave.cmake)
 include(app/qspi-fram-access.cmake)
 include(app/qspi-readwrite-sfdp.cmake)
 include(app/qspi-readwrite.cmake)
 include(app/rtc-basics.cmake)
+include(app/sar-adc-simultaneous-sampling.cmake)
+include(app/smartio-i2s.cmake)
 include(app/smartio-ramping-led.cmake)
+include(app/smartio-sgpio-target.cmake)
 include(app/spi-master-dma.cmake)
 include(app/spi-master.cmake)
 include(app/switching-power-modes.cmake)
@@ -46,8 +53,14 @@ include(app/usb-hid-mouse.cmake)
 include(app/usb-msc-logger.cmake)
 include(app/wdt.cmake)
 
+# Load ModusToolbox_101 projects
+#include(app/mtb101.cmake)
+
 # Load community code examples
-include(app/community.cmake)
+#include(app/community.cmake)
+
+# Load shield demo projects
+#include(app/afe-demo.cmake)
 
 # Load CMSIS tests
 include(test/cmsis/CoreValidation.cmake)

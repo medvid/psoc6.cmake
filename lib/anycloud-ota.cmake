@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME anycloud-ota
-  VERSION 1.2.0
+  VERSION 2.0.0
 )
 
 set(ANYCLOUD_OTA_SOURCES
@@ -10,7 +10,6 @@ set(ANYCLOUD_OTA_SOURCES
   ${ANYCLOUD_OTA_DIR}/source/cy_ota_http.c
   ${ANYCLOUD_OTA_DIR}/source/cy_ota_internal.h
   ${ANYCLOUD_OTA_DIR}/source/cy_ota_mqtt.c
-  ${ANYCLOUD_OTA_DIR}/source/cy_ota_sign_check.c
   ${ANYCLOUD_OTA_DIR}/source/cy_ota_storage.c
 )
 set(ANYCLOUD_OTA_INCLUDE_DIRS

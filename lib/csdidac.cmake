@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME csdidac
-  VERSION 2.0.0
+  VERSION 2.10.0
 )
 
 set(CSDIDAC_SOURCES

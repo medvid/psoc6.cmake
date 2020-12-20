@@ -66,6 +66,12 @@ set(TOOLCHAIN_LSFLAGS "--config=")
 set(TOOLCHAIN_MAPFILE "--map=")
 set(TOOLCHAIN_PREINCLUDE "--preinclude=")
 
+# Linker script suffix
+set(TOOLCHAIN_SUFFIX_LS ".icf")
+
+# ModusToolbox toolchain name
+set(MTB_TOOLCHAIN "IAR")
+
 # RTOS: configure the full runtime library for use with threads
 if(NOT ${OS} STREQUAL NOOS)
   string(APPEND CMAKE_C_FLAGS " --dlib_config=full")

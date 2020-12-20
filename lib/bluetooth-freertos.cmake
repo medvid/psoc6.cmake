@@ -1,10 +1,11 @@
 psoc6_load_library(
   NAME bluetooth-freertos
-  VERSION 1.2.0
+  VERSION 1.3.0
 )
 
 set(BLUETOOTH_FREERTOS_SOURCES
   ${BLUETOOTH_FREERTOS_DIR}/platform/include/cybt_platform_config.h
+  ${BLUETOOTH_FREERTOS_DIR}/platform/include/cybt_platform_trace.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_bt_task.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_hci_task.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_host_stack_platform_interface.c
@@ -14,7 +15,6 @@ set(BLUETOOTH_FREERTOS_SOURCES
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_main.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_task.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_task.c
-  ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_trace.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_trace.c
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_platform_util.h
   ${BLUETOOTH_FREERTOS_DIR}/platform/common/cybt_prm.h
@@ -36,9 +36,17 @@ set(BLUETOOTH_FREERTOS_LINK_LIBRARIES
 )
 
 if(43012 IN_LIST COMPONENTS)
-  list(APPEND BLUETOOTH_FREERTOS_SOURCES
-    ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43012/TARGET_${BSP_NAME}/w_bt_firmware_controller.c
-  )
+  if(${TARGET} STREQUAL CY8CKIT-062S2-43012)
+    list(APPEND BLUETOOTH_FREERTOS_SOURCES
+      ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43012/TARGET_CY8CKIT_062S2_43012/w_bt_firmware_controller.c
+    )
+  elseif(${TARGET} STREQUAL CYW9P62S1-43012EVB-01)
+    list(APPEND BLUETOOTH_FREERTOS_SOURCES
+      ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43012/TARGET_CYW9P62S1-43012EVB-01/w_bt_firmware_controller.c
+    )
+  else()
+    message(FATAL_ERROR "bluetooth-freertos: missing BT controller firmware for TARGET=${TARGET}.")
+  endif()
 elseif(43438 IN_LIST COMPONENTS)
   list(APPEND BLUETOOTH_FREERTOS_SOURCES
     ${BLUETOOTH_FREERTOS_DIR}/firmware/COMPONENT_43438/w_bt_firmware_controller.c

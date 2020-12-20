@@ -9,7 +9,8 @@
     //    your global PATH.  Cortex-Debug needs to find the specific gdb-server
     //    you want to use.
     //
-    //       "cortex-debug.JLinkGDBServerPath": "<JLinkInstallDir>/JLinkGDBServerCL.exe"
+    //       Windows     : "cortex-debug.JLinkGDBServerPath": "<JLinkInstallDir>/JLinkGDBServerCL"
+    //       Linux / Mac : "cortex-debug.JLinkGDBServerPath": "<JLinkInstallDir>/JLinkGDBServer"
     //
     //    User settings are located in:
     //
@@ -17,7 +18,7 @@
     //       Mac     : $HOME/Library/Application Support/Code/User/settings.json
     //       Linux   : $HOME/.config/Code/User/settings.json
     //
-    //    You can use the VSCode Settings UI to edit the files mentioned above.    
+    //    You can use the VSCode Settings UI to edit the files mentioned above.
     //
     //    For the JLink configurations in this file, the "device" name comes from
     //    the list found here:
@@ -72,8 +73,7 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_01.svd",
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
             "showDevDebugOutput": false // When set to true, displays output of GDB.
@@ -116,8 +116,7 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_01.svd",
             "showDevDebugOutput": false // When set to true, displays output of GDB.
                                         // This is helpful when something is not working right
         },
@@ -184,8 +183,7 @@
                 "exec-file ${command:cmake.launchTargetPath}"
             ],
             "demangle": true,
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_01.svd",
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "Build: Build [Debug]", // Set this to run a task from tasks.json before
                                                      // starting a debug session
@@ -204,8 +202,7 @@
             "servertype": "jlink",
             "device": "CY8C6xx7_CM4_sect256KB",
             "demangle": true,
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_01.svd",
             "showDevDebugOutput": false // When set to true, displays output of GDB.
                                         // This is helpful when something is not working right
         },
@@ -293,8 +290,7 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_02.svd",
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
             "showDevDebugOutput": false // When set to true, displays output of GDB.
@@ -337,8 +333,7 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_02.svd",
             "showDevDebugOutput": false // When set to true, displays output of GDB.
                                         // This is helpful when something is not working right
         },
@@ -405,8 +400,7 @@
                 "exec-file ${command:cmake.launchTargetPath}"
             ],
             "demangle": true,
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_02.svd",
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "Build: Build [Debug]", // Set this to run a task from tasks.json before
                                                      // starting a debug session
@@ -425,8 +419,7 @@
             "servertype": "jlink",
             "device": "CY8C6xxA_CM4_sect256KB",
             "demangle": true,
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_02.svd",
             "showDevDebugOutput": false // When set to true, displays output of GDB.
                                         // This is helpful when something is not working right
         },
@@ -514,8 +507,7 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_03.svd",
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
             "showDevDebugOutput": false // When set to true, displays output of GDB.
@@ -558,8 +550,7 @@
                 "monitor gdb_sync",
                 "stepi"
             ],
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_03.svd",
             "showDevDebugOutput": false // When set to true, displays output of GDB.
                                         // This is helpful when something is not working right
         },
@@ -626,8 +617,7 @@
                 "exec-file ${command:cmake.launchTargetPath}"
             ],
             "demangle": true,
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_03.svd",
             "runToMain": true,          // if true, program will halt at main. Not used for a restart
             "preLaunchTask": "Build: Build [Debug]", // Set this to run a task from tasks.json before
                                                      // starting a debug session
@@ -646,8 +636,7 @@
             "servertype": "jlink",
             "device": "CY8C6xx5_CM4_sect256KB",
             "demangle": true,
-            // svdFile is optional, it can be very large.
-            "svdFile": "",
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_03.svd",
             "showDevDebugOutput": false // When set to true, displays output of GDB.
                                         // This is helpful when something is not working right
         },
@@ -678,6 +667,223 @@
             "executable": "${command:cmake.launchTargetPath}",
             "servertype": "jlink",
             "device": "CY8C6xx5_CM0p_sect256KB_tm",
+            "overrideLaunchCommands": [
+                "monitor reset 2",      // Reset via the reset pin
+                "-target-download",
+                "monitor reset 0",      // Reset both core and the peripherals
+                "monitor go",
+                "quit"
+            ],
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        {
+            "name": "Launch CY8C6xx4 CM4 (KitProg3)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceRoot}",
+                "${config:modustoolbox.toolsPath}/openocd/scripts/"
+            ],
+            "configFiles": [
+                "CY8C6xx4.tcl"
+            ],
+            "overrideLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "-enable-pretty-printing",
+                "set remotetimeout 15",
+                "monitor reset init",
+                // Comment this next line out if you don't want to reload program
+                //"monitor program {${command:cmake.launchTargetPath}}",
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "numberOfProcessors": 2,
+            "targetProcessor": 1,  // Set to 0 for the CM0+, set to 1 for the CM4
+            "postStartSessionCommands": [       // Needed if runToMain is false
+                // Following two commands are needed to get gdb and openocd and HW all in sync.
+                // Or, execution context (PC, stack, registers, etc.) look like they are from before reset.
+                // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done
+                // Its a documented workaround in openocd. Do a 'monitor help' to see more info
+                //
+                // An alternative command to use is "continue" instead of the following two
+                "monitor gdb_sync",
+                "stepi"
+            ],
+            "overrideRestartCommands": [
+                "monitor reset init",
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "postRestartSessionCommands": [
+                "monitor gdb_sync",
+                "stepi"
+            ],
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_04.svd",
+            "runToMain": true,          // if true, program will halt at main. Not used for a restart
+            "preLaunchTask": "",        // Set this to run a task from tasks.json before starting a debug session
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        // When using 'attach', make sure your program is running on the board and that your
+        // executable matches the image in the chip exactly, or else strange things can happen
+        // with breakpoints, variables, etc.
+        {
+            "name": "Attach CY8C6xx4 CM4 (KitProg3)",
+            "type": "cortex-debug",
+            "request": "attach",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceRoot}",
+                "${config:modustoolbox.toolsPath}/openocd/scripts/"
+            ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ENABLE_ACQUIRE 0"
+            ],
+            "configFiles": [
+                "CY8C6xx4.tcl"
+            ],
+            "overrideAttachCommands": [
+                "set mem inaccessible-by-default off",
+                "-enable-pretty-printing",
+                "monitor halt"
+            ],
+            "numberOfProcessors": 2,
+            "targetProcessor": 1,  // Set to 0 for the CM0+, set to 1 for the CM4
+            "overrideRestartCommands": [
+                "monitor reset init",
+                "monitor reset run",
+                "monitor sleep 200",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "postRestartSessionCommands": [
+                "monitor gdb_sync",
+                "stepi"
+            ],
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_04.svd",
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        {
+            "name": "Erase CY8C6xx4 (KitProg3)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceRoot}",
+                "${config:modustoolbox.toolsPath}/openocd/scripts/"
+            ],
+            "configFiles": [
+                "CY8C6xx4.tcl"
+            ],
+            "overrideLaunchCommands": [
+                "monitor reset init",
+                "monitor psoc6 sflash_restrictions 1",
+                "monitor erase_all",
+                "quit"
+            ],
+            "numberOfProcessors": 2,
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        {
+            "name": "Program CY8C6xx4 (KitProg3)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceRoot}",
+                "${config:modustoolbox.toolsPath}/openocd/scripts/"
+            ],
+            "configFiles": [
+                "CY8C6xx4.tcl"
+            ],
+            "overrideLaunchCommands": [
+                "monitor psoc6 sflash_restrictions 1",
+                "monitor program {${command:cmake.launchTargetPath}}",
+                "monitor reset_config srst_only",
+                "monitor reset run",
+                "monitor psoc6.dap dpreg 0x04 0x00",
+                "quit"
+            ],
+            "numberOfProcessors": 2,
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        {
+            "name": "Launch CY8C6xx4 CM4 (JLink)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "jlink",
+            "device": "CY8C6xx4_CM4_sect256KB",
+            "preLaunchCommands": [
+                // Program via the hex file to get complete coverage
+                "exec-file ${command:cmake.launchTargetPath}"
+            ],
+            "demangle": true,
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_04.svd",
+            "runToMain": true,          // if true, program will halt at main. Not used for a restart
+            "preLaunchTask": "Build: Build [Debug]", // Set this to run a task from tasks.json before
+                                                     // starting a debug session
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        // When using 'attach', make sure your program is running on the board and that your
+        // executable matches the image in the chip exactly, or else strange things can happen
+        // with breakpoints, variables, etc.
+        {
+            "name": "Attach CY8C6xx4 CM4 (JLink)",
+            "type": "cortex-debug",
+            "request": "attach",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "jlink",
+            "device": "CY8C6xx4_CM4_sect256KB",
+            "demangle": true,
+            "svdFile": "${workspaceFolder}/lib/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_04.svd",
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        {
+            "name": "Erase CY8C6xx4 (JLink)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            // executable not needed but need some valid file to get the session to start
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "jlink",
+            "device": "CY8C6xx4_CM0p_sect256KB_tm",
+            "overrideLaunchCommands": [
+                "monitor reset 2",      // Reset via the reset pin
+                "monitor flash erase",
+                "monitor reset 0",      // Reset both core and the peripherals
+                "quit"
+            ],
+            "showDevDebugOutput": false // When set to true, displays output of GDB.
+                                        // This is helpful when something is not working right
+        },
+        {
+            "name": "Program CY8C6xx4 (JLink)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            // Program via the hex file to get complete coverage, no need for symbols
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "jlink",
+            "device": "CY8C6xx4_CM0p_sect256KB_tm",
             "overrideLaunchCommands": [
                 "monitor reset 2",      // Reset via the reset pin
                 "-target-download",

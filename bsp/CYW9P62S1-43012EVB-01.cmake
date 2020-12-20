@@ -8,7 +8,7 @@ psoc6_load_bsp(
 psoc6_set_device(CY8C6247FDI-D52)
 
 # Set target CPU core
-psoc6_set_core()
+psoc6_set_core(CM4)
 
 # Set target VFP
 if(${CORE} STREQUAL CM4)
@@ -19,7 +19,6 @@ endif()
 set(OPENOCD_CFG ${CMAKE_SOURCE_DIR}/CY8C6xx7.tcl)
 
 set(BSP_SOURCES
-  ${BSP_DIR}/system_psoc6.h
   ${BSP_DIR}/cybsp.h
   ${BSP_DIR}/cybsp.c
   ${BSP_DIR}/cybsp_types.h
@@ -31,55 +30,14 @@ set(BSP_LINK_LIBRARIES
 # Include BSP_DIR globally
 include_directories(${BSP_DIR})
 
-if(${CORE} STREQUAL CM4)
-  add_definitions(-DCY_USING_HAL)
-  add_definitions(-DCYHAL_UDB_SDIO)
-  add_definitions(-DCYBSP_WIFI_CAPABLE)
-  psoc6_add_component(CM0P_SLEEP)
-  psoc6_add_component(BSP_DESIGN_MODUS)
-  psoc6_add_component(PSOC6HAL)
-  psoc6_add_component(43012)
-  psoc6_add_component(UDB_SDIO_P12)
-  # Enable crypto HW acceleration
-  set(TARGET_MXCRYPTO "TARGET_MXCRYPTO_01")
-
-  list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/system_psoc6_cm4.c)
-  list(APPEND BSP_LINK_LIBRARIES mtb-hal-cat1)
-  if(${TOOLCHAIN} STREQUAL GCC)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/startup_psoc6_01_cm4.S)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm4_dual.ld)
-  elseif(${TOOLCHAIN} STREQUAL ARM)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/startup_psoc6_01_cm4.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_ARM/cy8c6xx7_cm4_dual.sct)
-  elseif(${TOOLCHAIN} STREQUAL IAR)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/startup_psoc6_01_cm4.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_IAR/cy8c6xx7_cm4_dual.icf)
-  elseif(${TOOLCHAIN} STREQUAL LLVM)
-    list(APPEND BSP_SOURCES ${LLVM_PORT_DIR}/startup/startup_psoc6_01_cm4.S)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM4/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm4_dual.ld)
-  else()
-    message(FATAL_ERROR "bsp: TOOLCHAIN ${TOOLCHAIN} is not supported.")
-  endif()
-elseif(${CORE} STREQUAL CM0P)
-  list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/system_psoc6_cm0plus.c)
-  if(${TOOLCHAIN} STREQUAL GCC)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/startup_psoc6_01_cm0plus.S)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm0plus.ld)
-  elseif(${TOOLCHAIN} STREQUAL ARM)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/startup_psoc6_01_cm0plus.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_ARM/cy8c6xx7_cm0plus.sct)
-  elseif(${TOOLCHAIN} STREQUAL IAR)
-    list(APPEND BSP_SOURCES ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/startup_psoc6_01_cm0plus.s)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_IAR/cy8c6xx7_cm0plus.icf)
-  elseif(${TOOLCHAIN} STREQUAL LLVM)
-    list(APPEND BSP_SOURCES ${LLVM_PORT_DIR}/startup/startup_psoc6_01_cm0plus.S)
-    set(BSP_LINKER_SCRIPT ${BSP_DIR}/COMPONENT_CM0P/TOOLCHAIN_GCC_ARM/cy8c6xx7_cm0plus.ld)
-  else()
-    message(FATAL_ERROR "bsp: TOOLCHAIN ${TOOLCHAIN} is not supported.")
-  endif()
-else()
-  message(FATAL_ERROR "bsp: CORE ${CORE} is not supported.")
-endif()
+# Set device die-specific definitions
+psoc6_add_component(PSOC6_01)
+psoc6_add_bsp_startup(
+  startup_psoc6_01_cm4
+  cy8c6xx7_cm4_dual
+  startup_psoc6_01_cm0plus
+  cy8c6xx7_cm0plus
+)
 
 # Define BSP library
 add_library(bsp STATIC EXCLUDE_FROM_ALL ${BSP_SOURCES})
@@ -95,6 +53,24 @@ if(${CORE} STREQUAL CM0P)
   return()
 endif()
 
+# Add common definitions and components
+add_definitions(-DCY_USING_HAL)
+add_definitions(-DCYHAL_UDB_SDIO)
+add_definitions(-DCYBSP_WIFI_CAPABLE)
+psoc6_add_component(CM0P_SLEEP)
+psoc6_add_component(BSP_DESIGN_MODUS)
+psoc6_add_component(PSOC6HAL)
+psoc6_add_component(FLASHIAP)
+psoc6_add_component(QSPIF)
+psoc6_add_component(MXCRYPTO)
+psoc6_add_component(MXCRYPTO_01)
+psoc6_add_component(WHD)
+psoc6_add_component(43012)
+psoc6_add_component(CYW43XXX)
+psoc6_add_component(UDB_SDIO_P12)
+psoc6_add_component(BLE)
+psoc6_add_component(CORDIO)
+
 # Include common libraries
 include(lib/mtb-hal-cat1.cmake)
 include(lib/psoc6cm0p.cmake)
@@ -109,8 +85,10 @@ include(lib/rgb-led.cmake)
 include(lib/serial-flash.cmake)
 include(lib/udb-sdio-whd.cmake)
 
-# Define custom recipes for BSP generated sources
+# Include shield libraries
+include(lib/shields.cmake)
+
+# Define custom recipes for the BSP generated sources
 psoc6_add_bsp_design_modus(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.modus)
 psoc6_add_bsp_design_capsense(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.cycapsense)
-# BUG: Could not find MPN S25FS512S.
-#psoc6_add_bsp_design_qspi(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.cyqspi)
+psoc6_add_bsp_design_qspi(${BSP_DIR}/COMPONENT_BSP_DESIGN_MODUS/design.cyqspi)

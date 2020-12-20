@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME lpa
-  VERSION 2.0.0
+  VERSION 3.0.0
 )
 
 set(LPA_SOURCES
@@ -22,24 +22,21 @@ set(LPA_SOURCES
   ${LPA_DIR}/source/cy_whd_stubs.c
   ${LPA_DIR}/source/cy_whd_tko_api.c
   ${LPA_DIR}/helpers/net_activity/network_activity_handler.h
-  ${LPA_DIR}/helpers/net_activity/COMPONENT_LWIP/ip4string.h
-  ${LPA_DIR}/helpers/net_activity/COMPONENT_LWIP/ip4string.c
-  ${LPA_DIR}/helpers/net_activity/COMPONENT_LWIP/network_activity_handler.c
+  ${LPA_DIR}/helpers/net_activity/COMPONENT_SECURE_SOCKETS/ip4string.h
+  ${LPA_DIR}/helpers/net_activity/COMPONENT_SECURE_SOCKETS/ip4string.c
+  ${LPA_DIR}/helpers/net_activity/COMPONENT_SECURE_SOCKETS/network_activity_handler.c
   ${LPA_DIR}/target/cy_nw_lpa_helper.h
-  ${LPA_DIR}/target/COMPONENT_FREERTOS/cy_nw_lpa_helper.c
-  ${LPA_DIR}/target/COMPONENT_FREERTOS/cy_OlmInterface.h
-  ${LPA_DIR}/target/COMPONENT_FREERTOS/cy_OlmInterface.c
-  #${LPA_DIR}/target/COMPONENT_WHD/cy_nw_lpa_helper.cpp
-  #${LPA_DIR}/target/COMPONENT_WHD/WhdOlmInterface.h
-  #${LPA_DIR}/target/COMPONENT_WHD/WhdOlmInterface.cpp
+  ${LPA_DIR}/target/COMPONENT_WCM/cy_nw_lpa_helper.c
+  ${LPA_DIR}/target/COMPONENT_WCM/cy_OlmInterface.h
+  ${LPA_DIR}/target/COMPONENT_WCM/cy_OlmInterface.c
 )
 set(LPA_INCLUDE_DIRS
   ${LPA_DIR}/include
   ${LPA_DIR}/source
   ${LPA_DIR}/helpers/net_activity
-  ${LPA_DIR}/helpers/net_activity/COMPONENT_LWIP
+  ${LPA_DIR}/helpers/net_activity/COMPONENT_SECURE_SOCKETS
   ${LPA_DIR}/target
-  ${LPA_DIR}/target/COMPONENT_FREERTOS
+  ${LPA_DIR}/target/COMPONENT_WCM
 )
 set(LPA_LINK_LIBRARIES
   connectivity-utilities

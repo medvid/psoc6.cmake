@@ -11,7 +11,7 @@
 	"cortex-debug.armToolchainPath": "${config:modustoolbox.toolsPath}/gcc/bin",
 	"cmake.configureSettings": {
 		"CY_TOOLS_PATHS": "/Applications/ModusToolbox/tools_2.2",
-		"GCC_TOOLCHAIN_PATH": "${env:HOME}/Applications/gcc-arm-none-eabi-9-2020-q2-update",
+		"GCC_TOOLCHAIN_PATH": "/Applications/ARM",
 		"LLVM_TOOLCHAIN_PATH": "/usr/local/opt/llvm"
 	}
 }

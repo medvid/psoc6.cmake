@@ -1,6 +1,6 @@
 psoc6_load_library(
   NAME btstack
-  VERSION 1.4.0
+  VERSION 1.5.0
 )
 
 set(BTSTACK_SOURCES

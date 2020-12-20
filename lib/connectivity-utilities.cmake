@@ -1,11 +1,10 @@
 psoc6_load_library(
   NAME connectivity-utilities
-  VERSION 2.1.0
+  VERSION 3.0.0
 )
 
 set(CONNECTIVITY_UTILITIES_SOURCES
   ${CONNECTIVITY_UTILITIES_DIR}/cy_result_mw.h
-  ${CONNECTIVITY_UTILITIES_DIR}/cy_utilities.h
   ${CONNECTIVITY_UTILITIES_DIR}/cy_log/cy_log.h
   ${CONNECTIVITY_UTILITIES_DIR}/cy_log/cy_log.c
   ${CONNECTIVITY_UTILITIES_DIR}/cy_string/cy_string_utils.h

@@ -766,5 +766,101 @@
             "OS": "RTX",
             "TOOLCHAIN": "LLVM"
         }
+    },
+    {
+        "name": "CY8CKIT-062S4/NOOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "NOOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/NOOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "NOOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/NOOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "NOOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/NOOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "NOOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/FREERTOS/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/FREERTOS/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/FREERTOS/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/FREERTOS/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "FREERTOS",
+            "TOOLCHAIN": "LLVM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/RTX/GCC",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "RTX",
+            "TOOLCHAIN": "GCC"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/RTX/ARM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "RTX",
+            "TOOLCHAIN": "ARM"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/RTX/IAR",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "RTX",
+            "TOOLCHAIN": "IAR"
+        }
+    },
+    {
+        "name": "CY8CKIT-062S4/RTX/LLVM",
+        "cmakeSettings": {
+            "TARGET": "CY8CKIT-062S4",
+            "OS": "RTX",
+            "TOOLCHAIN": "LLVM"
+        }
     }
 ]
