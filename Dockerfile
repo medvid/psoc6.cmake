@@ -3,13 +3,13 @@ FROM vmmedvid/modustoolbox:latest
 
 # Install CMake, Ninja and LLVM/Clang
 RUN apt update -y \
- && apt install -y apt-transport-https ca-certificates gnupg software-properties-common --no-install-recommends \
+ && apt install -y apt-transport-https ca-certificates curl gnupg software-properties-common --no-install-recommends \
  && curl -fsSL https://apt.kitware.com/keys/kitware-archive-latest.asc | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null \
  && curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
- && apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ bionic main' \
- && apt-add-repository -y 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main' \
+ && apt-add-repository -y 'deb https://apt.kitware.com/ubuntu/ focal main' \
+ && apt-add-repository -y 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main' \
  && apt update -y \
- && apt install -y cmake ninja-build clang-10 lld-10 --no-install-recommends \
+ && apt install -y cmake ninja-build clang-11 lld-11 --no-install-recommends \
  && apt autoremove -y --purge gnupg \
  && apt clean
 
