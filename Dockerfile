@@ -16,5 +16,5 @@ RUN apt update -y \
 # Install GCC 10.2.1
 RUN curl -fsSL https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -o /tmp/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 \
  && tar -C /opt -xjf /tmp/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 \
- && rm /tmp/gcc-arm-none-eabi-10-2020-q2-major-x86_64-linux.tar.bz2
+ && rm /tmp/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
 
