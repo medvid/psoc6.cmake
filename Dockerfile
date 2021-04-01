@@ -2,6 +2,7 @@
 FROM vmmedvid/modustoolbox:latest
 
 # Install CMake, Ninja and LLVM/Clang
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update -y \
  && apt install -y apt-transport-https ca-certificates curl gnupg software-properties-common --no-install-recommends \
  && curl -fsSL https://apt.kitware.com/keys/kitware-archive-latest.asc | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null \
